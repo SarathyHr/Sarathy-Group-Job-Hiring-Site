@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Sarathy Group | Mega Job Fair 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002855;
+            --primary-light: #004080;
+            --accent: #08b608;
+            --accent-hover: #42e619;
+            --success: #25D366;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
+            --shadow-lg: 0 25px 50px rgba(0,0,0,0.15);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            
+            /* Premium Hero Variables matching your image */
+            --hero-bg: linear-gradient(to bottom, #05182e, #0a2745);
+            --hero-red: #f44336;
+            --hero-red-hover: #d32f2f;
+            --hero-slate: #233142;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-light);
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        .top-ticker {
+            background: var(--accent); color: white; padding: 8px 30px 8px 15px;
+            overflow: hidden; position: relative; z-index: 10002;
+            font-size: 0.85rem; font-weight: 700; display: flex; align-items: center;
+        }
+        .ticker-text-wrapper { flex-grow: 1; overflow: hidden; white-space: nowrap; }
+        .ticker-text { display: inline-block; padding-left: 100%; animation: marquee 25s linear infinite; }
+        .ticker-text:hover { animation-play-state: paused; }
+        @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+        .close-ticker {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.1); border: none; color: white;
+            width: 24px; height: 24px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .close-ticker:hover { background: rgba(0,0,0,0.3); }
+
+        .scroll-progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; z-index: 10001; }
+        .scroll-progress-bar { height: 100%; background: var(--accent); width: 0%; box-shadow: 0 0 10px var(--accent); }
+
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--white); z-index: 99999; display: flex;
+            justify-content: center; align-items: center; transition: opacity 0.5s ease;
+        }
+        .loader { width: 50px; height: 50px; border: 5px solid rgba(0,40,85,0.1); border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        header {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            padding: 8px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); height: 65px; display: flex; align-items: center;
+        }
+        .logo-slider { overflow: hidden; width: 100%; position: relative; }
+        .logo-track { display: flex; width: max-content; animation: scroll 30s linear infinite; }
+        .logo-track:hover { animation-play-state: paused; }
+        .logo-item { width: 110px; height: 45px; margin: 0 25px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition); }
+        .logo-item:hover { transform: scale(1.15) translateY(-3px); }
+        .logo-img { max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(20%); transition: var(--transition); }
+        .logo-item:hover .logo-img { filter: grayscale(0%); }
+        .logo-enlarge { transform: scale(1.35); }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .hero {
+            padding: 80px 15px 140px;
+            background: var(--hero-bg);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fair-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(244, 67, 54, 0.4);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.9);
+        }
+        .live-dot {
+            width: 8px; height: 8px; background: var(--hero-red); border-radius: 50%;
+            box-shadow: 0 0 10px var(--hero-red); animation: blink 1.5s infinite alternate;
+        }
+        @keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 15px; letter-spacing: -1px; }
+        .hero p { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+
+        .clock-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        .time-box {
+            background: var(--hero-slate); border-radius: 12px;
+            padding: 16px 24px; min-width: 105px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: transform 0.3s;
+        }
+        .time-box:hover { transform: translateY(-5px); }
+        .time-box span { font-size: 1.8rem; font-weight: 800; color: white; line-height: 1.2; }
+        .time-box label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; color: white; margin-top: 5px; font-weight: 600;}
+
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 14px 30px; border-radius: 10px; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; border: none; }
+        .btn-hero-primary { background: var(--hero-red); color: white; box-shadow: 0 4px 20px rgba(244, 67, 54, 0.4); }
+        .btn-hero-primary:hover { background: var(--hero-red-hover); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(244, 67, 54, 0.5); }
+        .btn-hero-secondary { background: var(--hero-slate); color: white; }
+        .btn-hero-secondary:hover { background: #2f4057; transform: translateY(-3px); }
+        
+        .btn-primary { background: var(--accent); color: var(--white); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(8, 182, 8, 0.3); }
+
+        .stats-bar {
+            max-width: 900px; margin: -50px auto 40px; padding: 25px;
+            border-radius: 20px; display: grid; grid-template-columns: repeat(3, 1fr);
+            text-align: center; position: relative; z-index: 10; background: white; box-shadow: var(--shadow-md);
+            width: calc(100% - 32px);
+        }
+        .stat-item { border-right: 1px solid rgba(0,0,0,0.05); }
+        .stat-item:last-child { border-right: none; }
+        .stat-item h3 { font-size: clamp(1.8rem, 5vw, 2.5rem); color: var(--primary); font-weight: 800; line-height: 1; margin-bottom: 5px; }
+        .stat-item p { color: var(--text-light); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        .banner-section { width: 100%; max-width: 1200px; margin: 0 auto 60px; border-radius: 24px; overflow: hidden; position: relative; box-shadow: var(--shadow-md); width: calc(100% - 30px); background: #fff;}
+        .banner-carousel { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; }
+        .banner-slide { min-width: 100%; display: flex; justify-content: center; align-items: center; }
+        .banner-slide img { width: 100%; height: auto; max-height: 550px; object-fit: cover; display: block; }
+        .banner-controls { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+        .banner-dot { width: 10px; height: 10px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; transition: var(--transition); }
+        .banner-dot.active { background: var(--white); transform: scale(1.3); box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        .section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; color: var(--primary); margin-bottom: 15px; position: relative; display: inline-block;}
+        .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--hero-red); border-radius: 2px; }
+        .section-header p { color: var(--text-light); font-size: 1.05rem; max-width: 600px; margin: 20px auto 0; font-weight: 500;}
+
+        /* Video Section 16:9 Fix */
+        .video-container { max-width: 900px; margin: 0 auto; position: relative; }
+        .video-wrapper {
+            width: 100%; border-radius: 24px; overflow: hidden;
+            box-shadow: var(--shadow-lg); background: #000; aspect-ratio: 16/9; /* FIXED TO WIDESCREEN */
+            border: 6px solid white; position: relative;
+            transition: transform 0.4s ease;
+        }
+        .video-wrapper:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.25); }
+        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .process-wrapper { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
+        .process-step { display: flex; border-radius: 20px; padding: 25px; align-items: center; gap: 25px; transition: var(--transition); background: white; border: 1px solid rgba(0,0,0,0.05); }
+        .process-step:hover { transform: translateX(10px) translateY(-5px); box-shadow: var(--shadow-md); }
+        .step-number { width: 65px; height: 65px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; flex-shrink: 0; box-shadow: 0 8px 15px rgba(0, 40, 85, 0.2); }
+        .step-content h4 { color: var(--primary); font-size: 1.25rem; margin-bottom: 5px; font-weight: 800; }
+        .step-content p { color: var(--text-light); font-size: 0.95rem; margin: 0; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .card-item { padding: 35px 25px; border-radius: 24px; text-align: center; transition: var(--transition); background: white; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden;}
+        .card-item::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--hero-red); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
+        .card-item:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        .card-item:hover::before { transform: scaleX(1); }
+        .card-icon { width: 70px; height: 70px; background: rgba(0, 40, 85, 0.05); color: var(--primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px; transition: var(--transition); }
+        .card-item:hover .card-icon { background: var(--primary); color: white; transform: rotate(10deg) scale(1.1); box-shadow: 0 10px 20px rgba(0, 40, 85, 0.2);}
+        .card-item h4 { color: var(--primary); margin-bottom: 10px; font-weight: 800; font-size: 1.2rem; }
+        .card-item p { font-size: 0.95rem; color: var(--text-light); }
+
+        .checklist-box { padding: 40px; border-radius: 24px; border: 2px dashed rgba(0, 40, 85, 0.15); max-width: 750px; margin: 0 auto; background: white;}
+        .checklist-item { display: flex; align-items: center; gap: 20px; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: var(--transition); }
+        .checklist-item:hover { background: var(--bg-light); padding-left: 15px; border-radius: 12px; }
+        .checklist-item:last-child { border-bottom: none; }
+        .check-circle { color: var(--success); font-size: 1.8rem; background: rgba(37, 211, 102, 0.1); border-radius: 50%; padding: 5px; }
+
+        .venue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .hiring-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(0,0,0,0.05); }
+        .hiring-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        
+        /* POSTER SIZE FIX */
+        .hiring-img-box { width: 100%; height: 340px; overflow: hidden; background: #e2e8f0; cursor: pointer; }
+        .hiring-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.7s ease; }
+        .hiring-card:hover .hiring-img-box img { transform: scale(1.08); filter: brightness(1.05); }
+        
+        .hiring-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .hiring-meta-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .company-badge { background: rgba(0,40,85,0.08); color: var(--primary); padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; }
+        .post-date { font-size: 0.8rem; color: var(--text-light); font-weight: 600; }
+        .job-title { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin-bottom: 15px; line-height: 1.3; }
+        .hiring-meta-mid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+        .hiring-meta-mid span { font-size: 0.9rem; color: var(--text-light); display: flex; align-items: center; gap: 8px; font-weight: 500;}
+        .hiring-meta-mid i { color: var(--hero-red); width: 16px; text-align: center; }
+        .job-tags { font-size: 0.75rem; color: var(--hero-red); font-weight: 700; margin-bottom: 20px; }
+        .hiring-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: auto; }
+        .btn-card { padding: 12px; border-radius: 12px; text-align: center; font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 6px; border: none; cursor: pointer;}
+        .btn-card-primary { background: var(--primary); color: white; }
+        .btn-card-primary:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,40,85,0.2); }
+        .btn-card-secondary { background: var(--bg-light); color: var(--primary); border: 1px solid rgba(0,0,0,0.1); }
+        .btn-card-secondary:hover { background: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
+
+        /* Admin Controls */
+        .admin-card-controls { position: absolute; top: 15px; right: 15px; display: none; gap: 8px; z-index: 10; }
+        .admin-mode .admin-card-controls { display: flex; }
+        .admin-card-btn { width: 35px; height: 35px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .btn-edit-card { background: #3b82f6; }
+        .btn-del-card { background: #ef4444; }
+        .admin-card-btn:hover { transform: scale(1.15); }
+
+        /* --- Admin Upload Form --- */
+        #adminSection { display: none; margin-bottom: 50px; }
+        .admin-upload-tool { background: white; border-radius: 24px; padding: 30px; box-shadow: var(--shadow-md); border: 2px solid var(--primary); position: relative; }
+        .admin-tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 15px;}
+        .admin-header-title { display: flex; align-items: center; gap: 15px; }
+        .admin-header-title i { font-size: 2rem; color: var(--primary); background: rgba(0,40,85,0.08); padding: 12px; border-radius: 12px; }
+        .admin-actions-bar { display: flex; gap: 10px; }
+        .btn-admin-action { padding: 10px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: var(--transition); font-size: 0.95rem; }
+        .btn-save-jobs { background: var(--success); color: white; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+        .btn-save-jobs:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,211,102,0.4); }
+        .btn-exit-admin { background: #64748b; color: white; }
+        .btn-exit-admin:hover { background: #475569; transform: translateY(-2px); }
+        .admin-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+        .form-control { padding: 14px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 0.95rem; transition: border-color 0.3s; background: var(--bg-light); font-family: inherit;}
+        .form-control:focus { outline: none; border-color: var(--primary); background: white; box-shadow: 0 0 0 3px rgba(0,40,85,0.1); }
+        .file-upload-wrapper { position: relative; width: 100%; height: 50px; }
+        .file-upload-wrapper input[type="file"] { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+        .btn-upload-file { width: 100%; height: 100%; background: #eff6ff; border: 2px dashed #93c5fd; color: #1e3a8a; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; pointer-events: none; }
+        .file-upload-wrapper:hover .btn-upload-file { background: #dbeafe; border-color: #3b82f6; }
+        .form-btn-group { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 15px; margin-top: 10px; }
+        .btn-generate { background: var(--primary); color: white; border: none; padding: 14px 30px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0,40,85,0.2);}
+        .btn-generate:hover { background: var(--primary-light); transform: translateY(-3px); }
+        .btn-cancel-edit { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 14px 25px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); display: none; align-items: center; gap: 8px;}
+        .btn-cancel-edit:hover { background: #e2e8f0; color: #0f172a; }
+
+        .filter-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 24px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.1); background: white; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); }
+        .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .filter-btn.active { background: var(--hero-slate); color: white; border-color: var(--hero-slate); box-shadow: 0 8px 20px rgba(35,49,66,0.3); }
+
+        .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .role-group { padding: 35px; border-radius: 24px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); background: white; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); }
+        .role-group.hide { display: none; transform: scale(0.9); opacity: 0; position: absolute; } 
+        .role-group:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .role-group h4 { font-size: 1.4rem; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 15px; font-weight: 800; }
+        .role-group h4 i { background: rgba(0,40,85,0.08); padding: 12px; border-radius: 12px; color: var(--primary); transition: transform 0.3s;}
+        .role-group:hover h4 i { transform: rotate(15deg) scale(1.1); }
+        .role-item { padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .role-item:hover { transform: translateX(10px); }
+        .role-title { font-weight: 700; font-size: 1.1rem; display: block; color: var(--text-dark); margin-bottom: 5px; }
+        .fresher-badge { display: inline-block; background: #f0fdf4; color: #16a34a; font-size: 0.75rem; padding: 5px 14px; border-radius: 50px; font-weight: 700; margin-top: 5px; border: 1px solid #bbf7d0;}
+        .btn-role-apply { display: flex; align-items: center; justify-content: center; background: var(--bg-light); color: var(--primary); border: 1px solid rgba(0,0,0,0.1); text-decoration: none; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 700; margin-top: 25px; transition: var(--transition); }
+        .btn-role-apply:hover { background: var(--primary); color: white; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,40,85,0.2); }
+
+        /* Dark Themed Refer a Friend Match */
+        .referral-card {
+            max-width: 700px; margin: 0 auto;
+            background: var(--hero-bg);
+            border-radius: 30px; padding: 50px 30px;
+            color: white; position: relative; overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        .referral-icon { font-size: 3rem; color: var(--hero-red); margin-bottom: 20px; animation: blink 2s infinite; }
+        .referral-card h3 { font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .referral-card p { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 25px; }
+        .referral-contact { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); padding: 10px 25px; border-radius: 50px; font-weight: 700; margin-bottom: 35px; border: 1px solid rgba(255,255,255,0.05);}
+        .referral-contact i { color: var(--success); }
+
+        footer { background: #05101f; color: white; padding: 80px 20px 140px; text-align: center; }
+        .action-floats { position: fixed; bottom: 95px; right: 25px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
+        
+        .whatsapp-float {
+            background: var(--success); color: white; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 30px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); text-decoration: none; transition: var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); }
+
+        .back-to-top {
+            background: var(--primary-light); color: white; width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;
+            box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transition: var(--transition); transform: translateY(30px) scale(0.5); border: none;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .back-to-top:hover { background: var(--primary); transform: translateY(-5px); }
+
+        .mobile-cta {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95);
+            padding: 15px 20px; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); display: flex; justify-content: center;
+            align-items: center; z-index: 999; backdrop-filter: blur(15px); border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Toast Notifications */
+        .toast { position: fixed; top: 20px; right: 20px; background: white; color: #0f172a; padding: 16px 24px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; font-weight: 600; z-index: 100000; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-left: 5px solid var(--success); }
+        .toast.show { transform: translateX(0); }
+        .toast-icon { width: 28px; height: 28px; background: rgba(37, 211, 102, 0.1); color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+        .image-modal, .admin-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; z-index: 10000; opacity: 0; visibility: hidden; transition: var(--transition); backdrop-filter: blur(5px); }
+        .image-modal.active, .admin-modal.active { opacity: 1; visibility: visible; }
+        .modal-content { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); object-fit: contain; }
+        .modal-close, .admin-close-btn { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; transition: transform 0.3s; }
+        .modal-close:hover, .admin-close-btn:hover { transform: scale(1.2) rotate(90deg); }
+
+        .admin-login-box { background: white; padding: 40px; border-radius: 24px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.3); position: relative;}
+        .admin-input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1.1rem; text-align: center; margin-bottom: 20px; outline: none; transition: 0.3s; }
+        .admin-input:focus { border-color: var(--primary); }
+        .admin-btn { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .admin-btn:hover { background: var(--primary-light); }
+        .admin-error { color: #ef4444; font-size: 0.9rem; font-weight: 600; margin-top: 15px; display: none; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 50px 15px 120px; }
+            .hero h1 { font-size: 2.2rem; }
+            .clock-container { gap: 10px; }
+            .time-box { min-width: 75px; padding: 12px; }
+            .time-box span { font-size: 1.5rem; }
+            .stats-bar { grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: -40px; padding: 20px 10px; }
+            .stat-item h3 { font-size: 1.5rem; }
+            .section { padding: 60px 15px; }
+            .process-step { flex-direction: column; text-align: center; }
+            .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; }
+            .admin-form-grid { grid-template-columns: 1fr; } 
+            .form-btn-group { flex-direction: column; } 
+            .btn-generate, .btn-cancel-edit { width: 100%; justify-content: center;}
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-cta { display: none; }
+            body { padding-bottom: 0; }
+            footer { padding-bottom: 80px; }
+            .action-floats { bottom: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-ticker" id="topTicker">
+        <div class="ticker-text-wrapper">
+            <span class="ticker-text">🚀 MEGA JOB FAIR 2026: Registration is Open! Walk-in Interviews from March 4 to March 10. Bring 2 copies of your updated CV. Freshers are highly encouraged to apply! ✨</span>
+        </div>
+        <button class="close-ticker" onclick="document.getElementById('topTicker').style.display='none'" title="Close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="scroll-progress-container"><div class="scroll-progress-bar" id="progressBar"></div></div>
+    <div id="preloader"><div class="loader"></div></div>
+
+    <!-- Global Toast Notification Container -->
+    <div class="toast" id="toastMessage"></div>
+
+    <header>
+        <div class="logo-slider">
+            <div class="logo-track">
+                <!-- Logos -->
+                <div class="logo-item"><img src="sarathy-group-logo.png" alt="Sarathy" class="logo-img"></div>
+                <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img"></div>
+                <div class="logo-item"><img src="arena-logo.webp" alt="Arena" class="logo-img"></div>
+                <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge"></div>
+                <div class="logo-item"><img src="OIP (1).webp" alt="Commercial" class="logo-img"></div>
+                <div class="logo-item"><img src="bajaj.png" alt="Bajaj" class="logo-img"></div>
+                <div class="logo-item"><img src="KTM-logo.png" alt="KTM" class="logo-img"></div>
+                <div class="logo-item"><img src="Triumph-Logo.png" alt="Triumph" class="logo-img"></div>
+                <div class="logo-item"><img src="ather123.png" alt="Ather" class="logo-img"></div>
+                <div class="logo-item"><img src="Chetak-logo-5.png" alt="Chetak" class="logo-img"></div>
+                <!-- Copy 2 for infinite loop -->
+                <div class="logo-item"><img src="sarathy-group-logo.png" alt="Sarathy" class="logo-img"></div>
+                <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img"></div>
+                <div class="logo-item"><img src="arena-logo.webp" alt="Arena" class="logo-img"></div>
+                <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge"></div>
+                <div class="logo-item"><img src="OIP (1).webp" alt="Commercial" class="logo-img"></div>
+                <div class="logo-item"><img src="bajaj.png" alt="Bajaj" class="logo-img"></div>
+                <div class="logo-item"><img src="KTM-logo.png" alt="KTM" class="logo-img"></div>
+                <div class="logo-item"><img src="Triumph-Logo.png" alt="Triumph" class="logo-img"></div>
+                <div class="logo-item"><img src="ather123.png" alt="Ather" class="logo-img"></div>
+                <div class="logo-item"><img src="Chetak-logo-5.png" alt="Chetak" class="logo-img"></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="fair-badge">
+            <div class="live-dot"></div>
+            JOB VACANCIES 2026
+        </div>
+        <h1>START YOUR JOURNEY WITH SARATHY</h1>
+        <p>Join South Kerala's No. 1 Automotive Group. Explore careers with India's most loved brands.</p>
+        
+        <!-- Live Clock Timer -->
+        <div class="clock-container" id="live-clock">
+            <div class="time-box"><span id="clock-date">--</span><label>Date</label></div>
+            <div class="time-box"><span id="clock-day">--</span><label>Day</label></div>
+            <div class="time-box"><span id="clock-year">--</span><label>Year</label></div>
+            <div class="time-box"><span id="clock-time">--:--</span><label id="clock-ampm">PM</label></div>
+        </div>
+
+        <div class="btn-group">
+            <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn btn-hero-primary">
+                <i class="fas fa-paper-plane"></i> Apply Online Now
+            </a>
+            <a href="#vacancies" class="btn btn-hero-secondary">
+                <i class="fas fa-briefcase"></i> Explore Roles
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar reveal">
+        <div class="stat-item"><h3>50+</h3><p>Openings</p></div>
+        <div class="stat-item"><h3>6</h3><p>Venues</p></div>
+        <div class="stat-item"><h3>7+</h3><p>Brands</p></div>
+    </div>
+
+    <section class="banner-section reveal">
+        <div class="banner-carousel" id="mainBannerCarousel">
+            <div class="banner-slide">
+                <img decoding="async" src="https://sarathygroup.com/wp-content/uploads/2024/12/VICTORIS.png" alt="Banner 1" onerror="this.src='https://placehold.co/1920x650/000/FFF?text=Banner+1'" />
+            </div>
+            <div class="banner-slide">
+                <img decoding="async" src="https://sarathygroup.com/wp-content/uploads/2024/12/BANNERS-06.png" alt="Banner 2" onerror="this.src='https://placehold.co/1920x650/000/FFF?text=Banner+2'" />
+            </div>
+            <div class="banner-slide">
+                <img loading="lazy" decoding="async" src="https://sarathygroup.com/wp-content/uploads/2024/12/BANNERS-03.png" alt="Banner 3" onerror="this.src='https://placehold.co/1920x650/000/FFF?text=Banner+3'" />
+            </div>
+            <div class="banner-slide">
+                <img loading="lazy" decoding="async" src="https://sarathygroup.com/wp-content/uploads/2024/12/BANNERS-04.png" alt="Banner 4" onerror="this.src='https://placehold.co/1920x650/000/FFF?text=Banner+4'" />
+            </div>
+            <div class="banner-slide">
+                <img loading="lazy" decoding="async" src="https://sarathygroup.com/wp-content/uploads/2024/12/BANNERS-01.png" alt="Banner 5" onerror="this.src='https://placehold.co/1920x650/000/FFF?text=Banner+5'" />
+            </div>
+            <div class="banner-slide">
+                <img loading="lazy" decoding="async" src="https://sarathygroup.com/wp-content/uploads/2024/12/BANNERS-02.png" alt="Banner 6" onerror="this.src='https://placehold.co/1920x650/000/FFF?text=Banner+6'" />
+            </div>
+        </div>
+        <div class="banner-controls" id="bannerControls"></div>
+    </section>
+
+    <section class="section reveal">
+        <div class="section-header"><h2>How to Join Us?</h2><p>ജോലി നേടാനുള്ള ലളിതമായ 3 ഘട്ടങ്ങൾ</p></div>
+        <div class="process-wrapper">
+            <div class="process-step">
+                <div class="step-number"><i class="fas fa-mobile-screen"></i></div>
+                <div class="step-content"><h4>1. Apply Online</h4><p>താഴെ നൽകിയിട്ടുള്ള ലിങ്ക് വഴി നിങ്ങളുടെ വിവരങ്ങൾ നൽകുക. മുൻകൂട്ടി രജിസ്റ്റർ ചെയ്യുന്നത് ഇന്റർവ്യൂ എളുപ്പമാക്കും.</p></div>
+            </div>
+            <div class="process-step">
+                <div class="step-number" style="background: var(--hero-red);"><i class="fas fa-building"></i></div>
+                <div class="step-content"><h4>2. Attend Walk-in Interview</h4><p>നിങ്ങൾക്ക് ഏറ്റവും അടുത്തുള്ള വേദിയിൽ കൃത്യസമയത്ത് രേഖകളുമായി നേരിട്ടെത്തുക.</p></div>
+            </div>
+            <div class="process-step">
+                <div class="step-number" style="background: var(--success);"><i class="fas fa-handshake"></i></div>
+                <div class="step-content"><h4>3. Get Offer Letter</h4><p>സെലക്ഷൻ ലഭിക്കുന്നവർക്ക് മികച്ച ശമ്പളത്തിൽ സാരഥി ഗ്രൂപ്പിൽ കരിയർ ആരംഭിക്കാം.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal">
+        <div class="section-header"><h2>Employee Benefits</h2><p>സാരഥി ഫാമിലിയുടെ ഭാഗമാകൂ, മികച്ച ആനുകൂല്യങ്ങൾ നേടൂ!</p></div>
+        <div class="grid-container">
+            <div class="card-item"><div class="card-icon"><i class="fas fa-users-gear"></i></div><h4>PF & ESI</h4><p>സാമ്പത്തിക സുരക്ഷയും ആരോഗ്യ ഇൻഷുറൻസും ഉറപ്പാക്കുന്നു.</p></div>
+            <div class="card-item"><div class="card-icon"><i class="fas fa-heart-pulse"></i></div><h4>Medical Insurance</h4><p>നിങ്ങൾക്കും കുടുംബത്തിനും മെഡിക്കൽ ഇൻഷുറൻസ് പരിരക്ഷ.</p></div>
+            <div class="card-item"><div class="card-icon"><i class="fas fa-graduation-cap"></i></div><h4>Expert Training</h4><p>മികച്ച കരിയർ വളർച്ചയ്ക്കായി പ്രൊഫഷണൽ ട്രെയിനിംഗ്.</p></div>
+            <div class="card-item"><div class="card-icon"><i class="fas fa-coins"></i></div><h4>High Incentives</h4><p>മികച്ച പ്രകടനത്തിന് ആകർഷകമായ ഇൻസെന്റീവ് പാക്കേജുകൾ.</p></div>
+        </div>
+    </section>
+
+    <!-- Updated 16:9 Video Presentation Section -->
+    <section class="section reveal">
+        <div class="section-header">
+            <h2>Experience Our Culture</h2>
+            <p>Watch how we grow together in the automotive industry.</p>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <video controls autoplay muted loop preload="auto" playsinline id="mainVideo">
+                    <source src="video_2026-02-24_14-20-30.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal" style="padding-top: 20px;">
+        <div class="checklist-box">
+            <div class="section-header" style="margin-bottom: 40px;"><h2>Document Checklist</h2><p>ഇന്റർവ്യൂവിന് വരുമ്പോൾ താഴെ പറയുന്നവ നിർബന്ധമായും കരുതുക</p></div>
+            <div class="checklist-item"><i class="fas fa-check-circle check-circle"></i><div><strong style="display:block">Updated Resume / CV</strong><span style="font-size:0.9rem; color:var(--text-light)">രണ്ട് കോപ്പികൾ (2 Copies)</span></div></div>
+            <div class="checklist-item"><i class="fas fa-check-circle check-circle"></i><div><strong style="display:block">Passport Size Photos</strong><span style="font-size:0.9rem; color:var(--text-light)">രണ്ട് എണ്ണം (2 Nos)</span></div></div>
+            <div class="checklist-item"><i class="fas fa-check-circle check-circle"></i><div><strong style="display:block">Educational Certificates</strong><span style="font-size:0.9rem; color:var(--text-light)">ഒറിജിനലും പകർപ്പുകളും (Originals & Copies)</span></div></div>
+            <div class="checklist-item"><i class="fas fa-check-circle check-circle"></i><div><strong style="display:block">Identity Proof</strong><span style="font-size:0.9rem; color:var(--text-light)">Aadhar Card / Voter ID / Driving License</span></div></div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="vacancies">
+        <div class="section-header"><h2>Current Openings</h2><p>Explore opportunities matching your profile</p></div>
+        
+        <!-- Admin Restricted Area -->
+        <div id="adminSection">
+            <div class="admin-upload-tool reveal">
+                <div class="admin-tool-header">
+                    <div class="admin-header-title">
+                        <i class="fas fa-cogs"></i>
+                        <div>
+                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-dark);" id="formTitle">Manage Job Posters</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 4px;" id="formSubtitle">Add a new job card or edit an existing one.</p>
+                        </div>
+                    </div>
+                    <div class="admin-actions-bar">
+                        <button class="btn-admin-action btn-save-jobs" id="saveJobsBtn"><i class="fas fa-save"></i> Save Changes</button>
+                        <button class="btn-admin-action btn-exit-admin" id="exitAdminBtn"><i class="fas fa-sign-out-alt"></i> Exit Admin</button>
+                    </div>
+                </div>
+                
+                <form id="dynamicJobForm">
+                    <div class="admin-form-grid">
+                        <div class="form-group">
+                            <label>Poster Image</label>
+                            <div class="file-upload-wrapper">
+                                <button type="button" class="btn-upload-file"><i class="fas fa-cloud-upload-alt"></i> <span id="fileName">Select an image file...</span></button>
+                                <input type="file" id="jobImage" accept="image/*" required>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>Company / Branch</label><input type="text" id="jobCompany" class="form-control" placeholder="e.g. SARATHY ELECTRIC BIKES" required></div>
+                        <div class="form-group"><label>Job Title</label><input type="text" id="jobTitle" class="form-control" placeholder="e.g. SALES EXECUTIVE" required></div>
+                        <div class="form-group"><label>Department</label><input type="text" id="jobDept" class="form-control" placeholder="e.g. SALES & SERVICE" required></div>
+                        <div class="form-group"><label>Location</label><input type="text" id="jobLoc" class="form-control" placeholder="e.g. CHENGANNUR" required></div>
+                        <div class="form-group"><label>Keywords / Tags</label><input type="text" id="jobTags" class="form-control" placeholder="e.g. SERVICE_ADVISOR SALES" required></div>
+                        
+                        <div class="form-btn-group">
+                            <button type="button" id="cancelEditBtn" class="btn-cancel-edit"><i class="fas fa-times"></i> Cancel Edit</button>
+                            <button type="submit" id="formSubmitBtn" class="btn-generate"><i class="fas fa-plus-circle"></i> Add Job Card</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="venue-grid" id="jobGrid">
+            <div class="hiring-card">
+                <div class="admin-card-controls">
+                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                </div>
+                <div class="hiring-img-box"><img src="photo_2026-07-24_21-57-29.jpg" alt="Service Advisor Hiring" onerror="this.src='https://placehold.co/800x1200/002855/FFF?text=WE+ARE+HIRING\nService+Team'"></div>
+                <div class="hiring-content">
+                    <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
+                    <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
+                    <div class="job-tags">DIPLOMA / BTECH / ITI</div>
+                    <div class="hiring-actions">
+                        <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply</a>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hiring-card">
+                <div class="admin-card-controls">
+                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                </div>
+                <div class="hiring-img-box"><img src="poster2.jpg" alt="Sales Executive Hiring" onerror="this.src='https://placehold.co/800x1200/002855/FFF?text=WE+ARE+HIRING\nSales'"></div>
+                <div class="hiring-content">
+                    <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
+                    <h3 class="job-title">SALES EXECUTIVE</h3>
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
+                    <div class="job-tags">SERVICE_ADVISOR SALES_EXECUTIVE</div>
+                    <div class="hiring-actions">
+                        <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply</a>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hiring-card">
+                <div class="admin-card-controls">
+                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                </div>
+                <div class="hiring-img-box"><img src="poster3.jpg" alt="Trainee Hiring" onerror="this.src='https://placehold.co/800x1200/002855/FFF?text=WE+ARE+HIRING\nTrainees'"></div>
+                <div class="hiring-content">
+                    <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
+                    <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
+                    <div class="job-tags">SPARE_EXECUTIVE TRAINEES</div>
+                    <div class="hiring-actions">
+                        <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply</a>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal" style="padding-top: 0;">
+        <div class="section-header"><h2>Categorized Roles</h2><p>Find roles by your area of expertise</p></div>
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Roles</button>
+            <button class="filter-btn" data-filter="sales"><i class="fas fa-shopping-cart"></i> Sales</button>
+            <button class="filter-btn" data-filter="service"><i class="fas fa-tools"></i> Service</button>
+            <button class="filter-btn" data-filter="spare"><i class="fas fa-headset"></i> Spare & Office</button>
+        </div>
+        <div class="roles-grid">
+            <div class="role-group" data-category="sales">
+                <h4><i class="fas fa-shopping-cart"></i> Sales Roles</h4>
+                <div class="role-item"><span class="role-title">Sales Executive / RM</span><span class="fresher-badge">Freshers & Experienced</span></div>
+                <div class="role-item"><span class="role-title">Team Leaders</span><p style="font-size: 0.85rem; color: var(--text-light); margin-top:5px;">Automotive Experienced preferred</p></div>
+                <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-role-apply">Apply for Sales <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            </div>
+            <div class="role-group" data-category="service">
+                <h4><i class="fas fa-tools"></i> Service Roles</h4>
+                <div class="role-item"><span class="role-title">Service Advisors / Techs</span><span class="fresher-badge">Freshers & Experienced</span></div>
+                <div class="role-item"><span class="role-title">Expert Technicians</span><p style="font-size: 0.85rem; color: var(--text-light); margin-top:5px;">ITI / Diploma holders</p></div>
+                <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-role-apply">Apply for Service <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            </div>
+            <div class="role-group" data-category="spare">
+                <h4><i class="fas fa-headset"></i> Spare & Office</h4>
+                <div class="role-item"><span class="role-title">Spare Executive / Trainees</span><span class="fresher-badge">Freshers & Experienced</span></div>
+                <div class="role-item"><span class="role-title">Accounts Executive</span><p style="font-size: 0.85rem; color: var(--text-light); margin-top:5px;">B.Com / M.Com (Tally Knowledge)</p></div>
+                <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-role-apply">Apply for Spare <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redesigned Referral Box -->
+    <section class="section reveal" style="padding-bottom: 100px;">
+        <div class="referral-card">
+            <i class="fas fa-bullhorn referral-icon"></i>
+            <h3>Refer a Friend</h3>
+            <p>ഈ അവസരം നിങ്ങളുടെ സുഹൃത്തുക്കളിലേക്കും എത്തിക്കൂ. താഴെ കാണുന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പിൽ പങ്കുവയ്ക്കാം!</p>
+            <div class="referral-contact"><i class="fas fa-phone-volume"></i> കൂടുതൽ വിവരങ്ങൾക്ക്: 9037223665</div>
+            <br>
+            <a href="https://wa.me/?text=Hi! Sarathy Group is conducting a Mega Job Fair 2026. Contact: 9037833865. Apply here: https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn btn-primary" style="display: inline-flex; width: auto; font-size: 1.1rem;">
+                <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> സുഹൃത്തിന് അയക്കാം
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div style="font-weight: 800; font-size: 2rem; letter-spacing: 2px; margin-bottom: 10px;">SARATHY GROUP</div>
+        <p style="opacity: 0.8; margin-bottom: 25px; font-size: 1.1rem;">South Kerala's No.1 Automotive Dealer</p>
+        <div style="margin: 25px 0; display: flex; justify-content: center; gap: 25px;">
+            <a href="#" style="color: white; font-size: 1.8rem; transition: transform 0.3s; display: inline-block;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color: white; font-size: 1.8rem; transition: transform 0.3s; display: inline-block;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; font-size: 1.8rem; transition: transform 0.3s; display: inline-block;"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div style="margin: 25px 0;"><p style="font-size: 1.2rem; font-weight: 600;"><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--success);"></i> +91 9037 2236 65</p></div>
+        <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 40px;">
+            © 2026 Sarathy Group. All rights reserved. 
+            <span id="openAdminBtn" style="cursor: pointer; margin-left: 10px; display: inline-block; transition: transform 0.3s;" title="Admin Access"><i class="fas fa-lock"></i></span>
+        </p>
+    </footer>
+
+    <div class="mobile-cta">
+        <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn btn-hero-primary" style="width: 100%; max-width: 400px; padding: 14px; font-size: 1.05rem;"><i class="fas fa-paper-plane"></i> Apply Online Now</a>
+    </div>
+
+    <div class="action-floats">
+        <button id="backToTop" class="back-to-top" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+        <a href="https://wa.me/919037833865" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <div class="image-modal" id="imageModal">
+        <span class="modal-close" id="modalClose"><i class="fas fa-times"></i></span>
+        <img class="modal-content" id="modalImg" src="">
+    </div>
+
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-login-box">
+            <span class="admin-close-btn" id="closeAdminBtn"><i class="fas fa-times"></i></span>
+            <i class="fas fa-user-shield" style="font-size: 3rem; color: var(--hero-slate); margin-bottom: 15px;"></i>
+            <h3 style="color: var(--hero-slate); margin-bottom: 5px;">Admin Access</h3>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px;">Enter passcode to manage job postings.</p>
+            <input type="password" id="adminPasscode" class="admin-input" placeholder="Enter Passcode">
+            <button id="adminSubmitBtn" class="btn-primary" style="width: 100%; justify-content: center;">Unlock Tools</button>
+            <p class="admin-error" id="adminErrorMsg">Incorrect Passcode!</p>
+        </div>
+    </div>
+
+    <script>
+        // Core Utilities
+        function showToast(message, color = "var(--success)", icon = "fa-check") {
+            const toast = document.getElementById('toastMessage');
+            if(!toast) return;
+            toast.innerHTML = `<div class="toast-icon" style="color:${color}; background: ${color}20;"><i class="fas ${icon}"></i></div><span id="toastText">${message}</span>`;
+            toast.style.borderLeftColor = color;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progressBar").style.width = (winScroll / height) * 100 + "%";
+            const backBtn = document.getElementById("backToTop");
+            window.scrollY > 500 ? backBtn.classList.add("visible") : backBtn.classList.remove("visible");
+        });
+
+        document.getElementById("backToTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+        function hidePreloader() {
+            const preloader = document.getElementById('preloader');
+            if(preloader) { preloader.style.opacity = '0'; setTimeout(() => { preloader.style.display = 'none'; }, 500); }
+        }
+        window.addEventListener('load', hidePreloader);
+        setTimeout(hidePreloader, 3000);
+
+        function reveal() {
+            document.querySelectorAll(".reveal").forEach(r => {
+                if (r.getBoundingClientRect().top < window.innerHeight - 80) r.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", reveal); window.addEventListener("load", reveal);
+
+        // Live Clock Engine
+        setInterval(function() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+            const dayStr = now.toLocaleDateString('en-US', { weekday: 'short' });
+            const yearStr = now.getFullYear();
+            
+            let hours = now.getHours(); 
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM'; 
+            hours = hours % 12; 
+            hours = hours ? hours : 12;
+            
+            const timeStr = hours.toString().padStart(2, '0') + ':' + minutes;
+            
+            const dateEl = document.getElementById("clock-date");
+            const dayEl = document.getElementById("clock-day");
+            const yearEl = document.getElementById("clock-year");
+            const timeEl = document.getElementById("clock-time");
+            const ampmEl = document.getElementById("clock-ampm");
+            
+            if(dateEl) dateEl.innerText = dateStr;
+            if(dayEl) dayEl.innerText = dayStr;
+            if(yearEl) yearEl.innerText = yearStr;
+            if(timeEl) timeEl.innerText = timeStr;
+            if(ampmEl) ampmEl.innerText = ampm;
+        }, 1000);
+
+        // Banner Auto-Scroll Logic
+        const bannerCarousel = document.getElementById('mainBannerCarousel');
+        const bannerControls = document.getElementById('bannerControls');
+        let currentSlide = 0;
+        let slideInterval;
+
+        if (bannerCarousel) {
+            const slides = bannerCarousel.querySelectorAll('.banner-slide');
+            const totalSlides = slides.length;
+
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('banner-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                bannerControls.appendChild(dot);
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                bannerCarousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+                updateDots();
+                resetInterval();
+            }
+
+            function updateDots() {
+                const dots = bannerControls.querySelectorAll('.banner-dot');
+                dots.forEach((dot, idx) => {
+                    if (idx === currentSlide) dot.classList.add('active');
+                    else dot.classList.remove('active');
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                goToSlide(currentSlide);
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 4000); 
+            }
+            resetInterval();
+        }
+
+        // Filters
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const roleGroups = document.querySelectorAll('.role-group');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const fVal = btn.getAttribute('data-filter');
+                roleGroups.forEach(group => {
+                    if (fVal === 'all' || group.getAttribute('data-category') === fVal) {
+                        group.classList.remove('hide');
+                        setTimeout(() => { group.style.opacity = '1'; group.style.transform = 'scale(1)'; }, 50);
+                    } else {
+                        group.style.opacity = '0'; group.style.transform = 'scale(0.9)';
+                        setTimeout(() => { group.classList.add('hide'); }, 400); 
+                    }
+                });
+            });
+        });
+
+        // Lightbox
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        function attachLightboxListeners() {
+            document.querySelectorAll('.hiring-img-box img').forEach(img => {
+                img.removeEventListener('click', openModal); img.addEventListener('click', openModal);
+            });
+        }
+        function openModal(e) { modal.classList.add('active'); modalImg.src = e.target.src; document.body.style.overflow = 'hidden'; }
+        function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; setTimeout(() => { modalImg.src = ''; }, 300); }
+        document.getElementById("modalClose").addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape" && modal.classList.contains('active')) closeModal(); });
+
+        // Admin Mode & Storage Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedJobs = localStorage.getItem('sarathy_job_grid');
+            if(savedJobs) { document.getElementById('jobGrid').innerHTML = savedJobs; }
+            attachLightboxListeners();
+        });
+
+        const adminModal = document.getElementById('adminModal');
+        const adminPasscode = document.getElementById('adminPasscode');
+        const adminErrorMsg = document.getElementById('adminErrorMsg');
+        const adminSection = document.getElementById('adminSection');
+        let currentEditCard = null;
+
+        document.getElementById('openAdminBtn').addEventListener('click', () => {
+            adminModal.classList.add('active'); adminPasscode.value = ''; adminErrorMsg.style.display = 'none'; setTimeout(() => adminPasscode.focus(), 100);
+        });
+        document.getElementById('closeAdminBtn').addEventListener('click', () => adminModal.classList.remove('active'));
+
+        document.getElementById('adminSubmitBtn').addEventListener('click', () => {
+            if (adminPasscode.value === "admin") {
+                adminModal.classList.remove('active');
+                document.body.classList.add('admin-mode');
+                adminSection.style.display = 'block'; 
+                showToast("Admin Mode Activated", "var(--hero-slate)", "fa-unlock");
+
+                setTimeout(() => {
+                    adminSection.style.opacity = '0'; adminSection.style.transition = 'opacity 1s ease';
+                    requestAnimationFrame(() => adminSection.style.opacity = '1');
+                    adminSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            } else {
+                adminErrorMsg.style.display = 'block';
+                adminPasscode.style.transform = 'translateX(-5px)';
+                setTimeout(() => adminPasscode.style.transform = 'translateX(5px)', 50);
+                setTimeout(() => adminPasscode.style.transform = 'translateX(0)', 100);
+            }
+        });
+        adminPasscode.addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('adminSubmitBtn').click(); });
+
+        // Save & Exit Actions
+        document.getElementById('saveJobsBtn').addEventListener('click', () => {
+            const gridHTML = document.getElementById('jobGrid').innerHTML;
+            localStorage.setItem('sarathy_job_grid', gridHTML);
+            showToast("Job postings saved successfully!", "var(--success)", "fa-save");
+        });
+
+        document.getElementById('exitAdminBtn').addEventListener('click', () => {
+            document.body.classList.remove('admin-mode');
+            adminSection.style.display = 'none';
+            cancelEditMode();
+            showToast("Exited Admin Mode", "#64748b", "fa-sign-out-alt");
+        });
+
+        // Add / Edit Job Form Logic
+        const fileInput = document.getElementById('jobImage');
+        const fileNameDisplay = document.getElementById('fileName');
+        const jobForm = document.getElementById('dynamicJobForm');
+        
+        fileInput.addEventListener('change', function() {
+            fileNameDisplay.textContent = this.files.length > 0 ? this.files[0].name : (currentEditCard ? "Keep existing image..." : "Select an image file...");
+        });
+
+        jobForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const company = document.getElementById('jobCompany').value;
+            const title = document.getElementById('jobTitle').value;
+            const dept = document.getElementById('jobDept').value;
+            const loc = document.getElementById('jobLoc').value;
+            const tags = document.getElementById('jobTags').value;
+            const dateStr = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
+            
+            let imageUrl = '';
+            if (fileInput.files.length > 0) {
+                imageUrl = URL.createObjectURL(fileInput.files[0]);
+            } else if (currentEditCard) {
+                imageUrl = currentEditCard.querySelector('.hiring-img-box img').src;
+            }
+
+            if (currentEditCard) {
+                currentEditCard.querySelector('.company-badge').textContent = company;
+                currentEditCard.querySelector('.job-title').textContent = title;
+                const metaSpans = currentEditCard.querySelectorAll('.hiring-meta-mid span');
+                metaSpans[0].innerHTML = `<i class="fas fa-folder"></i> ${dept}`;
+                metaSpans[1].innerHTML = `<i class="fas fa-location-dot"></i> ${loc}`;
+                currentEditCard.querySelector('.job-tags').textContent = tags;
+                if(imageUrl) currentEditCard.querySelector('.hiring-img-box img').src = imageUrl;
+                
+                showToast("Job Card Updated!", "#3b82f6", "fa-edit");
+                cancelEditMode();
+            } else {
+                const newCardHTML = `
+                    <div class="hiring-card">
+                        <div class="admin-card-controls">
+                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="hiring-img-box"><img src="${imageUrl}" alt="${title} Hiring"></div>
+                        <div class="hiring-content">
+                            <div class="hiring-meta-top"><span class="company-badge">${company}</span><span class="post-date">${dateStr}</span></div>
+                            <h3 class="job-title">${title}</h3>
+                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${dept}</span><span><i class="fas fa-location-dot"></i> ${loc}</span></div>
+                            <div class="job-tags">${tags}</div>
+                            <div class="hiring-actions">
+                                <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply</a>
+                                <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                            </div>
+                        </div>
+                    </div>`;
+                document.getElementById('jobGrid').insertAdjacentHTML('afterbegin', newCardHTML);
+                showToast("New Job Added!", "var(--success)", "fa-plus-circle");
+                cancelEditMode(); 
+            }
+            attachLightboxListeners();
+        });
+
+        window.initiateEdit = function(btnElement) {
+            currentEditCard = btnElement.closest('.hiring-card');
+            
+            document.getElementById('jobCompany').value = currentEditCard.querySelector('.company-badge').textContent.trim();
+            document.getElementById('jobTitle').value = currentEditCard.querySelector('.job-title').textContent.trim();
+            const metaSpans = currentEditCard.querySelectorAll('.hiring-meta-mid span');
+            document.getElementById('jobDept').value = metaSpans[0].textContent.trim();
+            document.getElementById('jobLoc').value = metaSpans[1].textContent.trim();
+            document.getElementById('jobTags').value = currentEditCard.querySelector('.job-tags').textContent.trim();
+            
+            document.getElementById('jobImage').removeAttribute('required');
+            fileNameDisplay.textContent = "Keep existing image...";
+            document.getElementById('formTitle').textContent = "Edit Job Poster";
+            document.getElementById('formSubtitle').textContent = "Update details below and save.";
+            document.getElementById('formSubmitBtn').innerHTML = `<i class="fas fa-save"></i> Update Job Card`;
+            document.getElementById('cancelEditBtn').style.display = "inline-flex";
+            
+            document.getElementById('adminSection').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.deleteCard = function(btnElement) {
+            const card = btnElement.closest('.hiring-card');
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                card.remove();
+                showToast("Job Deleted", "var(--hero-red)", "fa-trash");
+                if (currentEditCard === card) cancelEditMode(); 
+            }, 300);
+        };
+
+        function cancelEditMode() {
+            currentEditCard = null;
+            jobForm.reset();
+            document.getElementById('jobImage').setAttribute('required', 'required');
+            fileNameDisplay.textContent = "Select an image file...";
+            document.getElementById('formTitle').textContent = "Add New Job Poster";
+            document.getElementById('formSubtitle').textContent = "Upload an image and instantly generate a job card below.";
+            document.getElementById('formSubmitBtn').innerHTML = `<i class="fas fa-plus-circle"></i> Add Job Card`;
+            document.getElementById('cancelEditBtn').style.display = "none";
+        }
+        document.getElementById('cancelEditBtn').addEventListener('click', cancelEditMode);
+
+    </script>
+</body>
+</html>
