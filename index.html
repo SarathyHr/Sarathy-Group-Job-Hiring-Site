@@ -393,7 +393,7 @@
                 <!-- Logos -->
                 <div class="logo-item"><img src="sarathy-group-logo.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Sarathy'"></div>
                 <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Nexa'"></div>
-                <div class="logo-item"><img src="arena-logo.webp" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Arena'"></div>
+                <div class="logo-item"><img src="maruti-suzuki-arena-vector-logo.png" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Arena'"></div>
                 <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge" onerror="this.src='https://placehold.co/110x45/fff/000?text=TrueValue'"></div>
                 <div class="logo-item"><img src="OIP (1).webp" alt="Commercial" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Commercial'"></div>
                 <div class="logo-item"><img src="bajaj.png" alt="Bajaj" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Bajaj'"></div>
@@ -404,7 +404,7 @@
                 <!-- Copy 2 for infinite loop -->
                 <div class="logo-item"><img src="sarathy-group-logo.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Sarathy'"></div>
                 <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Nexa'"></div>
-                <div class="logo-item"><img src="arena-logo.webp" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Arena'"></div>
+                <div class="logo-item"><img src="maruti-suzuki-arena-vector-logo.png" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Arena'"></div>
                 <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge" onerror="this.src='https://placehold.co/110x45/fff/000?text=TrueValue'"></div>
                 <div class="logo-item"><img src="OIP (1).webp" alt="Commercial" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Commercial'"></div>
                 <div class="logo-item"><img src="bajaj.png" alt="Bajaj" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Bajaj'"></div>
@@ -683,7 +683,7 @@
     </section>
 
     <footer>
-        <div style="font-weight: 800; font-size: 2rem; letter-spacing: 2px; margin-bottom: 10px;">SARATHY GROUP</div>
+        <div id="secretAdminTrigger" style="font-weight: 800; font-size: 2rem; letter-spacing: 2px; margin-bottom: 10px; user-select: none; cursor: default;">SARATHY GROUP</div>
         <p style="opacity: 0.8; margin-bottom: 25px; font-size: 1.1rem;">South Kerala's No.1 Automotive Dealer</p>
         <div style="margin: 25px 0; display: flex; justify-content: center; gap: 25px;">
             <a href="#" style="color: white; font-size: 1.8rem; transition: transform 0.3s; display: inline-block;"><i class="fab fa-facebook"></i></a>
@@ -693,7 +693,6 @@
         <div style="margin: 25px 0;"><p style="font-size: 1.2rem; font-weight: 600;"><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--success);"></i> +91 9037 2236 65</p></div>
         <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 40px;">
             © 2026 Sarathy Group. All rights reserved. 
-            <span id="openAdminBtn" style="cursor: pointer; margin-left: 10px; display: inline-block; transition: transform 0.3s;" title="Admin Access"><i class="fas fa-lock"></i></span>
         </p>
     </footer>
 
@@ -878,13 +877,39 @@
         const adminSection = document.getElementById('adminSection');
         let currentEditCard = null;
 
-        document.getElementById('openAdminBtn').addEventListener('click', () => {
-            adminModal.classList.add('active'); adminPasscode.value = ''; adminErrorMsg.style.display = 'none'; setTimeout(() => adminPasscode.focus(), 100);
-        });
+        // Hidden Admin Trigger Logic (Long Press)
+        let pressTimer;
+        const secretAdminTrigger = document.getElementById('secretAdminTrigger');
+
+        function showAdminLogin() {
+            adminModal.classList.add('active'); 
+            adminPasscode.value = ''; 
+            adminErrorMsg.style.display = 'none'; 
+            setTimeout(() => adminPasscode.focus(), 100);
+            if (navigator.vibrate) navigator.vibrate(200); // Haptic feedback on phone if supported
+        }
+
+        function startPress(e) {
+            if (e.type === 'mousedown' && e.button !== 0) return; // Only left click
+            pressTimer = window.setTimeout(showAdminLogin, 3000); // Require 3 seconds long press
+        }
+
+        function cancelPress() {
+            clearTimeout(pressTimer);
+        }
+
+        // Attach listeners for both mouse and touch events
+        secretAdminTrigger.addEventListener('mousedown', startPress);
+        secretAdminTrigger.addEventListener('touchstart', startPress, {passive: true});
+        secretAdminTrigger.addEventListener('mouseup', cancelPress);
+        secretAdminTrigger.addEventListener('mouseleave', cancelPress);
+        secretAdminTrigger.addEventListener('touchend', cancelPress);
+        secretAdminTrigger.addEventListener('touchcancel', cancelPress);
+
         document.getElementById('closeAdminBtn').addEventListener('click', () => adminModal.classList.remove('active'));
 
         document.getElementById('adminSubmitBtn').addEventListener('click', () => {
-            if (adminPasscode.value === "admin") {
+            if (adminPasscode.value === "admin") { // Change this string to update your password
                 adminModal.classList.remove('active');
                 document.body.classList.add('admin-mode');
                 adminSection.style.display = 'block'; 
@@ -902,13 +927,9 @@
                 setTimeout(() => adminPasscode.style.transform = 'translateX(0)', 100);
             }
         });
-        adminPasscode.addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('adminSubmitBtn').click(); });
-
-        // Save & Exit Actions
-        document.getElementById('saveJobsBtn').addEventListener('click', () => {
-            const gridHTML = document.getElementById('jobGrid').innerHTML;
-            localStorage.setItem('sarathy_job_grid', gridHTML);
-            showToast("Job postings saved successfully!", "var(--success)", "fa-save");
+        
+        adminPasscode.addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') document.getElementById('adminSubmitBtn').click(); 
         });
 
         document.getElementById('exitAdminBtn').addEventListener('click', () => {
