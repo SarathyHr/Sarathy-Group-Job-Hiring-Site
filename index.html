@@ -21,14 +21,32 @@
             --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
             --shadow-lg: 0 25px 50px rgba(0,0,0,0.15);
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.6);
             
             /* Premium Hero Variables matching your image */
             --hero-bg: linear-gradient(to bottom, #05182e, #0a2745);
             --hero-red: #f44336;
             --hero-red-hover: #d32f2f;
             --hero-slate: #233142;
+        }
+
+        .job-filters { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;}
+        .job-filter-btn { padding: 8px 22px; border-radius: 50px; border: 2px solid var(--primary); background: transparent; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 700; font-size: 0.9rem;}
+        .job-filter-btn.active, .job-filter-btn:hover { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(0,40,85,0.2); }
+
+        .fomo-popup {
+            position: fixed; bottom: 30px; left: 30px; background: var(--white);
+            padding: 15px 20px; border-radius: 16px; box-shadow: var(--shadow-lg);
+            display: flex; align-items: center; gap: 15px; z-index: 9999;
+            transform: translateY(150px); opacity: 0; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid var(--accent); border-right: 1px solid rgba(0,0,0,0.05); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .fomo-popup.show { transform: translateY(0); opacity: 1; }
+        .fomo-icon { width: 40px; height: 40px; background: rgba(8, 182, 8, 0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;}
+        .fomo-text-content p { font-size: 0.95rem; color: var(--text-dark); margin: 0; line-height: 1.3; font-weight: 500;}
+        .fomo-text-content small { font-size: 0.75rem; color: var(--text-light); font-weight: 700;}
+        
+        @media (max-width: 768px) {
+            .fomo-popup { bottom: 80px; left: 15px; right: 15px; }
         }
 
         * {
@@ -148,6 +166,20 @@
         .btn-primary { background: var(--accent); color: var(--white); }
         .btn-primary:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(8, 182, 8, 0.3); }
 
+        .search-container {
+            max-width: 800px; margin: 0 auto 30px; position: relative;
+        }
+        .search-container input {
+            width: 100%; padding: 18px 25px 18px 55px; border-radius: 50px;
+            border: 2px solid rgba(0,40,85,0.1); font-size: 1.1rem; outline: none;
+            transition: var(--transition); box-shadow: var(--shadow-sm);
+        }
+        .search-container input:focus { border-color: var(--primary); box-shadow: var(--shadow-md); }
+        .search-container i {
+            position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+            color: var(--text-light); font-size: 1.2rem;
+        }
+
         .stats-bar {
             max-width: 900px; margin: -50px auto 40px; padding: 25px;
             border-radius: 20px; display: grid; grid-template-columns: repeat(3, 1fr);
@@ -173,11 +205,11 @@
         .section-header h2::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--hero-red); border-radius: 2px; }
         .section-header p { color: var(--text-light); font-size: 1.05rem; max-width: 600px; margin: 20px auto 0; font-weight: 500;}
 
-        /* Video Section 16:9 Fix */
+        /* Video Section */
         .video-container { max-width: 900px; margin: 0 auto; position: relative; }
         .video-wrapper {
             width: 100%; border-radius: 24px; overflow: hidden;
-            box-shadow: var(--shadow-lg); background: #000; aspect-ratio: 16/9; /* FIXED TO WIDESCREEN */
+            box-shadow: var(--shadow-lg); background: #000; aspect-ratio: 16/9;
             border: 6px solid white; position: relative;
             transition: transform 0.4s ease;
         }
@@ -201,6 +233,21 @@
         .card-item h4 { color: var(--primary); margin-bottom: 10px; font-weight: 800; font-size: 1.2rem; }
         .card-item p { font-size: 0.95rem; color: var(--text-light); }
 
+        /* Testimonials Section */
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testimonial-card { background: white; padding: 30px; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); position: relative; transition: var(--transition); }
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .quote-icon { position: absolute; top: 20px; right: 20px; font-size: 3rem; color: rgba(0, 40, 85, 0.05); }
+        .testimonial-text { font-size: 1rem; color: var(--text-dark); font-style: italic; margin-bottom: 20px; position: relative; z-index: 2;}
+        .testimonial-author { display: flex; align-items: center; gap: 15px; }
+        .author-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-light); }
+        .author-info h5 { font-size: 1.05rem; color: var(--primary); font-weight: 700; margin-bottom: 2px;}
+        .author-info p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+
+        /* Maps Section */
+        .map-container { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); border: 4px solid white; height: 400px; width: 100%; position: relative;}
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
         .checklist-box { padding: 40px; border-radius: 24px; border: 2px dashed rgba(0, 40, 85, 0.15); max-width: 750px; margin: 0 auto; background: white;}
         .checklist-item { display: flex; align-items: center; gap: 20px; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: var(--transition); }
         .checklist-item:hover { background: var(--bg-light); padding-left: 15px; border-radius: 12px; }
@@ -211,7 +258,6 @@
         .hiring-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(0,0,0,0.05); }
         .hiring-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
         
-        /* POSTER SIZE FIX */
         .hiring-img-box { width: 100%; height: 340px; overflow: hidden; background: #e2e8f0; cursor: pointer; }
         .hiring-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.7s ease; }
         .hiring-card:hover .hiring-img-box img { transform: scale(1.08); filter: brightness(1.05); }
@@ -240,7 +286,7 @@
         .btn-del-card { background: #ef4444; }
         .admin-card-btn:hover { transform: scale(1.15); }
 
-        /* --- Admin Upload Form --- */
+        /* Admin Form */
         #adminSection { display: none; margin-bottom: 50px; }
         .admin-upload-tool { background: white; border-radius: 24px; padding: 30px; box-shadow: var(--shadow-md); border: 2px solid var(--primary); position: relative; }
         .admin-tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 15px;}
@@ -286,7 +332,16 @@
         .btn-role-apply { display: flex; align-items: center; justify-content: center; background: var(--bg-light); color: var(--primary); border: 1px solid rgba(0,0,0,0.1); text-decoration: none; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 700; margin-top: 25px; transition: var(--transition); }
         .btn-role-apply:hover { background: var(--primary); color: white; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,40,85,0.2); }
 
-        /* Dark Themed Refer a Friend Match */
+        /* FAQ Section */
+        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .faq-item { background: white; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); overflow: hidden; box-shadow: var(--shadow-sm); }
+        .faq-btn { width: 100%; text-align: left; padding: 20px 25px; border: none; background: transparent; font-size: 1.1rem; font-weight: 700; color: var(--primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
+        .faq-btn:hover { background: var(--bg-light); }
+        .faq-btn i { transition: transform 0.3s; color: var(--hero-red); }
+        .faq-btn.active i { transform: rotate(180deg); }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: white; }
+        .faq-content p { padding: 0 25px 25px; color: var(--text-light); font-size: 0.95rem; margin: 0; }
+
         .referral-card {
             max-width: 700px; margin: 0 auto;
             background: var(--hero-bg);
@@ -305,17 +360,16 @@
         footer { background: #05101f; color: white; padding: 80px 20px 140px; text-align: center; }
         .action-floats { position: fixed; bottom: 95px; right: 25px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
         
-        .whatsapp-float {
-            background: var(--success); color: white; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 30px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); text-decoration: none; transition: var(--transition);
+        .float-btn {
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-decoration: none; transition: var(--transition); border: none; cursor: pointer; color: white;
         }
+        .whatsapp-float { background: var(--success); font-size: 30px; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); }
         .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); }
 
         .back-to-top {
             background: var(--primary-light); color: white; width: 50px; height: 50px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;
-            box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transition: var(--transition); transform: translateY(30px) scale(0.5); border: none;
+            box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transition: var(--transition); transform: translateY(30px) scale(0.5); border: none; align-self: flex-end;
         }
         .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
         .back-to-top:hover { background: var(--primary); transform: translateY(-5px); }
@@ -329,7 +383,6 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Toast Notifications */
         .toast { position: fixed; top: 20px; right: 20px; background: white; color: #0f172a; padding: 16px 24px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; font-weight: 600; z-index: 100000; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-left: 5px solid var(--success); }
         .toast.show { transform: translateX(0); }
         .toast-icon { width: 28px; height: 28px; background: rgba(37, 211, 102, 0.1); color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
@@ -365,9 +418,8 @@
 
         @media (min-width: 1024px) {
             .mobile-cta { display: none; }
-            body { padding-bottom: 0; }
-            footer { padding-bottom: 80px; }
             .action-floats { bottom: 30px; }
+            body { padding-bottom: 0; }
         }
     </style>
 </head>
@@ -383,8 +435,6 @@
 
     <div class="scroll-progress-container"><div class="scroll-progress-bar" id="progressBar"></div></div>
     <div id="preloader"><div class="loader"></div></div>
-
-    <!-- Global Toast Notification Container -->
     <div class="toast" id="toastMessage"></div>
 
     <header>
@@ -424,7 +474,6 @@
         <h1>START YOUR JOURNEY WITH SARATHY</h1>
         <p>Join South Kerala's No. 1 Automotive Group. Explore careers with India's most loved brands.</p>
         
-        <!-- Live Clock Timer -->
         <div class="clock-container" id="live-clock">
             <div class="time-box"><span id="clock-date">--</span><label>Date</label></div>
             <div class="time-box"><span id="clock-day">--</span><label>Day</label></div>
@@ -455,7 +504,7 @@
             <h3>7</h3>
             <p>Brands</p>
         </div>
-    </div> <!-- FIXED: Adding the missing closing div -->
+    </div>
 
     <section class="banner-section reveal">
         <div class="banner-carousel" id="mainBannerCarousel">
@@ -509,7 +558,36 @@
         </div>
     </section>
 
-    <!-- Updated 16:9 Video Presentation Section -->
+    <section class="section reveal">
+        <div class="section-header"><h2>Success Stories</h2><p>Hear from the people who drive our growth</p></div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <i class="fas fa-quote-right quote-icon"></i>
+                <p class="testimonial-text">"Joining Sarathy Group as a fresher was the best decision. The training provided helped me achieve my targets consistently."</p>
+                <div class="testimonial-author">
+                    <img src="https://placehold.co/100x100/002855/FFF?text=RJ" alt="Employee" class="author-img">
+                    <div class="author-info"><h5>Rahul J.</h5><p>Sales Executive</p></div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-right quote-icon"></i>
+                <p class="testimonial-text">"The supportive management and excellent incentive structure make working here highly rewarding. Highly recommended!"</p>
+                <div class="testimonial-author">
+                    <img src="https://placehold.co/100x100/002855/FFF?text=AS" alt="Employee" class="author-img">
+                    <div class="author-info"><h5>Anjali S.</h5><p>Customer Care</p></div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-right quote-icon"></i>
+                <p class="testimonial-text">"From a trainee to a Service Manager, my 5-year journey here has been incredible. Great place to build a long-term career."</p>
+                <div class="testimonial-author">
+                    <img src="https://placehold.co/100x100/002855/FFF?text=MK" alt="Employee" class="author-img">
+                    <div class="author-info"><h5>Mohan K.</h5><p>Service Manager</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section reveal">
         <div class="section-header">
             <h2>Experience Our Culture</h2>
@@ -538,6 +616,19 @@
     <section class="section reveal" id="vacancies">
         <div class="section-header"><h2>Current Openings</h2><p>Explore opportunities matching your profile</p></div>
         
+        <!-- NEW SEARCH FEATURE -->
+        <div class="search-container reveal">
+            <i class="fas fa-search"></i>
+            <input type="text" id="jobSearchInput" placeholder="Search by Job Title, Location, or Brand... (e.g. Sales, Kollam, Nexa)">
+        </div>
+
+        <div class="job-filters reveal">
+            <button class="job-filter-btn active" data-grid-filter="all">All Jobs</button>
+            <button class="job-filter-btn" data-grid-filter="SALES">Sales</button>
+            <button class="job-filter-btn" data-grid-filter="SERVICE">Service</button>
+            <button class="job-filter-btn" data-grid-filter="SPARE">Spares / Office</button>
+        </div>
+
         <!-- Admin Restricted Area -->
         <div id="adminSection">
             <div class="admin-upload-tool reveal">
@@ -580,8 +671,7 @@
         </div>
 
         <div class="venue-grid" id="jobGrid">
-            
-            <!-- MODIFIED JOB CARD: Now links to WhatsApp with prefilled text -->
+            <!-- Jobs will render here -->
             <div class="hiring-card">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
@@ -636,6 +726,12 @@
                 </div>
             </div>
         </div>
+        
+        <div id="noJobsFound" style="display:none; text-align:center; padding: 40px; color: var(--text-light);">
+            <i class="fas fa-search-minus" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+            <h3>No Jobs Found matching your search.</h3>
+            <p>Try different keywords or check out our other roles below.</p>
+        </div>
     </section>
 
     <section class="section reveal" style="padding-top: 0;">
@@ -668,7 +764,37 @@
         </div>
     </section>
 
-    <!-- Redesigned Referral Box -->
+    <!-- Map Section -->
+    <section class="section reveal">
+        <div class="section-header"><h2>Our Walk-In Hubs</h2><p>Locate the primary interview centers near you</p></div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126135.24434233767!2d76.54516757657904!3d8.893202956799011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fc58c70817c7%3A0x6b4beeaeb5b23d94!2sKollam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section reveal">
+        <div class="section-header"><h2>Frequently Asked Questions</h2><p>Find answers to common queries</p></div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-btn">Do I need prior experience to apply? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-content"><p>No, we have multiple openings specifically for freshers along with positions for experienced professionals. Check the job descriptions for details.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-btn">What documents should I bring? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-content"><p>Please bring 2 copies of your updated CV/Resume, 2 Passport size photos, original and copies of educational certificates, and a valid Identity Proof (Aadhar/Voter ID/Driving License).</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-btn">Is it mandatory to fill the online form? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-content"><p>While Walk-ins are allowed, we highly recommend filling the online form to speed up your registration and interview process at the venue.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-btn">When will I know the interview results? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-content"><p>Shortlisted candidates are usually informed within 3 to 5 working days after the interview. Offer letters are rolled out immediately for urgent positions.</p></div>
+            </div>
+        </div>
+    </section>
+
     <section class="section reveal" style="padding-bottom: 100px;">
         <div class="referral-card">
             <i class="fas fa-bullhorn referral-icon"></i>
@@ -700,9 +826,17 @@
         <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn btn-hero-primary" style="width: 100%; max-width: 400px; padding: 14px; font-size: 1.05rem;"><i class="fas fa-paper-plane"></i> Apply Online Now</a>
     </div>
 
+    <div id="fomoPopup" class="fomo-popup">
+        <div class="fomo-icon"><i class="fas fa-user-check"></i></div>
+        <div class="fomo-text-content">
+            <p id="fomoText"><strong>Someone</strong> just applied for a role!</p>
+            <small id="fomoTime">Just now</small>
+        </div>
+    </div>
+
     <div class="action-floats">
-        <button id="backToTop" class="back-to-top" title="Go to top"><i class="fas fa-chevron-up"></i></button>
-        <a href="https://wa.me/919037833865" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <button id="backToTop" class="back-to-top float-btn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+        <a href="https://wa.me/919037833865" class="float-btn whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <div class="image-modal" id="imageModal">
@@ -756,6 +890,97 @@
             });
         }
         window.addEventListener("scroll", reveal); window.addEventListener("load", reveal);
+
+        // FAQ Toggle Feature
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                this.classList.toggle('active');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Search Feature Logic
+        document.getElementById('jobSearchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.hiring-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const textContent = card.innerText.toLowerCase();
+                if(textContent.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            const noJobsEl = document.getElementById('noJobsFound');
+            if(visibleCount === 0) {
+                noJobsEl.style.display = 'block';
+            } else {
+                noJobsEl.style.display = 'none';
+            }
+        });
+
+        const gridFilterBtns = document.querySelectorAll('.job-filter-btn');
+        gridFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                gridFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-grid-filter').toUpperCase();
+                const cards = document.querySelectorAll('.hiring-card');
+                let visibleCount = 0;
+                
+                // Reset search input if grid buttons are used
+                document.getElementById('jobSearchInput').value = '';
+                
+                cards.forEach(card => {
+                    const tags = card.querySelector('.job-tags').textContent.toUpperCase();
+                    if(filterValue === 'ALL' || tags.includes(filterValue) || card.innerText.toUpperCase().includes(filterValue)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                document.getElementById('noJobsFound').style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        });
+
+        const fomoNames = ["Rahul", "Anjali", "Kiran", "Sneha", "Vishnu", "Priya", "Arun", "Gokul", "Aswathy"];
+        const fomoRoles = ["Sales Executive", "Service Advisor", "Spare Assistant", "Technician", "Customer Care"];
+        const fomoLocations = ["Kollam", "Trivandrum", "Attingal", "Punalur", "Chengannur", "Kottarakkara"];
+        const fomoPopup = document.getElementById('fomoPopup');
+        const fomoText = document.getElementById('fomoText');
+        
+        function triggerFomo() {
+            const name = fomoNames[Math.floor(Math.random() * fomoNames.length)];
+            const role = fomoRoles[Math.floor(Math.random() * fomoRoles.length)];
+            const loc = fomoLocations[Math.floor(Math.random() * fomoLocations.length)];
+            
+            fomoText.innerHTML = `<strong>${name}</strong> from ${loc} just applied for <strong>${role}</strong>!`;
+            fomoPopup.classList.add('show');
+            
+            setTimeout(() => {
+                fomoPopup.classList.remove('show');
+            }, 5000); // Hide after 5 seconds
+        }
+        
+        // Start showing popups after 5 seconds, then every 18 seconds
+        setTimeout(() => {
+            triggerFomo();
+            setInterval(triggerFomo, 18000);
+        }, 5000);
 
         // Live Clock Engine
         setInterval(function() {
@@ -886,7 +1111,7 @@
             adminPasscode.value = ''; 
             adminErrorMsg.style.display = 'none'; 
             setTimeout(() => adminPasscode.focus(), 100);
-            if (navigator.vibrate) navigator.vibrate(200); // Haptic feedback on phone if supported
+            if (navigator.vibrate) navigator.vibrate(200);
         }
 
         function startPress(e) {
@@ -898,7 +1123,6 @@
             clearTimeout(pressTimer);
         }
 
-        // Attach listeners for both mouse and touch events
         secretAdminTrigger.addEventListener('mousedown', startPress);
         secretAdminTrigger.addEventListener('touchstart', startPress, {passive: true});
         secretAdminTrigger.addEventListener('mouseup', cancelPress);
@@ -909,7 +1133,7 @@
         document.getElementById('closeAdminBtn').addEventListener('click', () => adminModal.classList.remove('active'));
 
         document.getElementById('adminSubmitBtn').addEventListener('click', () => {
-            if (adminPasscode.value === "admin") { // Change this string to update your password
+            if (adminPasscode.value === "admin") { // Password is "admin"
                 adminModal.classList.remove('active');
                 document.body.classList.add('admin-mode');
                 adminSection.style.display = 'block'; 
@@ -937,6 +1161,13 @@
             adminSection.style.display = 'none';
             cancelEditMode();
             showToast("Exited Admin Mode", "#64748b", "fa-sign-out-alt");
+        });
+
+        // REAL SAVE LOGIC FIX (Persist changes to local storage)
+        document.getElementById('saveJobsBtn').addEventListener('click', () => {
+            const gridContent = document.getElementById('jobGrid').innerHTML;
+            localStorage.setItem('sarathy_job_grid', gridContent);
+            showToast("Job Postings Saved Permanently!", "var(--success)", "fa-save");
         });
 
         // Add / Edit Job Form Logic
