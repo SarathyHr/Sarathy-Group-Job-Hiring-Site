@@ -17,7 +17,7 @@
             --primary-light: #2A5DEB;
             --primary-dark: #072a85;
             
-            --accent-yellow: #FFD100; /* Bright Yellow */
+            --accent-yellow: #FFC107; /* Pleasant warm yellow for icons/badges */
             --accent-cyan: #23C4F8;   /* Light Cyan */
             --accent-red: #FF5757;    /* Coral Red for CTAs */
             
@@ -131,19 +131,19 @@
         .hero::before {
             content: ''; position: absolute;
             width: 400px; height: 400px;
-            background: var(--accent-yellow);
+            background: rgba(255, 255, 255, 0.12); /* Sleek translucent white instead of harsh yellow */
             border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
             top: -150px; left: -150px;
-            z-index: -1; opacity: 0.9;
+            z-index: -1; 
             animation: morph 8s ease-in-out infinite alternate;
         }
         .hero::after {
             content: ''; position: absolute;
             width: 300px; height: 300px;
-            background: var(--accent-cyan);
+            background: rgba(35, 196, 248, 0.2); /* Soft translucent cyan */
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             bottom: -50px; right: -100px;
-            z-index: -1; opacity: 0.9;
+            z-index: -1; 
             animation: morph 10s ease-in-out infinite alternate-reverse;
         }
         @keyframes morph {
@@ -386,8 +386,8 @@
             z-index: 1;
         }
         /* Blobs in referral */
-        .referral-card::before { content: ''; position: absolute; width: 200px; height: 200px; background: var(--accent-yellow); border-radius: 50%; top: -80px; left: -80px; z-index: -1; opacity: 0.9; }
-        .referral-card::after { content: ''; position: absolute; width: 150px; height: 150px; background: var(--accent-cyan); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; bottom: -50px; right: -50px; z-index: -1; opacity: 0.9; }
+        .referral-card::before { content: ''; position: absolute; width: 200px; height: 200px; background: rgba(255, 255, 255, 0.12); border-radius: 50%; top: -80px; left: -80px; z-index: -1; }
+        .referral-card::after { content: ''; position: absolute; width: 150px; height: 150px; background: rgba(35, 196, 248, 0.2); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; bottom: -50px; right: -50px; z-index: -1; }
         
         .referral-icon { font-size: 3.5rem; color: var(--accent-yellow); margin-bottom: 25px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
@@ -830,8 +830,10 @@
                     <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
                     <div class="job-tags">DIPLOMA / BTECH / ITI</div>
-                    <div class="hiring-actions">
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="openApplyModal('SERVICE', 'SERVICE ADVISOR & TECHNICIAN', 'sample-1')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
+                        <button onclick="applyViaWhatsApp('SERVICE ADVISOR & TECHNICIAN')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
                     </div>
                 </div>
             </div>
@@ -847,8 +849,10 @@
                     <h3 class="job-title">SALES EXECUTIVE</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
                     <div class="job-tags">SERVICE_ADVISOR SALES_EXECUTIVE</div>
-                    <div class="hiring-actions">
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="openApplyModal('SALES & SERVICE', 'SALES EXECUTIVE', 'sample-2')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
+                        <button onclick="applyViaWhatsApp('SALES EXECUTIVE')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
                     </div>
                 </div>
             </div>
@@ -864,8 +868,10 @@
                     <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
                     <div class="job-tags">SPARE_EXECUTIVE TRAINEES</div>
-                    <div class="hiring-actions">
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="openApplyModal('SPARES', 'SPARE ASSISTANT & TRAINEES', 'sample-3')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
+                        <button onclick="applyViaWhatsApp('SPARE ASSISTANT & TRAINEES')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
                     </div>
                 </div>
             </div>
@@ -953,7 +959,7 @@
 
     <div class="action-floats">
         <button id="backToTop" class="back-to-top float-btn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
-        <a href="https://wa.me/919037833865" class="float-btn whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/919037223665" class="float-btn whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <div class="image-modal" id="imageModal">
@@ -1108,9 +1114,10 @@
                                     <h3 class="job-title">${j.title}</h3>
                                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
                                     <div class="job-tags">${j.tags || (j.qualification + ' • ' + j.experience)}</div>
-                                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply Now</button>
-                                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
+                                        <button onclick="applyViaWhatsApp('${j.title}')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
                                     </div>
                                 </div>
                             </div>
@@ -1340,9 +1347,12 @@
                             ${r.badgeType === 'badge' 
                                 ? `<span class="fresher-badge">${r.subtext}</span>` 
                                 : `<p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">${r.subtext}</p>`}
-                            <div>
-                                <button class="role-apply-btn" onclick="openApplyModal('${catKey.toUpperCase()}', '${r.title}')">
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                                <button class="role-apply-btn" style="margin-top:0;" onclick="openApplyModal('${catKey.toUpperCase()}', '${r.title}')">
                                     <i class="fas fa-paper-plane"></i> Apply Now
+                                </button>
+                                <button class="role-apply-btn" style="margin-top:0; background: var(--success); color: white; border-color: var(--success);" onclick="applyViaWhatsApp('${r.title}')">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
                                 </button>
                             </div>
                         </div>
@@ -1645,6 +1655,15 @@
 
     
         /* --- CANDIDATE APPLICATION & STATUS MODAL HANDLERS --- */
+        window.applyViaWhatsApp = function(jobTitle = '') {
+            let message = "Hi, I'm interested in applying for a job. I found your website.";
+            if (jobTitle && jobTitle !== 'General Application') {
+                message = `Hi, I'm interested in the ${jobTitle} job vacancy. I found this job on your website.`;
+            }
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/919037223665?text=${encodedMessage}`, '_blank');
+        };
+
         window.openApplyModal = function(dept = 'SALES', jobTitle = 'General Application', jobId = '') {
             const modal = document.getElementById('applyModal');
             if (!modal) return;
