@@ -90,29 +90,9 @@
             filter: blur(12px);
             animation: elegant-reveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .loader-line-container {
-            width: 180px; height: 3px; background: rgba(0, 40, 85, 0.1);
-            margin-top: 40px; border-radius: 4px; overflow: hidden;
-            position: relative; opacity: 0;
-            animation: fade-in-delay 0.8s ease forwards 1.2s;
-        }
-        .loader-line {
-            position: absolute; top: 0; left: 0; height: 100%; width: 100%;
-            background: linear-gradient(90deg, transparent, var(--primary), var(--hero-red), var(--primary), transparent);
-            background-size: 200% 100%;
-            border-radius: 4px;
-            animation: sweep-gradient 2.5s infinite linear;
-        }
         
         @keyframes elegant-reveal {
             100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
-        }
-        @keyframes fade-in-delay {
-            100% { opacity: 1; }
-        }
-        @keyframes sweep-gradient {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
         }
 
         header {
@@ -472,9 +452,6 @@
     
     <div id="preloader">
         <img src="SARATHY1234.png" alt="Sarathy Group Loading..." class="premium-logo" onerror="this.src='https://placehold.co/280x120/002855/FFF?text=SARATHY'">
-        <div class="loader-line-container">
-            <div class="loader-line"></div>
-        </div>
     </div>
     
     <div class="toast" id="toastMessage"></div>
