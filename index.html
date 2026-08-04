@@ -29,26 +29,6 @@
             --hero-slate: #233142;
         }
 
-        .job-filters { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;}
-        .job-filter-btn { padding: 8px 22px; border-radius: 50px; border: 2px solid var(--primary); background: transparent; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 700; font-size: 0.9rem;}
-        .job-filter-btn.active, .job-filter-btn:hover { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(0,40,85,0.2); }
-
-        .fomo-popup {
-            position: fixed; bottom: 30px; left: 30px; background: var(--white);
-            padding: 15px 20px; border-radius: 16px; box-shadow: var(--shadow-lg);
-            display: flex; align-items: center; gap: 15px; z-index: 9999;
-            transform: translateY(150px); opacity: 0; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-left: 4px solid var(--accent); border-right: 1px solid rgba(0,0,0,0.05); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .fomo-popup.show { transform: translateY(0); opacity: 1; }
-        .fomo-icon { width: 40px; height: 40px; background: rgba(8, 182, 8, 0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;}
-        .fomo-text-content p { font-size: 0.95rem; color: var(--text-dark); margin: 0; line-height: 1.3; font-weight: 500;}
-        .fomo-text-content small { font-size: 0.75rem; color: var(--text-light); font-weight: 700;}
-        
-        @media (max-width: 768px) {
-            .fomo-popup { bottom: 80px; left: 15px; right: 15px; }
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -92,11 +72,29 @@
 
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--white); z-index: 99999; display: flex;
-            justify-content: center; align-items: center; transition: opacity 0.5s ease;
+            background: var(--bg-light); z-index: 99999; display: flex;
+            justify-content: center; align-items: center; 
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
         }
-        .loader { width: 50px; height: 50px; border: 5px solid rgba(0,40,85,0.1); border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .animated-logo {
+            width: 80%;
+            max-width: 280px;
+            height: auto;
+            /* Entrance animation followed by an infinite float */
+            animation: logo-entrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards, logo-float 3s ease-in-out infinite 1.2s;
+            opacity: 0; 
+        }
+        
+        @keyframes logo-entrance {
+            0% { opacity: 0; transform: scale(0.6) translateY(40px); filter: blur(15px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+        
+        @keyframes logo-float {
+            0%, 100% { transform: translateY(0); filter: drop-shadow(0 5px 15px rgba(0,40,85,0.05)); }
+            50% { transform: translateY(-15px); filter: drop-shadow(0 25px 30px rgba(0,40,85,0.2)); }
+        }
 
         header {
             background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
@@ -191,6 +189,26 @@
         .stat-item h3 { font-size: clamp(1.8rem, 5vw, 2.5rem); color: var(--primary); font-weight: 800; line-height: 1; margin-bottom: 5px; }
         .stat-item p { color: var(--text-light); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
 
+        .job-filters { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;}
+        .job-filter-btn { padding: 8px 22px; border-radius: 50px; border: 2px solid var(--primary); background: transparent; color: var(--primary); cursor: pointer; transition: var(--transition); font-weight: 700; font-size: 0.9rem;}
+        .job-filter-btn.active, .job-filter-btn:hover { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(0,40,85,0.2); }
+
+        .fomo-popup {
+            position: fixed; bottom: 30px; left: 30px; background: var(--white);
+            padding: 15px 20px; border-radius: 16px; box-shadow: var(--shadow-lg);
+            display: flex; align-items: center; gap: 15px; z-index: 9999;
+            transform: translateY(150px); opacity: 0; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid var(--accent); border-right: 1px solid rgba(0,0,0,0.05); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .fomo-popup.show { transform: translateY(0); opacity: 1; }
+        .fomo-icon { width: 40px; height: 40px; background: rgba(8, 182, 8, 0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;}
+        .fomo-text-content p { font-size: 0.95rem; color: var(--text-dark); margin: 0; line-height: 1.3; font-weight: 500;}
+        .fomo-text-content small { font-size: 0.75rem; color: var(--text-light); font-weight: 700;}
+        
+        @media (max-width: 768px) {
+            .fomo-popup { bottom: 80px; left: 15px; right: 15px; }
+        }
+
         .banner-section { width: 100%; max-width: 1200px; margin: 0 auto 60px; border-radius: 24px; overflow: hidden; position: relative; box-shadow: var(--shadow-md); width: calc(100% - 30px); background: #fff;}
         .banner-carousel { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; }
         .banner-slide { min-width: 100%; display: flex; justify-content: center; align-items: center; }
@@ -233,27 +251,6 @@
         .card-item h4 { color: var(--primary); margin-bottom: 10px; font-weight: 800; font-size: 1.2rem; }
         .card-item p { font-size: 0.95rem; color: var(--text-light); }
 
-        /* Testimonials Section */
-        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .testimonial-card { background: white; padding: 30px; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); position: relative; transition: var(--transition); }
-        .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-        .quote-icon { position: absolute; top: 20px; right: 20px; font-size: 3rem; color: rgba(0, 40, 85, 0.05); }
-        .testimonial-text { font-size: 1rem; color: var(--text-dark); font-style: italic; margin-bottom: 20px; position: relative; z-index: 2;}
-        .testimonial-author { display: flex; align-items: center; gap: 15px; }
-        .author-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-light); }
-        .author-info h5 { font-size: 1.05rem; color: var(--primary); font-weight: 700; margin-bottom: 2px;}
-        .author-info p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
-
-        /* Maps Section */
-        .map-container { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); border: 4px solid white; height: 400px; width: 100%; position: relative;}
-        .map-container iframe { width: 100%; height: 100%; border: none; }
-
-        .checklist-box { padding: 40px; border-radius: 24px; border: 2px dashed rgba(0, 40, 85, 0.15); max-width: 750px; margin: 0 auto; background: white;}
-        .checklist-item { display: flex; align-items: center; gap: 20px; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: var(--transition); }
-        .checklist-item:hover { background: var(--bg-light); padding-left: 15px; border-radius: 12px; }
-        .checklist-item:last-child { border-bottom: none; }
-        .check-circle { color: var(--success); font-size: 1.8rem; background: rgba(37, 211, 102, 0.1); border-radius: 50%; padding: 5px; }
-
         .venue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .hiring-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(0,0,0,0.05); }
         .hiring-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
@@ -278,7 +275,6 @@
         .btn-card-secondary { background: var(--bg-light); color: var(--primary); border: 1px solid rgba(0,0,0,0.1); }
         .btn-card-secondary:hover { background: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
 
-        /* Admin Controls */
         .admin-card-controls { position: absolute; top: 15px; right: 15px; display: none; gap: 8px; z-index: 10; }
         .admin-mode .admin-card-controls { display: flex; }
         .admin-card-btn { width: 35px; height: 35px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; transition: transform 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
@@ -286,7 +282,6 @@
         .btn-del-card { background: #ef4444; }
         .admin-card-btn:hover { transform: scale(1.15); }
 
-        /* Admin Form */
         #adminSection { display: none; margin-bottom: 50px; }
         .admin-upload-tool { background: white; border-radius: 24px; padding: 30px; box-shadow: var(--shadow-md); border: 2px solid var(--primary); position: relative; }
         .admin-tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 15px;}
@@ -313,11 +308,6 @@
         .btn-cancel-edit { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 14px 25px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: var(--transition); display: none; align-items: center; gap: 8px;}
         .btn-cancel-edit:hover { background: #e2e8f0; color: #0f172a; }
 
-        .filter-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
-        .filter-btn { padding: 10px 24px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.1); background: white; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); }
-        .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
-        .filter-btn.active { background: var(--hero-slate); color: white; border-color: var(--hero-slate); box-shadow: 0 8px 20px rgba(35,49,66,0.3); }
-
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .role-group { padding: 35px; border-radius: 24px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); background: white; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); }
         .role-group.hide { display: none; transform: scale(0.9); opacity: 0; position: absolute; } 
@@ -332,7 +322,6 @@
         .btn-role-apply { display: flex; align-items: center; justify-content: center; background: var(--bg-light); color: var(--primary); border: 1px solid rgba(0,0,0,0.1); text-decoration: none; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 700; margin-top: 25px; transition: var(--transition); }
         .btn-role-apply:hover { background: var(--primary); color: white; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,40,85,0.2); }
 
-        /* FAQ Section */
         .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         .faq-item { background: white; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); overflow: hidden; box-shadow: var(--shadow-sm); }
         .faq-btn { width: 100%; text-align: left; padding: 20px 25px; border: none; background: transparent; font-size: 1.1rem; font-weight: 700; color: var(--primary); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
@@ -358,8 +347,8 @@
         .referral-contact i { color: var(--success); }
 
         footer { background: #05101f; color: white; padding: 80px 20px 140px; text-align: center; }
-        .action-floats { position: fixed; bottom: 95px; right: 25px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
         
+        .action-floats { position: fixed; bottom: 95px; right: 25px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
         .float-btn {
             width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-decoration: none; transition: var(--transition); border: none; cursor: pointer; color: white;
         }
@@ -414,6 +403,9 @@
             .admin-form-grid { grid-template-columns: 1fr; } 
             .form-btn-group { flex-direction: column; } 
             .btn-generate, .btn-cancel-edit { width: 100%; justify-content: center;}
+            
+            /* Adjust preloader logo size on mobile */
+            .animated-logo { width: 60%; }
         }
 
         @media (min-width: 1024px) {
@@ -421,6 +413,30 @@
             .action-floats { bottom: 30px; }
             body { padding-bottom: 0; }
         }
+        
+        .filter-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 24px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.1); background: white; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); }
+        .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .filter-btn.active { background: var(--hero-slate); color: white; border-color: var(--hero-slate); box-shadow: 0 8px 20px rgba(35,49,66,0.3); }
+
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testimonial-card { background: white; padding: 30px; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.05); position: relative; transition: var(--transition); }
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .quote-icon { position: absolute; top: 20px; right: 20px; font-size: 3rem; color: rgba(0, 40, 85, 0.05); }
+        .testimonial-text { font-size: 1rem; color: var(--text-dark); font-style: italic; margin-bottom: 20px; position: relative; z-index: 2;}
+        .testimonial-author { display: flex; align-items: center; gap: 15px; }
+        .author-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-light); }
+        .author-info h5 { font-size: 1.05rem; color: var(--primary); font-weight: 700; margin-bottom: 2px;}
+        .author-info p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+        
+        .map-container { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); border: 4px solid white; height: 400px; width: 100%; position: relative;}
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        .checklist-box { padding: 40px; border-radius: 24px; border: 2px dashed rgba(0, 40, 85, 0.15); max-width: 750px; margin: 0 auto; background: white;}
+        .checklist-item { display: flex; align-items: center; gap: 20px; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: var(--transition); }
+        .checklist-item:hover { background: var(--bg-light); padding-left: 15px; border-radius: 12px; }
+        .checklist-item:last-child { border-bottom: none; }
+        .check-circle { color: var(--success); font-size: 1.8rem; background: rgba(37, 211, 102, 0.1); border-radius: 50%; padding: 5px; }
     </style>
 </head>
 <body>
@@ -434,14 +450,18 @@
     </div>
 
     <div class="scroll-progress-container"><div class="scroll-progress-bar" id="progressBar"></div></div>
-    <div id="preloader"><div class="loader"></div></div>
+    
+    <div id="preloader">
+        <img src="SARATHY1234.png" alt="Sarathy Group Loading..." class="animated-logo">
+    </div>
+    
     <div class="toast" id="toastMessage"></div>
 
     <header>
         <div class="logo-slider">
             <div class="logo-track">
                 <!-- Logos -->
-                <div class="logo-item"><img src="sarathy-group-logo.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Sarathy'"></div>
+                <div class="logo-item"><img src="SARATHY1234.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Sarathy'"></div>
                 <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Nexa'"></div>
                 <div class="logo-item"><img src="maruti-suzuki-arena-vector-logo.png" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Arena'"></div>
                 <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge" onerror="this.src='https://placehold.co/110x45/fff/000?text=TrueValue'"></div>
@@ -452,7 +472,7 @@
                 <div class="logo-item"><img src="ather123.png" alt="Ather" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Ather'"></div>
                 <div class="logo-item"><img src="Chetak-logo-5.png" alt="Chetak" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Chetak'"></div>
                 <!-- Copy 2 for infinite loop -->
-                <div class="logo-item"><img src="sarathy-group-logo.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Sarathy'"></div>
+                <div class="logo-item"><img src="SARATHY1234.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Sarathy'"></div>
                 <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Nexa'"></div>
                 <div class="logo-item"><img src="maruti-suzuki-arena-vector-logo.png" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/000?text=Arena'"></div>
                 <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge" onerror="this.src='https://placehold.co/110x45/fff/000?text=TrueValue'"></div>
@@ -764,7 +784,6 @@
         </div>
     </section>
 
-    <!-- Map Section -->
     <section class="section reveal">
         <div class="section-header"><h2>Our Walk-In Hubs</h2><p>Locate the primary interview centers near you</p></div>
         <div class="map-container">
@@ -772,7 +791,6 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section class="section reveal">
         <div class="section-header"><h2>Frequently Asked Questions</h2><p>Find answers to common queries</p></div>
         <div class="faq-container">
@@ -857,7 +875,6 @@
     </div>
 
     <script>
-        // Core Utilities
         function showToast(message, color = "var(--success)", icon = "fa-check") {
             const toast = document.getElementById('toastMessage');
             if(!toast) return;
@@ -879,10 +896,16 @@
 
         function hidePreloader() {
             const preloader = document.getElementById('preloader');
-            if(preloader) { preloader.style.opacity = '0'; setTimeout(() => { preloader.style.display = 'none'; }, 500); }
+            if(preloader) { 
+                preloader.style.opacity = '0'; 
+                preloader.style.visibility = 'hidden';
+                setTimeout(() => { preloader.style.display = 'none'; }, 800); 
+            }
         }
+        
         window.addEventListener('load', hidePreloader);
-        setTimeout(hidePreloader, 3000);
+        // Fallback to ensure the animation is visible for at least a few seconds if load is super fast
+        setTimeout(hidePreloader, 3500); 
 
         function reveal() {
             document.querySelectorAll(".reveal").forEach(r => {
