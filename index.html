@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Sarathy Group | Mega Job Fair 2026</title>
-
-    <!-- Sarathy HR Platform Backend API Client -->
-    <script src="https://careerssarathy.web.app/recruitment-api-client.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -17,9 +13,9 @@
             --primary-light: #2A5DEB;
             --primary-dark: #072a85;
             
-            --accent-yellow: #FFC107; /* Pleasant warm yellow for icons/badges */
+            --accent-yellow: #FFD100; /* Bright Yellow */
             --accent-cyan: #23C4F8;   /* Light Cyan */
-            --accent-red: #FF5757;    /* Coral Red for CTAs */
+            --accent-red: red;    /* Updated to standard red as requested */
             
             --success: #25D366;
             --text-dark: #0f172a;
@@ -50,7 +46,7 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 40px;
+            padding-bottom: 80px;
         }
 
         /* Background Pattern Overlay */
@@ -131,19 +127,19 @@
         .hero::before {
             content: ''; position: absolute;
             width: 400px; height: 400px;
-            background: rgba(255, 255, 255, 0.12); /* Sleek translucent white instead of harsh yellow */
+            background: var(--accent-yellow);
             border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
             top: -150px; left: -150px;
-            z-index: -1; 
+            z-index: -1; opacity: 0.9;
             animation: morph 8s ease-in-out infinite alternate;
         }
         .hero::after {
             content: ''; position: absolute;
             width: 300px; height: 300px;
-            background: rgba(35, 196, 248, 0.2); /* Soft translucent cyan */
+            background: var(--accent-cyan);
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             bottom: -50px; right: -100px;
-            z-index: -1; 
+            z-index: -1; opacity: 0.9;
             animation: morph 10s ease-in-out infinite alternate-reverse;
         }
         @keyframes morph {
@@ -193,12 +189,13 @@
         .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 5;}
         .btn { padding: 16px 35px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; border: none; }
         
-        .btn-hero-primary { background: var(--accent-red); color: white; box-shadow: 0 8px 25px rgba(255, 87, 87, 0.4); }
-        .btn-hero-primary:hover { background: #ff3b3b; transform: translateY(-4px); box-shadow: 0 12px 30px rgba(255, 87, 87, 0.5); }
+        /* Updated Apply Online Now button to be purely red as requested */
+        .btn-hero-primary { background: var(--accent-red); color: white; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4); }
+        .btn-hero-primary:hover { background: #cc0000; transform: translateY(-4px); box-shadow: 0 12px 30px rgba(255, 0, 0, 0.5); }
         
         .btn-hero-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); backdrop-filter: blur(5px);}
         .btn-hero-secondary:hover { background: white; color: var(--primary); transform: translateY(-4px); border-color: white;}
-
+        
         .btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 8px 20px rgba(11, 65, 205, 0.3); border-radius: 50px;}
         .btn-primary:hover { background: var(--primary-light); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(11, 65, 205, 0.4); }
 
@@ -239,7 +236,7 @@
         .fomo-text-content p { font-size: 0.95rem; color: var(--text-dark); margin: 0; line-height: 1.4; font-weight: 600;}
         .fomo-text-content small { font-size: 0.75rem; color: var(--text-light); font-weight: 700;}
         
-        @media (max-width: 768px) { .fomo-popup { bottom: 30px; left: 15px; right: 15px; } }
+        @media (max-width: 768px) { .fomo-popup { bottom: 90px; left: 15px; right: 15px; } }
 
         .banner-section { width: 100%; max-width: 1200px; margin: 0 auto 80px; border-radius: 40px; overflow: hidden; position: relative; box-shadow: var(--shadow-md); width: calc(100% - 30px); background: #fff;}
         .banner-carousel { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; }
@@ -312,10 +309,12 @@
         .hiring-meta-mid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
         .hiring-meta-mid span { font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 12px; font-weight: 600;}
         .hiring-meta-mid i { color: var(--accent-cyan); width: 20px; text-align: center; font-size: 1.1rem;}
-        .job-tags { font-size: 0.8rem; color: var(--accent-red); font-weight: 800; margin-bottom: 25px; display: inline-block; padding: 4px 0; border-bottom: 2px dashed rgba(255, 87, 87, 0.3); }
-        .hiring-actions { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: auto; }
+        .job-tags { font-size: 0.8rem; color: var(--accent-red); font-weight: 800; margin-bottom: 25px; display: inline-block; padding: 4px 0; border-bottom: 2px dashed rgba(255, 0, 0, 0.3); }
+        .hiring-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: auto; }
         .btn-card { padding: 14px; border-radius: 50px; text-align: center; font-weight: 700; text-decoration: none; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer;}
-        .btn-card-secondary { background: var(--bg-light); color: var(--primary); border: 2px solid transparent; width: 100%; }
+        .btn-card-primary { background: var(--accent-red); color: white; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);}
+        .btn-card-primary:hover { background: #cc0000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3); }
+        .btn-card-secondary { background: var(--bg-light); color: var(--primary); border: 2px solid transparent; }
         .btn-card-secondary:hover { background: white; border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(11, 65, 205, 0.1); }
 
         .admin-card-controls { position: absolute; top: 15px; right: 15px; display: none; gap: 10px; z-index: 10; }
@@ -358,13 +357,12 @@
         .role-group h4 { font-size: 1.5rem; margin-bottom: 30px; display: flex; align-items: center; gap: 18px; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 18px; font-weight: 800; }
         .role-group h4 i { background: rgba(11, 65, 205, 0.1); padding: 15px; border-radius: 20px; color: var(--primary); transition: transform 0.3s;}
         .role-group:hover h4 i { transform: rotate(15deg) scale(1.1); }
-        .role-item { position: relative; padding: 25px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .role-item { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
         .role-item:hover { transform: translateX(12px); }
-        .role-item .admin-card-controls { top: 15px; right: 0; }
         .role-title { font-weight: 800; font-size: 1.15rem; display: block; color: var(--text-dark); margin-bottom: 8px; }
         .fresher-badge { display: inline-block; background: #FFF9C4; color: #F57F17; font-size: 0.8rem; padding: 6px 16px; border-radius: 50px; font-weight: 800; margin-top: 5px; border: 1px solid #FFF59D;}
-        .role-apply-btn { margin-top: 15px; padding: 8px 22px; font-size: 0.95rem; border-radius: 50px; background: var(--bg-light); color: var(--primary); font-weight: 700; border: 2px solid transparent; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
-        .role-apply-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(11, 65, 205, 0.2); border-color: var(--primary); }
+        .btn-role-apply { display: flex; align-items: center; justify-content: center; background: white; color: var(--primary); border: 2px solid var(--primary); text-decoration: none; padding: 16px; border-radius: 50px; font-size: 1.05rem; font-weight: 800; margin-top: 30px; transition: var(--transition); }
+        .btn-role-apply:hover { background: var(--primary); color: white; transform: translateY(-3px); box-shadow: 0 12px 25px rgba(11, 65, 205, 0.2); }
 
         .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
         .faq-item { background: white; border-radius: 24px; border: 1px solid rgba(0,0,0,0.04); overflow: hidden; box-shadow: var(--shadow-sm); }
@@ -386,8 +384,8 @@
             z-index: 1;
         }
         /* Blobs in referral */
-        .referral-card::before { content: ''; position: absolute; width: 200px; height: 200px; background: rgba(255, 255, 255, 0.12); border-radius: 50%; top: -80px; left: -80px; z-index: -1; }
-        .referral-card::after { content: ''; position: absolute; width: 150px; height: 150px; background: rgba(35, 196, 248, 0.2); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; bottom: -50px; right: -50px; z-index: -1; }
+        .referral-card::before { content: ''; position: absolute; width: 200px; height: 200px; background: var(--accent-yellow); border-radius: 50%; top: -80px; left: -80px; z-index: -1; opacity: 0.9; }
+        .referral-card::after { content: ''; position: absolute; width: 150px; height: 150px; background: var(--accent-cyan); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; bottom: -50px; right: -50px; z-index: -1; opacity: 0.9; }
         
         .referral-icon { font-size: 3.5rem; color: var(--accent-yellow); margin-bottom: 25px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
@@ -396,9 +394,9 @@
         .referral-contact { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.15); padding: 12px 30px; border-radius: 50px; font-weight: 800; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px);}
         .referral-contact i { color: var(--accent-yellow); font-size: 1.2rem;}
 
-        footer { background: var(--primary-dark); color: white; padding: 100px 20px 80px; text-align: center; border-top-left-radius: 80px; border-top-right-radius: 80px;}
+        footer { background: var(--primary-dark); color: white; padding: 100px 20px 140px; text-align: center; border-top-left-radius: 80px; border-top-right-radius: 80px;}
         
-        .action-floats { position: fixed; bottom: 40px; right: 30px; display: flex; flex-direction: column; gap: 20px; z-index: 1000; }
+        .action-floats { position: fixed; bottom: 100px; right: 30px; display: flex; flex-direction: column; gap: 20px; z-index: 1000; }
         .float-btn {
             width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); text-decoration: none; transition: var(--transition); border: none; cursor: pointer; color: white;
         }
@@ -412,7 +410,13 @@
         .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
         .back-to-top:hover { background: var(--primary-light); transform: translateY(-5px); }
 
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0.2, 1); }
+        .mobile-cta {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95);
+            padding: 15px 20px; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); display: flex; justify-content: center;
+            align-items: center; z-index: 999; backdrop-filter: blur(15px); border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         .toast { position: fixed; top: 30px; right: 30px; background: white; color: var(--primary-dark); padding: 18px 28px; border-radius: 20px; box-shadow: 0 20px 50px rgba(11, 65, 205, 0.15); display: flex; align-items: center; gap: 18px; font-weight: 700; z-index: 100000; transform: translateX(150%); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-left: 6px solid var(--success); }
@@ -425,10 +429,11 @@
         .modal-close, .admin-close-btn { position: absolute; top: 30px; right: 40px; color: white; font-size: 45px; cursor: pointer; transition: transform 0.3s; }
         .modal-close:hover, .admin-close-btn:hover { transform: scale(1.2) rotate(90deg); color: var(--accent-yellow); }
 
-        .admin-login-box { background: white; padding: 40px; border-radius: 40px; width: 92%; max-width: 580px; text-align: left; box-shadow: 0 30px 60px rgba(0,0,0,0.3); position: relative; max-height: 90vh; overflow-y: auto;}
-
+        .admin-login-box { background: white; padding: 50px; border-radius: 40px; width: 90%; max-width: 450px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.3); position: relative;}
         .admin-input { width: 100%; padding: 18px; border: 2px solid #e2e8f0; border-radius: 20px; font-size: 1.2rem; text-align: center; margin-bottom: 25px; outline: none; transition: 0.3s; font-weight: 600; color: var(--primary-dark);}
         .admin-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(11, 65, 205, 0.1);}
+        .admin-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 50px; font-size: 1.2rem; font-weight: 800; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 25px rgba(11,65,205,0.3);}
+        .admin-btn:hover { background: var(--primary-light); transform: translateY(-3px);}
         .admin-error { color: var(--accent-red); font-size: 1rem; font-weight: 700; margin-top: 18px; display: none; }
 
         @media (max-width: 768px) {
@@ -446,10 +451,11 @@
             .form-btn-group { flex-direction: column; } 
             .btn-generate, .btn-cancel-edit { width: 100%; justify-content: center;}
             .animated-logo { width: 60%; }
-            footer { border-top-left-radius: 50px; border-top-right-radius: 50px; padding: 70px 20px 80px; }
+            footer { border-top-left-radius: 50px; border-top-right-radius: 50px; padding: 70px 20px 120px; }
         }
 
         @media (min-width: 1024px) {
+            .mobile-cta { display: none; }
             .action-floats { bottom: 40px; }
             body { padding-bottom: 0; }
         }
@@ -477,73 +483,6 @@
         .checklist-item:hover { background: var(--bg-light); padding-left: 20px; border-radius: 16px; }
         .checklist-item:last-child { border-bottom: none; }
         .check-circle { color: white; font-size: 1.5rem; background: var(--success); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 15px rgba(37, 211, 102, 0.3); flex-shrink: 0;}
-    
-        /* Candidate Application Modal & Status Modal Styles */
-        .cand-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px);
-            z-index: 99999; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: all 0.3s ease; padding: 15px;
-        }
-        .cand-modal.active { opacity: 1; pointer-events: auto; }
-        .cand-modal-box {
-            background: white; border-radius: 30px; width: 100%; max-width: 650px;
-            max-height: 90vh; overflow-y: auto; padding: 35px; box-shadow: var(--shadow-lg);
-            position: relative; transform: translateY(20px) scale(0.95); transition: all 0.3s ease;
-            border: 2px solid rgba(11, 65, 205, 0.1);
-        }
-        .cand-modal.active .cand-modal-box { transform: translateY(0) scale(1); }
-        .cand-modal-close {
-            position: absolute; top: 20px; right: 20px; width: 38px; height: 38px;
-            background: var(--bg-light); border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: var(--text-light); cursor: pointer; border: none;
-            font-size: 1.1rem; transition: var(--transition);
-        }
-        .cand-modal-close:hover { background: var(--accent-red); color: white; }
-        .cand-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
-        @media (max-width: 600px) { .cand-form-grid { grid-template-columns: 1fr; } .cand-modal-box { padding: 25px 20px; } }
-        .cand-form-full { grid-column: 1 / -1; }
-        .cand-label { font-size: 0.9rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; display: block; }
-        .cand-input, .cand-select {
-            width: 100%; padding: 14px 18px; border-radius: 14px; border: 2px solid #e2e8f0;
-            font-size: 0.98rem; transition: all 0.3s; background: var(--bg-light); font-family: inherit;
-        }
-        .cand-input:focus, .cand-select:focus { outline: none; border-color: var(--primary); background: white; box-shadow: 0 0 0 4px rgba(11, 65, 205, 0.1); }
-        .cand-submit-btn {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white; border: none; padding: 16px 30px; border-radius: 50px; font-weight: 800;
-            font-size: 1.1rem; width: 100%; cursor: pointer; transition: var(--transition);
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            box-shadow: 0 8px 25px rgba(11, 65, 205, 0.3); margin-top: 10px;
-        }
-        .cand-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(11, 65, 205, 0.4); }
-        .status-result-card {
-            background: var(--bg-light); border-radius: 20px; padding: 20px; margin-top: 20px;
-            border-left: 5px solid var(--primary); display: none;
-        }
-        .status-badge {
-            display: inline-block; padding: 6px 16px; border-radius: 50px; font-weight: 800;
-            font-size: 0.85rem; background: var(--primary); color: white; margin-top: 8px;
-        }
-
-        /* Mobile Sticky Apply Button */
-        .mobile-sticky-apply {
-            display: none; position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            padding: 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 10000;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        .mobile-sticky-apply .btn-hero-primary {
-            width: 100%; padding: 16px; font-size: 1.2rem; display: flex; gap: 10px;
-            justify-content: center;
-        }
-        @media (max-width: 768px) {
-            .mobile-sticky-apply { display: block; }
-            body { padding-bottom: 90px; }
-            .action-floats { bottom: 100px; right: 15px; }
-            .fomo-popup { bottom: 100px; }
-        }
-
     </style>
 </head>
 <body>
@@ -567,9 +506,9 @@
     <header>
         <div class="logo-slider">
             <div class="logo-track">
-                <div class="logo-item"><img src="Sarathy2.png.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Sarathy'"></div>
+                <div class="logo-item"><img src="SARATHY1234.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Sarathy'"></div>
                 <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Nexa'"></div>
-                <div class="logo-item"><img src="arena-logo.webp" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Arena'"></div>
+                <div class="logo-item"><img src="maruti-suzuki-arena-vector-logo.png" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Arena'"></div>
                 <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=TrueValue'"></div>
                 <div class="logo-item"><img src="OIP (1).webp" alt="Commercial" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Commercial'"></div>
                 <div class="logo-item"><img src="bajaj.png" alt="Bajaj" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Bajaj'"></div>
@@ -578,9 +517,9 @@
                 <div class="logo-item"><img src="ather123.png" alt="Ather" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Ather'"></div>
                 <div class="logo-item"><img src="Chetak-logo-5.png" alt="Chetak" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Chetak'"></div>
                 <!-- Copy 2 for infinite loop -->
-                <div class="logo-item"><img src="Sarathy2.png.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Sarathy'"></div>
+                <div class="logo-item"><img src="SARATHY1234.png" alt="Sarathy" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Sarathy'"></div>
                 <div class="logo-item"><img src="n2.png" alt="Nexa" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Nexa'"></div>
-                <div class="logo-item"><img src="arena-logo.webp" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Arena'"></div>
+                <div class="logo-item"><img src="maruti-suzuki-arena-vector-logo.png" alt="Arena" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Arena'"></div>
                 <div class="logo-item"><img src="OIP.webp" alt="True Value" class="logo-img logo-enlarge" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=TrueValue'"></div>
                 <div class="logo-item"><img src="OIP (1).webp" alt="Commercial" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Commercial'"></div>
                 <div class="logo-item"><img src="bajaj.png" alt="Bajaj" class="logo-img" onerror="this.src='https://placehold.co/110x45/fff/0B41CD?text=Bajaj'"></div>
@@ -608,9 +547,12 @@
         </div>
 
         <div class="btn-group">
-            <button onclick="openApplyModal()" class="btn btn-hero-primary">
+            <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn btn-hero-primary">
                 <i class="fas fa-paper-plane"></i> Apply Online Now
-            </button>
+            </a>
+            <a href="#vacancies" class="btn btn-hero-secondary">
+                <i class="fas fa-briefcase"></i> Explore Roles
+            </a>
         </div>
     </section>
 
@@ -645,8 +587,8 @@
         <div class="section-header"><h2>How to Join Us?</h2><p>ജോലി നേടാനുള്ള ലളിതമായ 3 ഘട്ടങ്ങൾ</p></div>
         <div class="process-wrapper">
             <div class="process-step">
-                <div class="step-number" style="background: var(--accent-yellow); color: var(--primary-dark);"><i class="fas fa-search"></i></div>
-                <div class="step-content"><h4>1. View Open Vacancies</h4><p>താഴെ നൽകിയിട്ടുള്ള ജോലി വിവരങ്ങൾ പരിശോധിക്കുക.</p></div>
+                <div class="step-number" style="background: var(--accent-yellow); color: var(--primary-dark);"><i class="fas fa-mobile-screen"></i></div>
+                <div class="step-content"><h4>1. Apply Online</h4><p>താഴെ നൽകിയിട്ടുള്ള ലിങ്ക് വഴി നിങ്ങളുടെ വിവരങ്ങൾ നൽകുക. മുൻകൂട്ടി രജിസ്റ്റർ ചെയ്യുന്നത് ഇന്റർവ്യൂ എളുപ്പമാക്കും.</p></div>
             </div>
             <div class="process-step">
                 <div class="step-number" style="background: var(--accent-cyan);"><i class="fas fa-building"></i></div>
@@ -746,10 +688,11 @@
                         <i class="fas fa-cogs"></i>
                         <div>
                             <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-dark);" id="formTitle">Manage Job Posters</h3>
-                            <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 4px; font-weight: 500;" id="formSubtitle">Add a new job card or edit an existing one (Saved to Live Database).</p>
+                            <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 4px; font-weight: 500;" id="formSubtitle">Add a new job card or edit an existing one.</p>
                         </div>
                     </div>
                     <div class="admin-actions-bar">
+                        <button class="btn-admin-action btn-save-jobs" id="saveJobsBtn"><i class="fas fa-save"></i> Save Changes</button>
                         <button class="btn-admin-action btn-exit-admin" id="exitAdminBtn"><i class="fas fa-sign-out-alt"></i> Exit Admin</button>
                     </div>
                 </div>
@@ -760,7 +703,7 @@
                             <label>Poster Image</label>
                             <div class="file-upload-wrapper">
                                 <button type="button" class="btn-upload-file"><i class="fas fa-cloud-upload-alt"></i> <span id="fileName">Select an image file...</span></button>
-                                <input type="file" id="jobImage" accept="image/*">
+                                <input type="file" id="jobImage" accept="image/*" required>
                             </div>
                         </div>
                         <div class="form-group"><label>Company / Branch</label><input type="text" id="jobCompany" class="form-control" placeholder="e.g. SARATHY ELECTRIC BIKES" required></div>
@@ -776,50 +719,10 @@
                     </div>
                 </form>
             </div>
-
-            <div class="admin-upload-tool reveal" style="margin-top: 30px;">
-                <div class="admin-tool-header">
-                    <div class="admin-header-title">
-                        <i class="fas fa-list-ul"></i>
-                        <div>
-                            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-dark);" id="roleFormTitle">Manage Categorized Roles</h3>
-                            <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 4px; font-weight: 500;" id="roleFormSubtitle">Add or edit text roles in the categories section below.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <form id="dynamicRoleForm">
-                    <input type="hidden" id="editRoleId" value="">
-                    <div class="admin-form-grid">
-                        <div class="form-group">
-                            <label>Category</label>
-                            <select id="roleCategory" class="form-control" required>
-                                <option value="sales">Sales Roles</option>
-                                <option value="service">Service Roles</option>
-                                <option value="spare">Spare & Office</option>
-                            </select>
-                        </div>
-                        <div class="form-group"><label>Role Title</label><input type="text" id="roleTitleInput" class="form-control" placeholder="e.g. Sales Executive" required></div>
-                        <div class="form-group"><label>Badge / Subtext</label><input type="text" id="roleSubtextInput" class="form-control" placeholder="e.g. Freshers & Experienced" required></div>
-                        <div class="form-group"><label>Subtext Style</label>
-                            <select id="roleBadgeType" class="form-control" required>
-                                <option value="badge">Highlight Badge (Yellow)</option>
-                                <option value="text">Plain Text (Grey)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-btn-group">
-                            <button type="button" id="cancelRoleEditBtn" class="btn-cancel-edit" style="display:none;"><i class="fas fa-times"></i> Cancel Edit</button>
-                            <button type="submit" id="roleFormSubmitBtn" class="btn-generate"><i class="fas fa-plus-circle"></i> Add Role</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
 
         <div class="venue-grid" id="jobGrid">
-            <!-- Job cards dynamically synced from Database -->
-            <div class="hiring-card" data-job-id="sample-1">
+            <div class="hiring-card">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
                     <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
@@ -828,17 +731,17 @@
                 <div class="hiring-content">
                     <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
                     <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
-                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
+                    <!-- Updated Location tag with full sentence as requested -->
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> Location</span></div>
                     <div class="job-tags">DIPLOMA / BTECH / ITI</div>
-                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button onclick="openApplyModal('SERVICE', 'SERVICE ADVISOR & TECHNICIAN', 'sample-1')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
-                        <button onclick="applyViaWhatsApp('SERVICE ADVISOR & TECHNICIAN')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
+                    <div class="hiring-actions">
+                        <a href="https://wa.me/919037223665?text=Service%20Advisor%20%26%20Technician%20Vacancies%20Available" target="_blank" class="btn-card btn-card-primary"><i class="fab fa-whatsapp"></i> Apply</a>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                     </div>
                 </div>
             </div>
 
-            <div class="hiring-card" data-job-id="sample-2">
+            <div class="hiring-card">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
                     <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
@@ -847,17 +750,17 @@
                 <div class="hiring-content">
                     <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
                     <h3 class="job-title">SALES EXECUTIVE</h3>
-                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
+                    <!-- Updated Location tag with full sentence as requested -->
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> Location</span></div>
                     <div class="job-tags">SERVICE_ADVISOR SALES_EXECUTIVE</div>
-                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button onclick="openApplyModal('SALES & SERVICE', 'SALES EXECUTIVE', 'sample-2')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
-                        <button onclick="applyViaWhatsApp('SALES EXECUTIVE')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
+                    <div class="hiring-actions">
+                        <a href="https://wa.me/919037223665?text=Sales%20Executive%20Vacancies%20Available" target="_blank" class="btn-card btn-card-primary"><i class="fab fa-whatsapp"></i> Apply</a>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                     </div>
                 </div>
             </div>
             
-            <div class="hiring-card" data-job-id="sample-3">
+            <div class="hiring-card">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
                     <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
@@ -866,12 +769,12 @@
                 <div class="hiring-content">
                     <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
                     <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
-                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
+                    <!-- Updated Location tag with full sentence as requested -->
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> Location</span></div>
                     <div class="job-tags">SPARE_EXECUTIVE TRAINEES</div>
-                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button onclick="openApplyModal('SPARES', 'SPARE ASSISTANT & TRAINEES', 'sample-3')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
-                        <button onclick="applyViaWhatsApp('SPARE ASSISTANT & TRAINEES')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
+                    <div class="hiring-actions">
+                        <a href="https://wa.me/919037223665?text=Spare%20Assistant%20%26%20Trainees%20Vacancies%20Available" target="_blank" class="btn-card btn-card-primary"><i class="fab fa-whatsapp"></i> Apply</a>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                     </div>
                 </div>
             </div>
@@ -892,8 +795,25 @@
             <button class="filter-btn" data-filter="service"><i class="fas fa-tools" style="color: var(--accent-cyan);"></i> Service</button>
             <button class="filter-btn" data-filter="spare"><i class="fas fa-headset" style="color: var(--accent-red);"></i> Spare & Office</button>
         </div>
-        <div class="roles-grid" id="categorizedRolesGrid">
-            <!-- Dynamic Category Roles will be rendered here by JS -->
+        <div class="roles-grid">
+            <div class="role-group" data-category="sales">
+                <h4><i class="fas fa-shopping-cart"></i> Sales Roles</h4>
+                <div class="role-item"><span class="role-title">Sales Executive / RM</span><span class="fresher-badge">Freshers & Experienced</span></div>
+                <div class="role-item"><span class="role-title">Team Leaders</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">Automotive Experienced preferred</p></div>
+                <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-role-apply">Apply for Sales <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            </div>
+            <div class="role-group" data-category="service">
+                <h4><i class="fas fa-tools"></i> Service Roles</h4>
+                <div class="role-item"><span class="role-title">Service Advisors / Techs</span><span class="fresher-badge">Freshers & Experienced</span></div>
+                <div class="role-item"><span class="role-title">Expert Technicians</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">ITI / Diploma holders</p></div>
+                <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-role-apply">Apply for Service <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            </div>
+            <div class="role-group" data-category="spare">
+                <h4><i class="fas fa-headset"></i> Spare & Office</h4>
+                <div class="role-item"><span class="role-title">Spare Executive / Trainees</span><span class="fresher-badge">Freshers & Experienced</span></div>
+                <div class="role-item"><span class="role-title">Accounts Executive</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">B.Com / M.Com (Tally Knowledge)</p></div>
+                <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn-role-apply">Apply for Spare <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            </div>
         </div>
     </section>
 
@@ -916,6 +836,10 @@
                 <div class="faq-content"><p>Please bring 2 copies of your updated CV/Resume, 2 Passport size photos, original and copies of educational certificates, and a valid Identity Proof (Aadhar/Voter ID/Driving License).</p></div>
             </div>
             <div class="faq-item">
+                <button class="faq-btn">Is it mandatory to fill the online form? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-content"><p>While Walk-ins are allowed, we highly recommend filling the online form to speed up your registration and interview process at the venue.</p></div>
+            </div>
+            <div class="faq-item">
                 <button class="faq-btn">When will I know the interview results? <i class="fas fa-chevron-down"></i></button>
                 <div class="faq-content"><p>Shortlisted candidates are usually informed within 3 to 5 working days after the interview. Offer letters are rolled out immediately for urgent positions.</p></div>
             </div>
@@ -929,7 +853,7 @@
             <p>ഈ അവസരം നിങ്ങളുടെ സുഹൃത്തുക്കളിലേക്കും എത്തിക്കൂ. താഴെ കാണുന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത് വാട്സാപ്പിൽ പങ്കുവയ്ക്കാം!</p>
             <div class="referral-contact"><i class="fas fa-phone-volume"></i> കൂടുതൽ വിവരങ്ങൾക്ക്: 9037223665</div>
             <br>
-            <a href="https://wa.me/?text=Hi! Sarathy Group is conducting Job Vacancies 2026. Contact: 9037223665. Apply online here: https://sarathy-group-job-hiring-site.vercel.app/" target="_blank" class="btn btn-hero-primary" style="display: inline-flex; width: auto; font-size: 1.15rem;">
+            <a href="https://wa.me/?text=Hi! Sarathy Group is conducting a Job Vacancies 2026. Contact: 9037223665. Apply here: https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn btn-hero-primary" style="display: inline-flex; width: auto; font-size: 1.15rem;">
                 <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i> സുഹൃത്തിന് അയക്കാം
             </a>
         </div>
@@ -949,125 +873,26 @@
         </p>
     </footer>
 
+    <div class="mobile-cta">
+        <a href="https://forms.gle/vyEMCiJ2XcJ2sfEaA" target="_blank" class="btn btn-primary" style="width: 100%; max-width: 400px; padding: 16px; font-size: 1.1rem;"><i class="fas fa-paper-plane"></i> Apply Online Now</a>
+    </div>
+
     <div id="fomoPopup" class="fomo-popup">
         <div class="fomo-icon"><i class="fas fa-user-check"></i></div>
         <div class="fomo-text-content">
-            <p id="fomoText"><strong>Someone</strong> just viewed open roles!</p>
+            <p id="fomoText"><strong>Someone</strong> just applied for a role!</p>
             <small id="fomoTime">Just now</small>
         </div>
     </div>
 
     <div class="action-floats">
         <button id="backToTop" class="back-to-top float-btn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
-        <a href="https://wa.me/919037223665" class="float-btn whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/919037833865" class="float-btn whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <div class="image-modal" id="imageModal">
         <span class="modal-close" id="modalClose"><i class="fas fa-times"></i></span>
         <img class="modal-content" id="modalImg" src="">
-    </div>
-
-    <!-- Mobile Sticky Apply Bar -->
-    <div class="mobile-sticky-apply">
-        <button onclick="openApplyModal()" class="btn btn-hero-primary" style="border-radius: 50px; font-weight: 800; border: none; color: white;">
-            <i class="fas fa-paper-plane"></i> Apply Online Now
-        </button>
-    </div>
-    
-    <!-- Candidate Application Modal -->
-    <div class="cand-modal" id="applyModal">
-        <div class="cand-modal-box">
-            <button class="cand-modal-close" onclick="closeApplyModal()"><i class="fas fa-times"></i></button>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <div style="width:60px; height:60px; background: rgba(11, 65, 205, 0.1); color: var(--primary); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:1.8rem; margin-bottom:12px;">
-                    <i class="fas fa-paper-plane"></i>
-                </div>
-                <h3 style="color: var(--primary-dark); font-size: 1.6rem; font-weight: 800;" id="applyModalTitle">Candidate Job Application</h3>
-                <p style="color: var(--text-light); font-size: 0.95rem;" id="applyModalSub">Fill out your details to apply directly to Sarathy Group HR.</p>
-            </div>
-
-            <form id="candidateApplyForm">
-                <input type="hidden" id="candJobId" value="">
-                <div class="cand-form-grid">
-                    <div>
-                        <label class="cand-label">Full Name <span style="color:red;">*</span></label>
-                        <input type="text" id="candName" class="cand-input" placeholder="e.g. Rahul Sharma" required>
-                    </div>
-                    <div>
-                        <label class="cand-label">Mobile Number <span style="color:red;">*</span></label>
-                        <input type="tel" id="candPhone" class="cand-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
-                    </div>
-                    <div>
-                        <label class="cand-label">Email Address</label>
-                        <input type="email" id="candEmail" class="cand-input" placeholder="name@example.com">
-                    </div>
-                    <div>
-                        <label class="cand-label">Date of Birth</label>
-                        <input type="date" id="candDob" class="cand-input">
-                    </div>
-                    <div>
-                        <label class="cand-label">Gender</label>
-                        <select id="candGender" class="cand-select">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="cand-label">Highest Qualification</label>
-                        <select id="candQualification" class="cand-select">
-                            <option value="SSLC / 10th">SSLC / 10th</option>
-                            <option value="HSE / 12th">HSE / 12th</option>
-                            <option value="ITI / Diploma">ITI / Diploma</option>
-                            <option value="Bachelor Degree (B.Com/B.Sc/B.A/B.Tech)" selected>Bachelor Degree</option>
-                            <option value="Master Degree (M.Com/M.Sc/MBA)">Master Degree</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="cand-label">Experience</label>
-                        <select id="candExperience" class="cand-select">
-                            <option value="Fresher">Fresher (0 Years)</option>
-                            <option value="1-2 Years">1-2 Years</option>
-                            <option value="3-5 Years">3-5 Years</option>
-                            <option value="5+ Years">5+ Years</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="cand-label">Preferred Department</label>
-                        <select id="candDept" class="cand-select">
-                            <option value="SALES">SALES</option>
-                            <option value="SERVICE">SERVICE</option>
-                            <option value="SPARE">SPARE & PARTS</option>
-                            <option value="ACCOUNTS">ACCOUNTS & FINANCE</option>
-                            <option value="HR & ADMIN">HR & ADMIN</option>
-                            <option value="CUSTOMER CARE">CUSTOMER CARE</option>
-                        </select>
-                    </div>
-                    <div class="cand-form-full">
-                        <label class="cand-label">Preferred Company / Brand</label>
-                        <select id="candCompany" class="cand-select">
-                            <option value="SARATHY GROUP">SARATHY GROUP (Any Branch)</option>
-                            <option value="SARATHY MOTORS">SARATHY MOTORS</option>
-                            <option value="NEXA">MARUTI SUZUKI NEXA</option>
-                            <option value="ARENA">MARUTI SUZUKI ARENA</option>
-                            <option value="BAJAJ">BAJAJ MOTORS</option>
-                            <option value="KTM">KTM & TRIUMPH</option>
-                            <option value="ATHER">ATHER ENERGY</option>
-                            <option value="CHETAK">CHETAK ELECTRIC</option>
-                        </select>
-                    </div>
-                    <div class="cand-form-full">
-                        <label class="cand-label">Upload Resume / CV (PDF, DOC, JPG)</label>
-                        <input type="file" id="candResumeFile" class="cand-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-                    </div>
-                </div>
-
-                <button type="submit" id="candSubmitBtn" class="cand-submit-btn">
-                    <i class="fas fa-paper-plane"></i> Submit Application
-                </button>
-            </form>
-        </div>
     </div>
 
     <div class="admin-modal" id="adminModal">
@@ -1089,46 +914,7 @@
             toast.innerHTML = `<div class="toast-icon" style="color:${color}; background: ${color}20;"><i class="fas ${icon}"></i></div><span id="toastText">${message}</span>`;
             toast.style.borderLeftColor = color;
             toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 3500);
-        }
-
-        /* --- DYNAMIC DATABASE JOB SYNC --- */
-        async function loadPublishedJobsFromDatabase() {
-            try {
-                if (!window.RecruitmentAPI) return;
-                const apiJobs = await window.RecruitmentAPI.getJobs();
-                if (apiJobs && apiJobs.length > 0) {
-                    const grid = document.getElementById('jobGrid');
-                    if (grid) {
-                        grid.innerHTML = apiJobs.map(j => {
-                            const imgSrc = j.imageUrl || 'https://placehold.co/800x1200/0B41CD/FFF?text=' + encodeURIComponent(j.title);
-                            return `
-                            <div class="hiring-card" data-job-id="${j.id}">
-                                <div class="admin-card-controls">
-                                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                                </div>
-                                <div class="hiring-img-box"><img src="${imgSrc}" alt="${j.title} Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=${encodeURIComponent(j.title)}'"></div>
-                                <div class="hiring-content">
-                                    <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${j.createdDate}</span></div>
-                                    <h3 class="job-title">${j.title}</h3>
-                                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
-                                    <div class="job-tags">${j.tags || (j.qualification + ' • ' + j.experience)}</div>
-                                    <div class="hiring-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-paper-plane"></i> Apply</button>
-                                        <button onclick="applyViaWhatsApp('${j.title}')" class="btn-card" style="background: var(--success); color: white; flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" style="flex: 1; min-width: 100px; padding: 12px 5px;"><i class="fas fa-map-marker-alt"></i> Loc</a>
-                                    </div>
-                                </div>
-                            </div>
-                        `}).join('');
-
-                        attachLightboxListeners();
-                    }
-                }
-            } catch (e) {
-                console.log("Database job sync error:", e);
-            }
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
         }
 
         window.addEventListener('scroll', () => {
@@ -1149,10 +935,7 @@
             }
         }
         
-        window.addEventListener('load', () => { 
-            setTimeout(hidePreloader, 2500); 
-            loadPublishedJobsFromDatabase();
-        });
+        window.addEventListener('load', () => { setTimeout(hidePreloader, 2500); });
         setTimeout(hidePreloader, 6000);
 
         function reveal() {
@@ -1231,7 +1014,7 @@
             const role = fomoRoles[Math.floor(Math.random() * fomoRoles.length)];
             const loc = fomoLocations[Math.floor(Math.random() * fomoLocations.length)];
             
-            fomoText.innerHTML = `<strong>${name}</strong> from ${loc} viewed openings for <strong>${role}</strong>!`;
+            fomoText.innerHTML = `<strong>${name}</strong> from ${loc} applied for <strong>${role}</strong>!`;
             fomoPopup.classList.add('show');
             
             setTimeout(() => { fomoPopup.classList.remove('show'); }, 5000);
@@ -1310,156 +1093,24 @@
             resetInterval();
         }
 
-        // Categorized Roles Dynamic Management
-        let categorizedRoles = JSON.parse(localStorage.getItem('sarathy_cat_roles')) || [
-            { id: 'r1', category: 'sales', title: 'Sales Executive / RM', subtext: 'Freshers & Experienced', badgeType: 'badge' },
-            { id: 'r2', category: 'sales', title: 'Team Leaders', subtext: 'Automotive Experienced preferred', badgeType: 'text' },
-            { id: 'r3', category: 'service', title: 'Service Advisors / Techs', subtext: 'Freshers & Experienced', badgeType: 'badge' },
-            { id: 'r4', category: 'service', title: 'Expert Technicians', subtext: 'ITI / Diploma holders', badgeType: 'text' },
-            { id: 'r5', category: 'spare', title: 'Spare Executive / Trainees', subtext: 'Freshers & Experienced', badgeType: 'badge' },
-            { id: 'r6', category: 'spare', title: 'Accounts Executive', subtext: 'B.Com / M.Com (Tally Knowledge)', badgeType: 'text' }
-        ];
-
-        function renderCategorizedRoles() {
-            const grid = document.getElementById('categorizedRolesGrid');
-            if(!grid) return;
-
-            const categories = {
-                'sales': { icon: 'fa-shopping-cart', title: 'Sales Roles' },
-                'service': { icon: 'fa-tools', title: 'Service Roles' },
-                'spare': { icon: 'fa-headset', title: 'Spare & Office' }
-            };
-
-            let html = '';
-            for (const [catKey, catData] of Object.entries(categories)) {
-                const rolesInCat = categorizedRoles.filter(r => r.category === catKey);
-                
-                html += `
-                <div class="role-group" data-category="${catKey}">
-                    <h4><i class="fas ${catData.icon}"></i> ${catData.title}</h4>
-                    ${rolesInCat.map(r => `
-                        <div class="role-item" data-role-id="${r.id}">
-                            <div class="admin-card-controls">
-                                <button class="admin-card-btn btn-edit-card" style="width:32px; height:32px; font-size:0.9rem;" title="Edit Role" onclick="initiateRoleEdit('${r.id}')"><i class="fas fa-edit"></i></button>
-                                <button class="admin-card-btn btn-del-card" style="width:32px; height:32px; font-size:0.9rem;" title="Delete Role" onclick="deleteRole('${r.id}')"><i class="fas fa-trash"></i></button>
-                            </div>
-                            <span class="role-title">${r.title}</span>
-                            ${r.badgeType === 'badge' 
-                                ? `<span class="fresher-badge">${r.subtext}</span>` 
-                                : `<p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">${r.subtext}</p>`}
-                            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                                <button class="role-apply-btn" style="margin-top:0;" onclick="openApplyModal('${catKey.toUpperCase()}', '${r.title}')">
-                                    <i class="fas fa-paper-plane"></i> Apply Now
-                                </button>
-                                <button class="role-apply-btn" style="margin-top:0; background: var(--success); color: white; border-color: var(--success);" onclick="applyViaWhatsApp('${r.title}')">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
-                                </button>
-                            </div>
-                        </div>
-                    `).join('')}
-                    ${rolesInCat.length === 0 ? '<p style="color:var(--text-light); font-size:0.9rem;">No roles listed.</p>' : ''}
-                </div>`;
-            }
-            grid.innerHTML = html;
-            
-            // Apply current filter
-            const activeFilter = document.querySelector('.filter-btn.active');
-            if(activeFilter) applyRoleFilter(activeFilter.getAttribute('data-filter'));
-        }
-
-        function applyRoleFilter(fVal) {
-            const roleGroups = document.querySelectorAll('.role-group');
-            roleGroups.forEach(group => {
-                if (fVal === 'all' || group.getAttribute('data-category') === fVal) {
-                    group.classList.remove('hide');
-                    setTimeout(() => { group.style.opacity = '1'; group.style.transform = 'scale(1)'; }, 50);
-                } else {
-                    group.style.opacity = '0'; group.style.transform = 'scale(0.9)';
-                    setTimeout(() => { group.classList.add('hide'); }, 400); 
-                }
-            });
-        }
-
         const filterBtns = document.querySelectorAll('.filter-btn');
+        const roleGroups = document.querySelectorAll('.role-group');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                applyRoleFilter(btn.getAttribute('data-filter'));
+                const fVal = btn.getAttribute('data-filter');
+                roleGroups.forEach(group => {
+                    if (fVal === 'all' || group.getAttribute('data-category') === fVal) {
+                        group.classList.remove('hide');
+                        setTimeout(() => { group.style.opacity = '1'; group.style.transform = 'scale(1)'; }, 50);
+                    } else {
+                        group.style.opacity = '0'; group.style.transform = 'scale(0.9)';
+                        setTimeout(() => { group.classList.add('hide'); }, 400); 
+                    }
+                });
             });
         });
-
-        // Initial Render
-        renderCategorizedRoles();
-
-        // Categorized Roles Admin Functions
-        document.getElementById('dynamicRoleForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const roleId = document.getElementById('editRoleId').value;
-            const category = document.getElementById('roleCategory').value;
-            const title = document.getElementById('roleTitleInput').value;
-            const subtext = document.getElementById('roleSubtextInput').value;
-            const badgeType = document.getElementById('roleBadgeType').value;
-
-            if (roleId) {
-                // Edit
-                const index = categorizedRoles.findIndex(r => r.id === roleId);
-                if (index > -1) {
-                    categorizedRoles[index] = { id: roleId, category, title, subtext, badgeType };
-                    showToast("Role Updated!", "var(--success)");
-                }
-            } else {
-                // Add New
-                const newRole = { id: 'r' + Date.now(), category, title, subtext, badgeType };
-                categorizedRoles.push(newRole);
-                showToast("New Role Added!", "var(--success)");
-            }
-
-            localStorage.setItem('sarathy_cat_roles', JSON.stringify(categorizedRoles));
-            renderCategorizedRoles();
-            cancelRoleEditMode();
-        });
-
-        window.initiateRoleEdit = function(id) {
-            const role = categorizedRoles.find(r => r.id === id);
-            if(!role) return;
-
-            document.getElementById('editRoleId').value = role.id;
-            document.getElementById('roleCategory').value = role.category;
-            document.getElementById('roleTitleInput').value = role.title;
-            document.getElementById('roleSubtextInput').value = role.subtext;
-            document.getElementById('roleBadgeType').value = role.badgeType;
-
-            document.getElementById('roleFormTitle').textContent = "Edit Text Role";
-            document.getElementById('roleFormSubmitBtn').innerHTML = `<i class="fas fa-save"></i> Update Role`;
-            document.getElementById('cancelRoleEditBtn').style.display = "inline-flex";
-            
-            document.getElementById('roleFormTitle').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        };
-
-        window.deleteRole = function(id) {
-            if(confirm("Are you sure you want to delete this role?")) {
-                categorizedRoles = categorizedRoles.filter(r => r.id !== id);
-                localStorage.setItem('sarathy_cat_roles', JSON.stringify(categorizedRoles));
-                renderCategorizedRoles();
-                showToast("Role Deleted", "var(--accent-red)", "fa-trash");
-                
-                if (document.getElementById('editRoleId').value === id) {
-                    cancelRoleEditMode();
-                }
-            }
-        };
-
-        function cancelRoleEditMode() {
-            document.getElementById('dynamicRoleForm').reset();
-            document.getElementById('editRoleId').value = "";
-            document.getElementById('roleFormTitle').textContent = "Manage Categorized Roles";
-            document.getElementById('roleFormSubmitBtn').innerHTML = `<i class="fas fa-plus-circle"></i> Add Role`;
-            document.getElementById('cancelRoleEditBtn').style.display = "none";
-        }
-        
-        document.getElementById('cancelRoleEditBtn').addEventListener('click', cancelRoleEditMode);
-
 
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
@@ -1475,6 +1126,8 @@
         document.addEventListener('keydown', (e) => { if (e.key === "Escape" && modal.classList.contains('active')) closeModal(); });
 
         window.addEventListener('DOMContentLoaded', () => {
+            const savedJobs = localStorage.getItem('sarathy_job_grid');
+            if(savedJobs) { document.getElementById('jobGrid').innerHTML = savedJobs; }
             attachLightboxListeners();
         });
 
@@ -1542,6 +1195,12 @@
             showToast("Exited Admin Mode", "#64748b", "fa-sign-out-alt");
         });
 
+        document.getElementById('saveJobsBtn').addEventListener('click', () => {
+            const gridContent = document.getElementById('jobGrid').innerHTML;
+            localStorage.setItem('sarathy_job_grid', gridContent);
+            showToast("Job Postings Saved Permanently!", "var(--success)", "fa-save");
+        });
+
         const fileInput = document.getElementById('jobImage');
         const fileNameDisplay = document.getElementById('fileName');
         const jobForm = document.getElementById('dynamicJobForm');
@@ -1550,56 +1209,63 @@
             fileNameDisplay.textContent = this.files.length > 0 ? this.files[0].name : (currentEditCard ? "Keep existing image..." : "Select an image file...");
         });
 
-        /* --- SUBMIT JOB POSTER TO DATABASE --- */
-        jobForm.addEventListener('submit', async function(e) {
+        jobForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const formSubmitBtn = document.getElementById('formSubmitBtn');
-            formSubmitBtn.disabled = true;
-            formSubmitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Saving to Database...`;
-
-            try {
-                const company = document.getElementById('jobCompany').value;
-                const title = document.getElementById('jobTitle').value;
-                const dept = document.getElementById('jobDept').value;
-                const loc = document.getElementById('jobLoc').value;
-                const tags = document.getElementById('jobTags').value;
-                const imageFile = fileInput.files.length > 0 ? fileInput.files[0] : null;
-
-                let existingImageUrl = '';
-                let jobId = null;
-                if (currentEditCard) {
-                    jobId = currentEditCard.dataset.jobId || null;
-                    const imgEl = currentEditCard.querySelector('.hiring-img-box img');
-                    if (imgEl) existingImageUrl = imgEl.src;
-                }
-
-                const jobPayload = {
-                    id: jobId,
-                    title: title,
-                    company: company,
-                    department: dept,
-                    location: loc,
-                    tags: tags,
-                    imageFile: imageFile,
-                    imageUrl: existingImageUrl
-                };
-
-                if (window.RecruitmentAPI) {
-                    await window.RecruitmentAPI.saveJob(jobPayload);
-                    showToast(currentEditCard ? "Job Updated in Database!" : "New Job Saved to Database!", "var(--success)", "fa-cloud-upload-alt");
-                    cancelEditMode();
-                    await loadPublishedJobsFromDatabase();
-                } else {
-                    showToast("Error: RecruitmentAPI not loaded", "var(--accent-red)", "fa-exclamation-triangle");
-                }
-            } catch (err) {
-                console.error("Save job error:", err);
-                showToast("Failed to save job poster: " + err.message, "var(--accent-red)", "fa-exclamation-triangle");
-            } finally {
-                formSubmitBtn.disabled = false;
-                formSubmitBtn.innerHTML = currentEditCard ? `<i class="fas fa-save"></i> Update Job Card` : `<i class="fas fa-plus-circle"></i> Add Job Card`;
+            const company = document.getElementById('jobCompany').value;
+            const title = document.getElementById('jobTitle').value;
+            const dept = document.getElementById('jobDept').value;
+            const loc = document.getElementById('jobLoc').value;
+            const tags = document.getElementById('jobTags').value;
+            const dateStr = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
+            
+            let imageUrl = '';
+            if (fileInput.files.length > 0) {
+                imageUrl = URL.createObjectURL(fileInput.files[0]);
+            } else if (currentEditCard) {
+                imageUrl = currentEditCard.querySelector('.hiring-img-box img').src;
             }
+
+            if (currentEditCard) {
+                currentEditCard.querySelector('.company-badge').textContent = company;
+                currentEditCard.querySelector('.job-title').textContent = title;
+                const metaSpans = currentEditCard.querySelectorAll('.hiring-meta-mid span');
+                metaSpans[0].innerHTML = `<i class="fas fa-folder"></i> ${dept}`;
+                metaSpans[1].innerHTML = `<i class="fas fa-location-dot"></i> ${loc}`;
+                currentEditCard.querySelector('.job-tags').textContent = tags;
+                if(imageUrl) currentEditCard.querySelector('.hiring-img-box img').src = imageUrl;
+                
+                const applyBtn = currentEditCard.querySelector('.btn-card-primary');
+                if (applyBtn && applyBtn.href.includes('wa.me')) {
+                     applyBtn.href = `https://wa.me/919037223665?text=${encodeURIComponent(title + ' Vacancies Available')}`;
+                }
+                
+                showToast("Job Card Updated!", "var(--accent-cyan)", "fa-edit");
+                cancelEditMode();
+            } else {
+                const newCardHTML = `
+                    <div class="hiring-card">
+                        <div class="admin-card-controls">
+                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="hiring-img-box"><img src="${imageUrl}" alt="${title} Hiring"></div>
+                        <div class="hiring-content">
+                            <div class="hiring-meta-top"><span class="company-badge">${company}</span><span class="post-date">${dateStr}</span></div>
+                            <h3 class="job-title">${title}</h3>
+                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${dept}</span><span><i class="fas fa-location-dot"></i> ${loc}</span></div>
+                            <div class="job-tags">${tags}</div>
+                            <div class="hiring-actions">
+                                <a href="https://wa.me/919037223665?text=${encodeURIComponent(title + ' Vacancies Available')}" target="_blank" class="btn-card btn-card-primary"><i class="fab fa-whatsapp"></i> Apply</a>
+                                <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                            </div>
+                        </div>
+                    </div>`;
+                document.getElementById('jobGrid').insertAdjacentHTML('afterbegin', newCardHTML);
+                showToast("New Job Added!", "var(--success)", "fa-plus-circle");
+                cancelEditMode(); 
+            }
+            attachLightboxListeners();
         });
 
         window.initiateEdit = function(btnElement) {
@@ -1612,135 +1278,38 @@
             document.getElementById('jobLoc').value = metaSpans[1].textContent.trim();
             document.getElementById('jobTags').value = currentEditCard.querySelector('.job-tags').textContent.trim();
             
+            document.getElementById('jobImage').removeAttribute('required');
             fileNameDisplay.textContent = "Keep existing image...";
             document.getElementById('formTitle').textContent = "Edit Job Poster";
-            document.getElementById('formSubtitle').textContent = "Update details below and save to live database.";
+            document.getElementById('formSubtitle').textContent = "Update details below and save.";
             document.getElementById('formSubmitBtn').innerHTML = `<i class="fas fa-save"></i> Update Job Card`;
             document.getElementById('cancelEditBtn').style.display = "inline-flex";
             
             document.getElementById('adminSection').scrollIntoView({ behavior: 'smooth' });
         };
 
-        window.deleteCard = async function(btnElement) {
+        window.deleteCard = function(btnElement) {
             const card = btnElement.closest('.hiring-card');
-            const jobId = card.dataset.jobId;
-            if (confirm("Are you sure you want to delete this job poster from live database?")) {
-                try {
-                    if (window.RecruitmentAPI && jobId) {
-                        await window.RecruitmentAPI.deleteJob(jobId);
-                    }
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.8)';
-                    setTimeout(() => {
-                        card.remove();
-                        showToast("Job Poster Deleted from Database", "var(--accent-red)", "fa-trash");
-                        if (currentEditCard === card) cancelEditMode(); 
-                    }, 300);
-                } catch(e) {
-                    showToast("Error deleting job poster", "var(--accent-red)", "fa-exclamation-triangle");
-                }
-            }
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                card.remove();
+                showToast("Job Deleted", "var(--accent-red)", "fa-trash");
+                if (currentEditCard === card) cancelEditMode(); 
+            }, 300);
         };
 
         function cancelEditMode() {
             currentEditCard = null;
             jobForm.reset();
+            document.getElementById('jobImage').setAttribute('required', 'required');
             fileNameDisplay.textContent = "Select an image file...";
             document.getElementById('formTitle').textContent = "Add New Job Poster";
-            document.getElementById('formSubtitle').textContent = "Upload an image and save to live database for all visitors.";
+            document.getElementById('formSubtitle').textContent = "Upload an image and instantly generate a job card below.";
             document.getElementById('formSubmitBtn').innerHTML = `<i class="fas fa-plus-circle"></i> Add Job Card`;
             document.getElementById('cancelEditBtn').style.display = "none";
         }
         document.getElementById('cancelEditBtn').addEventListener('click', cancelEditMode);
-
-    
-        /* --- CANDIDATE APPLICATION & STATUS MODAL HANDLERS --- */
-        window.applyViaWhatsApp = function(jobTitle = '') {
-            let message = "Hi, I'm interested in applying for a job. I found your website.";
-            if (jobTitle && jobTitle !== 'General Application') {
-                message = `Hi, I'm interested in the ${jobTitle} job vacancy. I found this job on your website.`;
-            }
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/919037223665?text=${encodedMessage}`, '_blank');
-        };
-
-        window.openApplyModal = function(dept = 'SALES', jobTitle = 'General Application', jobId = '') {
-            const modal = document.getElementById('applyModal');
-            if (!modal) return;
-            document.getElementById('candJobId').value = jobId || '';
-            document.getElementById('applyModalTitle').textContent = jobTitle !== 'General Application' ? `Apply for ${jobTitle}` : 'Candidate Job Application';
-            
-            const deptSelect = document.getElementById('candDept');
-            if (deptSelect) {
-                const upperDept = String(dept).toUpperCase();
-                for (let opt of deptSelect.options) {
-                    if (opt.value.includes(upperDept) || upperDept.includes(opt.value)) {
-                        opt.selected = true;
-                        break;
-                    }
-                }
-            }
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        };
-
-        window.closeApplyModal = function() {
-            const modal = document.getElementById('applyModal');
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        };
-
-        // Handle Candidate Application Form Submission
-        document.getElementById('candidateApplyForm')?.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('candSubmitBtn');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Submitting...`;
-
-            try {
-                const name = document.getElementById('candName').value;
-                const phone = document.getElementById('candPhone').value;
-                const email = document.getElementById('candEmail').value;
-                const dob = document.getElementById('candDob').value;
-                const gender = document.getElementById('candGender').value;
-                const qual = document.getElementById('candQualification').value;
-                const exp = document.getElementById('candExperience').value;
-                const dept = document.getElementById('candDept').value;
-                const company = document.getElementById('candCompany').value;
-                const resumeFileInput = document.getElementById('candResumeFile');
-
-                const candidateData = {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    dob: dob,
-                    gender: gender,
-                    qualification: qual,
-                    experience: exp,
-                    department: dept,
-                    company: company,
-                    resumeFile: resumeFileInput.files.length > 0 ? resumeFileInput.files[0] : null
-                };
-
-                if (window.RecruitmentAPI) {
-                    const res = await window.RecruitmentAPI.applyForJob(candidateData);
-                    showToast("Application Submitted Successfully!", "var(--success)", "fa-check-circle");
-                    alert("Thank you! Your application has been submitted to Sarathy Group HR.\n\nReference ID: " + res.candidateId);
-                    closeApplyModal();
-                    document.getElementById('candidateApplyForm').reset();
-                } else {
-                    showToast("API Client missing", "var(--accent-red)", "fa-exclamation-circle");
-                }
-            } catch (err) {
-                console.error("Application submission error:", err);
-                showToast("Submission failed: " + err.message, "var(--accent-red)", "fa-exclamation-triangle");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Submit Application`;
-            }
-        });
 
     </script>
 </body>
