@@ -358,10 +358,13 @@
         .role-group h4 { font-size: 1.5rem; margin-bottom: 30px; display: flex; align-items: center; gap: 18px; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 18px; font-weight: 800; }
         .role-group h4 i { background: rgba(11, 65, 205, 0.1); padding: 15px; border-radius: 20px; color: var(--primary); transition: transform 0.3s;}
         .role-group:hover h4 i { transform: rotate(15deg) scale(1.1); }
-        .role-item { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .role-item { position: relative; padding: 25px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
         .role-item:hover { transform: translateX(12px); }
+        .role-item .admin-card-controls { top: 15px; right: 0; }
         .role-title { font-weight: 800; font-size: 1.15rem; display: block; color: var(--text-dark); margin-bottom: 8px; }
         .fresher-badge { display: inline-block; background: #FFF9C4; color: #F57F17; font-size: 0.8rem; padding: 6px 16px; border-radius: 50px; font-weight: 800; margin-top: 5px; border: 1px solid #FFF59D;}
+        .role-apply-btn { margin-top: 15px; padding: 8px 22px; font-size: 0.95rem; border-radius: 50px; background: var(--bg-light); color: var(--primary); font-weight: 700; border: 2px solid transparent; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+        .role-apply-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(11, 65, 205, 0.2); border-color: var(--primary); }
 
         .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
         .faq-item { background: white; border-radius: 24px; border: 1px solid rgba(0,0,0,0.04); overflow: hidden; box-shadow: var(--shadow-sm); }
@@ -608,9 +611,6 @@
             <button onclick="openApplyModal()" class="btn btn-hero-primary">
                 <i class="fas fa-paper-plane"></i> Apply Online Now
             </button>
-            <button onclick="openStatusModal()" class="btn btn-hero-secondary">
-                <i class="fas fa-search"></i> Check Application Status
-            </button>
         </div>
     </section>
 
@@ -776,6 +776,45 @@
                     </div>
                 </form>
             </div>
+
+            <div class="admin-upload-tool reveal" style="margin-top: 30px;">
+                <div class="admin-tool-header">
+                    <div class="admin-header-title">
+                        <i class="fas fa-list-ul"></i>
+                        <div>
+                            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-dark);" id="roleFormTitle">Manage Categorized Roles</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 4px; font-weight: 500;" id="roleFormSubtitle">Add or edit text roles in the categories section below.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="dynamicRoleForm">
+                    <input type="hidden" id="editRoleId" value="">
+                    <div class="admin-form-grid">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="roleCategory" class="form-control" required>
+                                <option value="sales">Sales Roles</option>
+                                <option value="service">Service Roles</option>
+                                <option value="spare">Spare & Office</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>Role Title</label><input type="text" id="roleTitleInput" class="form-control" placeholder="e.g. Sales Executive" required></div>
+                        <div class="form-group"><label>Badge / Subtext</label><input type="text" id="roleSubtextInput" class="form-control" placeholder="e.g. Freshers & Experienced" required></div>
+                        <div class="form-group"><label>Subtext Style</label>
+                            <select id="roleBadgeType" class="form-control" required>
+                                <option value="badge">Highlight Badge (Yellow)</option>
+                                <option value="text">Plain Text (Grey)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-btn-group">
+                            <button type="button" id="cancelRoleEditBtn" class="btn-cancel-edit" style="display:none;"><i class="fas fa-times"></i> Cancel Edit</button>
+                            <button type="submit" id="roleFormSubmitBtn" class="btn-generate"><i class="fas fa-plus-circle"></i> Add Role</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <div class="venue-grid" id="jobGrid">
@@ -847,22 +886,8 @@
             <button class="filter-btn" data-filter="service"><i class="fas fa-tools" style="color: var(--accent-cyan);"></i> Service</button>
             <button class="filter-btn" data-filter="spare"><i class="fas fa-headset" style="color: var(--accent-red);"></i> Spare & Office</button>
         </div>
-        <div class="roles-grid">
-            <div class="role-group" data-category="sales">
-                <h4><i class="fas fa-shopping-cart"></i> Sales Roles</h4>
-                <div class="role-item"><span class="role-title">Sales Executive / RM</span><span class="fresher-badge">Freshers & Experienced</span></div>
-                <div class="role-item"><span class="role-title">Team Leaders</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">Automotive Experienced preferred</p></div>
-            </div>
-            <div class="role-group" data-category="service">
-                <h4><i class="fas fa-tools"></i> Service Roles</h4>
-                <div class="role-item"><span class="role-title">Service Advisors / Techs</span><span class="fresher-badge">Freshers & Experienced</span></div>
-                <div class="role-item"><span class="role-title">Expert Technicians</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">ITI / Diploma holders</p></div>
-            </div>
-            <div class="role-group" data-category="spare">
-                <h4><i class="fas fa-headset"></i> Spare & Office</h4>
-                <div class="role-item"><span class="role-title">Spare Executive / Trainees</span><span class="fresher-badge">Freshers & Experienced</span></div>
-                <div class="role-item"><span class="role-title">Accounts Executive</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">B.Com / M.Com (Tally Knowledge)</p></div>
-            </div>
+        <div class="roles-grid" id="categorizedRolesGrid">
+            <!-- Dynamic Category Roles will be rendered here by JS -->
         </div>
     </section>
 
@@ -1036,37 +1061,6 @@
                     <i class="fas fa-paper-plane"></i> Submit Application
                 </button>
             </form>
-        </div>
-    </div>
-
-    <!-- Application Status Check Modal -->
-    <div class="cand-modal" id="statusModal">
-        <div class="cand-modal-box" style="max-width: 500px;">
-            <button class="cand-modal-close" onclick="closeStatusModal()"><i class="fas fa-times"></i></button>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <div style="width:60px; height:60px; background: rgba(35, 196, 248, 0.15); color: var(--accent-cyan); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:1.8rem; margin-bottom:12px;">
-                    <i class="fas fa-search"></i>
-                </div>
-                <h3 style="color: var(--primary-dark); font-size: 1.6rem; font-weight: 800;">Check Application Status</h3>
-                <p style="color: var(--text-light); font-size: 0.95rem;">Enter your registered 10-digit mobile number.</p>
-            </div>
-
-            <form id="statusSearchForm">
-                <div style="margin-bottom: 15px;">
-                    <label class="cand-label">Mobile Number</label>
-                    <input type="tel" id="statusPhoneInput" class="cand-input" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
-                </div>
-                <button type="submit" id="statusSearchBtn" class="cand-submit-btn" style="background: var(--accent-cyan); color: #000;">
-                    <i class="fas fa-search"></i> Search Status
-                </button>
-            </form>
-
-            <div id="statusResultBox" class="status-result-card">
-                <h4 id="statusCandName" style="color: var(--primary-dark); font-size: 1.2rem; font-weight: 800;">Candidate Name</h4>
-                <p id="statusJobTitle" style="color: var(--text-light); font-size: 0.95rem; margin: 4px 0;">Applied Position</p>
-                <div id="statusBadgeEl" class="status-badge">Application Received</div>
-                <div id="statusDetailsEl" style="margin-top: 12px; font-size: 0.9rem; color: var(--text-dark);"></div>
-            </div>
         </div>
     </div>
 
@@ -1309,24 +1303,153 @@
             resetInterval();
         }
 
+        // Categorized Roles Dynamic Management
+        let categorizedRoles = JSON.parse(localStorage.getItem('sarathy_cat_roles')) || [
+            { id: 'r1', category: 'sales', title: 'Sales Executive / RM', subtext: 'Freshers & Experienced', badgeType: 'badge' },
+            { id: 'r2', category: 'sales', title: 'Team Leaders', subtext: 'Automotive Experienced preferred', badgeType: 'text' },
+            { id: 'r3', category: 'service', title: 'Service Advisors / Techs', subtext: 'Freshers & Experienced', badgeType: 'badge' },
+            { id: 'r4', category: 'service', title: 'Expert Technicians', subtext: 'ITI / Diploma holders', badgeType: 'text' },
+            { id: 'r5', category: 'spare', title: 'Spare Executive / Trainees', subtext: 'Freshers & Experienced', badgeType: 'badge' },
+            { id: 'r6', category: 'spare', title: 'Accounts Executive', subtext: 'B.Com / M.Com (Tally Knowledge)', badgeType: 'text' }
+        ];
+
+        function renderCategorizedRoles() {
+            const grid = document.getElementById('categorizedRolesGrid');
+            if(!grid) return;
+
+            const categories = {
+                'sales': { icon: 'fa-shopping-cart', title: 'Sales Roles' },
+                'service': { icon: 'fa-tools', title: 'Service Roles' },
+                'spare': { icon: 'fa-headset', title: 'Spare & Office' }
+            };
+
+            let html = '';
+            for (const [catKey, catData] of Object.entries(categories)) {
+                const rolesInCat = categorizedRoles.filter(r => r.category === catKey);
+                
+                html += `
+                <div class="role-group" data-category="${catKey}">
+                    <h4><i class="fas ${catData.icon}"></i> ${catData.title}</h4>
+                    ${rolesInCat.map(r => `
+                        <div class="role-item" data-role-id="${r.id}">
+                            <div class="admin-card-controls">
+                                <button class="admin-card-btn btn-edit-card" style="width:32px; height:32px; font-size:0.9rem;" title="Edit Role" onclick="initiateRoleEdit('${r.id}')"><i class="fas fa-edit"></i></button>
+                                <button class="admin-card-btn btn-del-card" style="width:32px; height:32px; font-size:0.9rem;" title="Delete Role" onclick="deleteRole('${r.id}')"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <span class="role-title">${r.title}</span>
+                            ${r.badgeType === 'badge' 
+                                ? `<span class="fresher-badge">${r.subtext}</span>` 
+                                : `<p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">${r.subtext}</p>`}
+                            <div>
+                                <button class="role-apply-btn" onclick="openApplyModal('${catKey.toUpperCase()}', '${r.title}')">
+                                    <i class="fas fa-paper-plane"></i> Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                    ${rolesInCat.length === 0 ? '<p style="color:var(--text-light); font-size:0.9rem;">No roles listed.</p>' : ''}
+                </div>`;
+            }
+            grid.innerHTML = html;
+            
+            // Apply current filter
+            const activeFilter = document.querySelector('.filter-btn.active');
+            if(activeFilter) applyRoleFilter(activeFilter.getAttribute('data-filter'));
+        }
+
+        function applyRoleFilter(fVal) {
+            const roleGroups = document.querySelectorAll('.role-group');
+            roleGroups.forEach(group => {
+                if (fVal === 'all' || group.getAttribute('data-category') === fVal) {
+                    group.classList.remove('hide');
+                    setTimeout(() => { group.style.opacity = '1'; group.style.transform = 'scale(1)'; }, 50);
+                } else {
+                    group.style.opacity = '0'; group.style.transform = 'scale(0.9)';
+                    setTimeout(() => { group.classList.add('hide'); }, 400); 
+                }
+            });
+        }
+
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const roleGroups = document.querySelectorAll('.role-group');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const fVal = btn.getAttribute('data-filter');
-                roleGroups.forEach(group => {
-                    if (fVal === 'all' || group.getAttribute('data-category') === fVal) {
-                        group.classList.remove('hide');
-                        setTimeout(() => { group.style.opacity = '1'; group.style.transform = 'scale(1)'; }, 50);
-                    } else {
-                        group.style.opacity = '0'; group.style.transform = 'scale(0.9)';
-                        setTimeout(() => { group.classList.add('hide'); }, 400); 
-                    }
-                });
+                applyRoleFilter(btn.getAttribute('data-filter'));
             });
         });
+
+        // Initial Render
+        renderCategorizedRoles();
+
+        // Categorized Roles Admin Functions
+        document.getElementById('dynamicRoleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const roleId = document.getElementById('editRoleId').value;
+            const category = document.getElementById('roleCategory').value;
+            const title = document.getElementById('roleTitleInput').value;
+            const subtext = document.getElementById('roleSubtextInput').value;
+            const badgeType = document.getElementById('roleBadgeType').value;
+
+            if (roleId) {
+                // Edit
+                const index = categorizedRoles.findIndex(r => r.id === roleId);
+                if (index > -1) {
+                    categorizedRoles[index] = { id: roleId, category, title, subtext, badgeType };
+                    showToast("Role Updated!", "var(--success)");
+                }
+            } else {
+                // Add New
+                const newRole = { id: 'r' + Date.now(), category, title, subtext, badgeType };
+                categorizedRoles.push(newRole);
+                showToast("New Role Added!", "var(--success)");
+            }
+
+            localStorage.setItem('sarathy_cat_roles', JSON.stringify(categorizedRoles));
+            renderCategorizedRoles();
+            cancelRoleEditMode();
+        });
+
+        window.initiateRoleEdit = function(id) {
+            const role = categorizedRoles.find(r => r.id === id);
+            if(!role) return;
+
+            document.getElementById('editRoleId').value = role.id;
+            document.getElementById('roleCategory').value = role.category;
+            document.getElementById('roleTitleInput').value = role.title;
+            document.getElementById('roleSubtextInput').value = role.subtext;
+            document.getElementById('roleBadgeType').value = role.badgeType;
+
+            document.getElementById('roleFormTitle').textContent = "Edit Text Role";
+            document.getElementById('roleFormSubmitBtn').innerHTML = `<i class="fas fa-save"></i> Update Role`;
+            document.getElementById('cancelRoleEditBtn').style.display = "inline-flex";
+            
+            document.getElementById('roleFormTitle').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+
+        window.deleteRole = function(id) {
+            if(confirm("Are you sure you want to delete this role?")) {
+                categorizedRoles = categorizedRoles.filter(r => r.id !== id);
+                localStorage.setItem('sarathy_cat_roles', JSON.stringify(categorizedRoles));
+                renderCategorizedRoles();
+                showToast("Role Deleted", "var(--accent-red)", "fa-trash");
+                
+                if (document.getElementById('editRoleId').value === id) {
+                    cancelRoleEditMode();
+                }
+            }
+        };
+
+        function cancelRoleEditMode() {
+            document.getElementById('dynamicRoleForm').reset();
+            document.getElementById('editRoleId').value = "";
+            document.getElementById('roleFormTitle').textContent = "Manage Categorized Roles";
+            document.getElementById('roleFormSubmitBtn').innerHTML = `<i class="fas fa-plus-circle"></i> Add Role`;
+            document.getElementById('cancelRoleEditBtn').style.display = "none";
+        }
+        
+        document.getElementById('cancelRoleEditBtn').addEventListener('click', cancelRoleEditMode);
+
 
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
@@ -1550,23 +1673,6 @@
             }
         };
 
-        window.openStatusModal = function() {
-            const modal = document.getElementById('statusModal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                document.getElementById('statusResultBox').style.display = 'none';
-            }
-        };
-
-        window.closeStatusModal = function() {
-            const modal = document.getElementById('statusModal');
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        };
-
         // Handle Candidate Application Form Submission
         document.getElementById('candidateApplyForm')?.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1614,45 +1720,6 @@
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Submit Application`;
-            }
-        });
-
-        // Handle Status Search Form Submission
-        document.getElementById('statusSearchForm')?.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const searchBtn = document.getElementById('statusSearchBtn');
-            const resultBox = document.getElementById('statusResultBox');
-            searchBtn.disabled = true;
-            searchBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Searching...`;
-
-            try {
-                const phone = document.getElementById('statusPhoneInput').value;
-                if (window.RecruitmentAPI) {
-                    const statusList = await window.RecruitmentAPI.getApplicationStatus(phone);
-                    resultBox.style.display = 'block';
-                    if (statusList && statusList.length > 0) {
-                        const latest = statusList[statusList.length - 1];
-                        document.getElementById('statusCandName').textContent = latest.name;
-                        document.getElementById('statusJobTitle').textContent = `Applied Position: ${latest.appliedJobTitle} (${latest.company})`;
-                        document.getElementById('statusBadgeEl').textContent = latest.statusDisplay;
-                        
-                        let details = `<strong>Applied Date:</strong> ${latest.createdDate || 'Recently'}`;
-                        if (latest.interviewDate) {
-                            details += `<br><strong style="color:var(--primary);">Interview Date:</strong> ${latest.interviewDate}`;
-                        }
-                        document.getElementById('statusDetailsEl').innerHTML = details;
-                    } else {
-                        document.getElementById('statusCandName').textContent = "No Record Found";
-                        document.getElementById('statusJobTitle').textContent = "No applications found for this mobile number.";
-                        document.getElementById('statusBadgeEl').textContent = "Not Found";
-                        document.getElementById('statusDetailsEl').innerHTML = "Please verify your mobile number or click Apply Now to submit your application.";
-                    }
-                }
-            } catch (err) {
-                console.error("Status search error:", err);
-            } finally {
-                searchBtn.disabled = false;
-                searchBtn.innerHTML = `<i class="fas fa-search"></i> Search Status`;
             }
         });
 
