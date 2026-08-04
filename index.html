@@ -61,9 +61,10 @@
         }
 
         .top-ticker {
-            background: var(--accent-yellow); color: var(--text-dark); padding: 10px 30px 10px 15px;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: var(--white); padding: 10px 30px 10px 15px;
             overflow: hidden; position: relative; z-index: 10002;
             font-size: 0.9rem; font-weight: 700; display: flex; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .ticker-text-wrapper { flex-grow: 1; overflow: hidden; white-space: nowrap; }
         .ticker-text { display: inline-block; padding-left: 100%; animation: marquee 25s linear infinite; }
@@ -71,12 +72,12 @@
         @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
         .close-ticker {
             position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.1); border: none; color: var(--text-dark);
+            background: rgba(255,255,255,0.1); border: none; color: var(--white);
             width: 28px; height: 28px; border-radius: 50%;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             transition: var(--transition);
         }
-        .close-ticker:hover { background: rgba(0,0,0,0.2); }
+        .close-ticker:hover { background: rgba(255,255,255,0.25); }
 
         .scroll-progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; z-index: 10001; }
         .scroll-progress-bar { height: 100%; background: var(--accent-red); width: 0%; box-shadow: 0 0 10px var(--accent-red); }
