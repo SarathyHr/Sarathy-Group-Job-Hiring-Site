@@ -1096,7 +1096,7 @@ Trainees'"></div>
                                     <div class="job-tags">${j.tags || (j.qualification + ' • ' + j.experience)}</div>
                                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
                                         <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply Now</button>
-                                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                        <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                                     </div>
                                 </div>
                             </div>
@@ -1245,9 +1245,20 @@ Trainees'"></div>
             });
         });
 
-        const fomoNames = ["Rahul", "Anjali", "Kiran", "Sneha", "Vishnu", "Priya", "Arun", "Gokul", "Aswathy"];
+        const fomoNames = [
+            "Rahul", "Anjali", "Kiran", "Sneha", "Vishnu", "Priya", "Arun", "Gokul", "Aswathy",
+            "Nikhil", "Divya", "Suresh", "Meera", "Akhil", "Reshma", "Deepak", "Kavya", "Santhosh",
+            "Lakshmi", "Manu", "Parvathy", "Rajesh", "Anoop", "Arya", "Jithin", "Neethu", "Sarath",
+            "Sruthy", "Vipin", "Gopika", "Abhinav", "Nandana", "Harish", "Devika", "Naveen", "Swathi",
+            "Prasanth", "Anusree", "Sreejith", "Veena", "Arjun", "Bhavana", "Chithra", "Dhanush",
+            "Ganesh", "Hari", "Indu", "Karthik", "Mahesh", "Nithin", "Omana", "Pradeep", "Renjith",
+            "Sajith", "Thara", "Unni", "Vandana", "Yadu", "Zoya", "Ajay", "Biju", "Chacko", "Dileep",
+            "Fahadh", "Girish", "Hema", "Isha", "Jaya", "Kamal"
+        ];
+        
         const fomoRoles = ["Sales Executive", "Service Advisor", "Spare Assistant", "Technician", "Customer Care"];
         const fomoLocations = ["Kollam", "Trivandrum", "Attingal", "Punalur", "Chengannur", "Kottarakkara"];
+        
         const fomoPopup = document.getElementById('fomoPopup');
         const fomoText = document.getElementById('fomoText');
         
