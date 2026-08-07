@@ -177,7 +177,6 @@
         .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px; }
         .hero p { font-size: clamp(1.1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.9); max-width: 650px; margin: 0 auto 50px; line-height: 1.6; font-weight: 500;}
 
-        /* Inverted Clock Boxes for contrast */
         .clock-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; flex-wrap: wrap; }
         .time-box {
             background: var(--white); border-radius: 24px;
@@ -226,7 +225,6 @@
         .job-filter-btn { padding: 12px 28px; border-radius: 50px; border: 2px solid var(--bg-light); background: white; color: var(--text-dark); cursor: pointer; transition: var(--transition); font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm);}
         .job-filter-btn.active, .job-filter-btn:hover { background: var(--primary); border-color: var(--primary); color: white; box-shadow: 0 8px 20px rgba(11, 65, 205, 0.3); transform: translateY(-2px);}
 
-        /* Fomo Popup */
         .fomo-popup {
             position: fixed; bottom: 30px; left: 30px; background: var(--white);
             padding: 16px 24px; border-radius: 20px; box-shadow: var(--shadow-lg);
@@ -250,12 +248,10 @@
         .banner-dot.active { background: var(--accent-yellow); transform: scale(1.4); box-shadow: 0 0 10px rgba(255, 209, 0, 0.8); }
 
         .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; position: relative; }
-        .section-header { text-align: center; margin-bottom: 60px; position: relative; }
+        .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 800; color: var(--primary); margin-bottom: 20px; position: relative; display: inline-block; letter-spacing: -1px;}
         .section-header h2::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 6px; background: var(--accent-yellow); border-radius: 3px; }
         .section-header p { color: var(--text-light); font-size: 1.15rem; max-width: 600px; margin: 25px auto 0; font-weight: 500;}
-        .section-header .admin-access-btn { position: absolute; top: 0; right: 0; background: rgba(255,255,255,0.95); color: var(--primary); border: 1px solid rgba(11,65,205,0.12); border-radius: 999px; padding: 10px 18px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm); }
-        .section-header .admin-access-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); }
 
         /* Video Section */
         .video-container { max-width: 900px; margin: 0 auto; position: relative; }
@@ -283,7 +279,6 @@
         .card-item:hover::before { transform: scaleX(1); }
         .card-icon { width: 80px; height: 80px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 25px; transition: var(--transition); }
         
-        /* Colorful specific icons */
         .icon-yellow { background: rgba(255, 209, 0, 0.15); color: #d6b000; }
         .icon-cyan { background: rgba(35, 196, 248, 0.15); color: #0da7da; }
         .icon-red { background: rgba(255, 87, 87, 0.15); color: var(--accent-red); }
@@ -298,50 +293,9 @@
         .card-item h4 { color: var(--primary); margin-bottom: 12px; font-weight: 800; font-size: 1.3rem; }
         .card-item p { font-size: 1rem; color: var(--text-light); line-height: 1.5;}
 
-        /* --- HORIZONTAL JOB SLIDER STYLES --- */
-        .job-slider-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: 40px auto 60px;
-            padding: 0 65px; /* space for arrows */
-        }
-
-        .job-slider-container {
-            overflow: hidden;
-            width: 100%;
-            padding: 20px 0; /* Add padding for box shadow visibility */
-            margin: -20px 0;
-            border-radius: 30px;
-        }
-
-        #jobGrid {
-            display: flex;
-            gap: 30px;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-        }
-
-        .hiring-card { 
-            background: white; 
-            border-radius: 30px; 
-            overflow: hidden; 
-            box-shadow: var(--shadow-sm); 
-            transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s; 
-            display: flex; 
-            flex-direction: column; 
-            position: relative; 
-            border: 1px solid rgba(0,0,0,0.03); 
-            
-            /* Sizing logic for the slider */
-            flex: 0 0 calc(33.333% - 20px); 
-            min-width: calc(33.333% - 20px);
-        }
-        .hiring-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: var(--shadow-lg); 
-            border-color: var(--accent-cyan);
-        }
+        .venue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
+        .hiring-card { background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(0,0,0,0.03); }
+        .hiring-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
         
         .hiring-img-box { width: 100%; height: 320px; overflow: hidden; background: var(--bg-light); cursor: pointer; }
         .hiring-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -358,12 +312,8 @@
         .job-tags { font-size: 0.8rem; color: var(--accent-red); font-weight: 800; margin-bottom: 25px; display: inline-block; padding: 4px 0; border-bottom: 2px dashed rgba(255, 87, 87, 0.3); }
         .hiring-actions { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: auto; }
         .btn-card { padding: 14px; border-radius: 50px; text-align: center; font-weight: 700; text-decoration: none; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer;}
-        .btn-card-primary { background: var(--primary); color: var(--white); width: 100%; box-shadow: 0 14px 30px rgba(11, 65, 205, 0.18); }
-        .btn-card-primary:hover { background: var(--primary-light); transform: translateY(-3px); box-shadow: 0 18px 35px rgba(11, 65, 205, 0.24); }
         .btn-card-secondary { background: var(--bg-light); color: var(--primary); border: 2px solid transparent; width: 100%; }
         .btn-card-secondary:hover { background: white; border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(11, 65, 205, 0.1); }
-
-        .role-actions { margin-top: 28px; display: grid; gap: 15px; }
 
         .admin-card-controls { position: absolute; top: 15px; right: 15px; display: none; gap: 10px; z-index: 10; }
         .admin-mode .admin-card-controls { display: flex; }
@@ -371,56 +321,6 @@
         .btn-edit-card { background: var(--primary); }
         .btn-del-card { background: var(--accent-red); }
         .admin-card-btn:hover { transform: scale(1.15); }
-
-        /* Slider Navigation Buttons */
-        .job-slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: var(--white);
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-        }
-        .job-slider-btn:hover { background: var(--primary); color: white; transform: translateY(-50%) scale(1.1); box-shadow: var(--shadow-md); }
-        .job-slider-btn:active { transform: translateY(-50%) scale(0.95); }
-        .job-slider-btn.disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-        .job-slider-prev { left: 0; }
-        .job-slider-next { right: 0; }
-
-        /* Animation to show intention to slide */
-        @keyframes bounce-horizontal {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
-        }
-        .job-slider-next:not(.disabled) i {
-            animation: bounce-horizontal 1.5s infinite ease-in-out;
-        }
-
-        /* Responsive Breakpoints for Slider */
-        /* Adjusted widths to allow the next card to "peek" into view, showing there are more jobs */
-        @media (max-width: 1200px) {
-            .hiring-card { flex: 0 0 calc(31% - 20px); min-width: calc(31% - 20px); }
-        }
-        @media (max-width: 1024px) {
-            .job-slider-wrapper { padding: 0 55px; }
-            .hiring-card { flex: 0 0 calc(45% - 15px); min-width: calc(45% - 15px); }
-        }
-        @media (max-width: 768px) {
-            .job-slider-wrapper { padding: 0 45px; }
-            .job-slider-btn { width: 40px; height: 40px; font-size: 1rem; }
-            .hiring-card { flex: 0 0 calc(85% - 15px); min-width: calc(85% - 15px); }
-        }
 
         #adminSection { display: none; margin-bottom: 60px; }
         .admin-upload-tool { background: white; border-radius: 30px; padding: 40px; box-shadow: var(--shadow-lg); border: 3px solid var(--accent-cyan); position: relative; }
@@ -448,17 +348,46 @@
         .btn-cancel-edit { background: #f1f5f9; color: #475569; border: 2px solid #cbd5e1; padding: 16px 30px; border-radius: 50px; font-weight: 800; font-size: 1.05rem; cursor: pointer; transition: var(--transition); display: none; align-items: center; gap: 10px;}
         .btn-cancel-edit:hover { background: #e2e8f0; color: #0f172a; }
 
+        .filter-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+        .filter-btn { padding: 12px 30px; border-radius: 50px; border: 2px solid transparent; background: white; color: var(--text-dark); font-weight: 700; font-size: 1.05rem; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm);}
+        .filter-btn:hover { color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md);}
+        .filter-btn.active { background: var(--primary); color: white; box-shadow: 0 10px 25px rgba(11, 65, 205, 0.3); }
+
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
         .role-group { padding: 40px; border-radius: 30px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); background: white; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.03); }
         .role-group.hide { display: none; transform: scale(0.9); opacity: 0; position: absolute; } 
         .role-group:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
-        .role-group h4 { font-size: 1.5rem; margin-bottom: 30px; display: flex; align-items: center; gap: 18px; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 18px; font-weight: 800; }
+        .role-group h4 { font-size: 1.5rem; margin-bottom: 25px; display: flex; align-items: center; gap: 18px; color: var(--primary); border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 18px; font-weight: 800; }
         .role-group h4 i { background: rgba(11, 65, 205, 0.1); padding: 15px; border-radius: 20px; color: var(--primary); transition: transform 0.3s;}
         .role-group:hover h4 i { transform: rotate(15deg) scale(1.1); }
-        .role-item { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .role-item:hover { transform: translateX(12px); }
-        .role-title { font-weight: 800; font-size: 1.15rem; display: block; color: var(--text-dark); margin-bottom: 8px; }
-        .fresher-badge { display: inline-block; background: #FFF9C4; color: #F57F17; font-size: 0.8rem; padding: 6px 16px; border-radius: 50px; font-weight: 800; margin-top: 5px; border: 1px solid #FFF59D;}
+        
+        .role-items-container { display: flex; flex-direction: column; gap: 12px; }
+        
+        .role-item { 
+            padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.04); 
+            transition: var(--transition); display: flex; justify-content: space-between; 
+            align-items: center; background: var(--bg-light); flex-wrap: wrap; gap: 15px;
+            position: relative;
+        }
+        .role-item:hover { transform: translateX(8px); background: white; box-shadow: var(--shadow-md); border-color: var(--accent-cyan); }
+        .role-info { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 150px; }
+        
+        .role-title { font-weight: 800; font-size: 1.15rem; color: var(--text-dark); display: block; }
+        .fresher-badge { display: inline-block; background: #FFF9C4; color: #F57F17; font-size: 0.8rem; padding: 6px 16px; border-radius: 50px; font-weight: 800; border: 1px solid #FFF59D; align-self: flex-start;}
+        .role-subtitle-text { font-size: 0.9rem; color: var(--text-light); font-weight: 600; margin: 0; }
+        
+        .btn-apply-small {
+            background: var(--primary); color: white; padding: 10px 24px;
+            border-radius: 50px; font-size: 0.95rem; font-weight: 700;
+            border: none; cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .btn-apply-small:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(11, 65, 205, 0.3); }
+
+        .admin-role-controls { position: absolute; top: -12px; right: 10px; display: none; gap: 5px; z-index: 10; }
+        .admin-mode .admin-role-controls { display: flex; }
+        .admin-role-btn { width: 32px; height: 32px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: var(--transition);}
+        .admin-role-btn:hover { transform: scale(1.15); }
 
         .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
         .faq-item { background: white; border-radius: 24px; border: 1px solid rgba(0,0,0,0.04); overflow: hidden; box-shadow: var(--shadow-sm); }
@@ -469,7 +398,6 @@
         .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: white; }
         .faq-content p { padding: 0 30px 30px; color: var(--text-light); font-size: 1.05rem; margin: 0; line-height: 1.6;}
 
-        /* Consultflow colorful referral card */
         .referral-card {
             max-width: 800px; margin: 0 auto;
             background: var(--primary);
@@ -479,7 +407,6 @@
             text-align: center;
             z-index: 1;
         }
-        /* Blobs in referral */
         .referral-card::before { content: ''; position: absolute; width: 200px; height: 200px; background: var(--accent-yellow); border-radius: 50%; top: -80px; left: -80px; z-index: -1; opacity: 0.9; }
         .referral-card::after { content: ''; position: absolute; width: 150px; height: 150px; background: var(--accent-cyan); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; bottom: -50px; right: -50px; z-index: -1; opacity: 0.9; }
         
@@ -520,7 +447,6 @@
         .modal-close:hover, .admin-close-btn:hover { transform: scale(1.2) rotate(90deg); color: var(--accent-yellow); }
 
         .admin-login-box { background: white; padding: 40px; border-radius: 40px; width: 92%; max-width: 580px; text-align: left; box-shadow: 0 30px 60px rgba(0,0,0,0.3); position: relative; max-height: 90vh; overflow-y: auto;}
-
         .admin-input { width: 100%; padding: 18px; border: 2px solid #e2e8f0; border-radius: 20px; font-size: 1.2rem; text-align: center; margin-bottom: 25px; outline: none; transition: 0.3s; font-weight: 600; color: var(--primary-dark);}
         .admin-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(11, 65, 205, 0.1);}
         .admin-error { color: var(--accent-red); font-size: 1rem; font-weight: 700; margin-top: 18px; display: none; }
@@ -539,58 +465,35 @@
             .admin-form-grid { grid-template-columns: 1fr; } 
             .form-btn-group { flex-direction: column; } 
             .btn-generate, .btn-cancel-edit { width: 100%; justify-content: center;}
-            .animated-logo { width: 60%; }
             footer { border-top-left-radius: 50px; border-top-right-radius: 50px; padding: 70px 20px 80px; }
+            .role-item { flex-direction: column; align-items: stretch; text-align: center; }
+            .role-info { align-items: center; }
+            .fresher-badge { align-self: center; margin-top: 8px;}
         }
 
         @media (min-width: 1024px) {
             .action-floats { bottom: 40px; }
             body { padding-bottom: 0; }
         }
-        
-        .filter-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
-        .filter-btn { padding: 12px 30px; border-radius: 50px; border: 2px solid transparent; background: white; color: var(--text-dark); font-weight: 700; font-size: 1.05rem; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm);}
-        .filter-btn:hover { color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md);}
-        .filter-btn.active { background: var(--primary); color: white; box-shadow: 0 10px 25px rgba(11, 65, 205, 0.3); }
 
-        /* --- Premium Testimonial Cards --- */
-        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;}
-        .testimonial-card { 
-            background: linear-gradient(145deg, #ffffff, #f8fafc); padding: 40px 30px; border-radius: 30px; 
-            box-shadow: 0 10px 30px rgba(11, 65, 205, 0.05); border: 1px solid rgba(11, 65, 205, 0.08); 
-            position: relative; transition: var(--transition); z-index: 1; overflow: hidden;
-        }
-        .testimonial-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(11, 65, 205, 0.12); border-color: var(--accent-cyan); }
-        .quote-icon { position: absolute; top: -10px; right: 10px; font-size: 7rem; color: rgba(11, 65, 205, 0.04); z-index: -1; transition: var(--transition); }
-        .testimonial-card:hover .quote-icon { color: rgba(35, 196, 248, 0.1); transform: scale(1.1) rotate(10deg); }
-        .testimonial-text { font-size: 1.1rem; color: var(--text-dark); font-style: italic; margin-bottom: 30px; font-weight: 500; line-height: 1.7;}
-        .testimonial-author { display: flex; align-items: center; gap: 18px; border-top: 2px dashed rgba(0,0,0,0.05); padding-top: 20px;}
-        .author-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 3px solid var(--white); box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
-        .author-info h5 { font-size: 1.15rem; color: var(--primary-dark); font-weight: 800; margin-bottom: 2px;}
-        .author-info p { font-size: 0.9rem; color: var(--primary); margin: 0; font-weight: 700; background: rgba(11, 65, 205, 0.08); padding: 4px 12px; border-radius: 50px; display: inline-block;}
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
+        .testimonial-card { background: white; padding: 40px 30px; border-radius: 30px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.03); position: relative; transition: var(--transition); }
+        .testimonial-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .quote-icon { position: absolute; top: 25px; right: 25px; font-size: 3.5rem; color: rgba(11, 65, 205, 0.05); }
+        .testimonial-text { font-size: 1.1rem; color: var(--text-dark); font-style: italic; margin-bottom: 25px; position: relative; z-index: 2; line-height: 1.6;}
+        .testimonial-author { display: flex; align-items: center; gap: 18px; }
+        .author-img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-cyan); }
+        .author-info h5 { font-size: 1.15rem; color: var(--primary-dark); font-weight: 800; margin-bottom: 4px;}
+        .author-info p { font-size: 0.9rem; color: var(--text-light); margin: 0; font-weight: 600;}
         
         .map-container { border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-lg); border: 6px solid white; height: 450px; width: 100%; position: relative;}
         .map-container iframe { width: 100%; height: 100%; border: none; }
 
-        /* --- Premium Checklist Grid --- */
-        .checklist-box { 
-            padding: 50px 40px; border-radius: 40px; background: white; 
-            box-shadow: 0 20px 50px rgba(11, 65, 205, 0.08); position: relative; border: 1px solid rgba(0,0,0,0.03);
-            max-width: 1000px; margin: 0 auto;
-        }
-        .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px;}
-        .checklist-item { 
-            display: flex; align-items: flex-start; gap: 20px; padding: 25px; 
-            background: var(--bg-light); border-radius: 24px; transition: var(--transition); border: 2px solid transparent;
-        }
-        .checklist-item:hover { background: white; border-color: var(--accent-cyan); box-shadow: 0 15px 30px rgba(35, 196, 248, 0.15); transform: translateY(-5px); }
-        .check-circle { 
-            color: white; font-size: 1.5rem; background: var(--success); 
-            border-radius: 20px; width: 60px; height: 60px; display: flex; 
-            align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); flex-shrink: 0;
-            transition: var(--transition);
-        }
-        .checklist-item:hover .check-circle { transform: scale(1.1) rotate(-5deg); }
+        .checklist-box { padding: 50px 40px; border-radius: 40px; border: 3px dashed rgba(35, 196, 248, 0.4); max-width: 800px; margin: 0 auto; background: white; box-shadow: var(--shadow-sm);}
+        .checklist-item { display: flex; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.04); transition: var(--transition); }
+        .checklist-item:hover { background: var(--bg-light); padding-left: 20px; border-radius: 16px; }
+        .checklist-item:last-child { border-bottom: none; }
+        .check-circle { color: white; font-size: 1.5rem; background: var(--success); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 15px rgba(37, 211, 102, 0.3); flex-shrink: 0;}
     
         /* Candidate Application Modal & Status Modal Styles */
         .cand-modal {
@@ -707,9 +610,6 @@
             <button onclick="openApplyModal()" class="btn btn-hero-primary">
                 <i class="fas fa-paper-plane"></i> Apply Online Now
             </button>
-            <button onclick="openStatusModal()" class="btn btn-hero-secondary">
-                <i class="fas fa-search"></i> Check Application Status
-            </button>
         </div>
     </section>
 
@@ -815,45 +715,16 @@
 
     <section class="section reveal" style="padding-top: 20px;">
         <div class="checklist-box">
-            <div class="section-header" style="margin-bottom: 0;">
-                <h2>Document Checklist</h2>
-                <p>ഇന്റർവ്യൂവിന് വരുമ്പോൾ താഴെ പറയുന്നവ നിർബന്ധമായും കരുതുക</p>
-            </div>
-            <div class="checklist-grid">
-                <div class="checklist-item">
-                    <i class="fas fa-file-alt check-circle"></i>
-                    <div>
-                        <strong style="display:block; font-size: 1.15rem; font-weight:800; color:var(--primary-dark); margin-bottom: 4px;">Updated Resume / CV</strong>
-                        <span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">രണ്ട് കോപ്പികൾ (2 Copies)</span>
-                    </div>
-                </div>
-                <div class="checklist-item">
-                    <i class="fas fa-camera check-circle" style="background: var(--accent-cyan); box-shadow: 0 10px 20px rgba(35, 196, 248, 0.3);"></i>
-                    <div>
-                        <strong style="display:block; font-size: 1.15rem; font-weight:800; color:var(--primary-dark); margin-bottom: 4px;">Passport Size Photos</strong>
-                        <span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">രണ്ട് എണ്ണം (2 Nos)</span>
-                    </div>
-                </div>
-                <div class="checklist-item">
-                    <i class="fas fa-graduation-cap check-circle" style="background: var(--accent-yellow); color: var(--primary-dark); box-shadow: 0 10px 20px rgba(255, 209, 0, 0.3);"></i>
-                    <div>
-                        <strong style="display:block; font-size: 1.15rem; font-weight:800; color:var(--primary-dark); margin-bottom: 4px;">Educational Certificates</strong>
-                        <span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">ഒറിജിനലും പകർപ്പുകളും (Originals & Copies)</span>
-                    </div>
-                </div>
-                <div class="checklist-item">
-                    <i class="fas fa-id-card check-circle" style="background: var(--accent-red); box-shadow: 0 10px 20px rgba(255, 87, 87, 0.3);"></i>
-                    <div>
-                        <strong style="display:block; font-size: 1.15rem; font-weight:800; color:var(--primary-dark); margin-bottom: 4px;">Identity Proof</strong>
-                        <span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">Aadhar Card / Voter ID / DL</span>
-                    </div>
-                </div>
-            </div>
+            <div class="section-header" style="margin-bottom: 40px;"><h2>Document Checklist</h2><p>ഇന്റർവ്യൂവിന് വരുമ്പോൾ താഴെ പറയുന്നവ നിർബന്ധമായും കരുതുക</p></div>
+            <div class="checklist-item"><i class="fas fa-file-alt check-circle"></i><div><strong style="display:block; font-size: 1.1rem; font-weight:800; color:var(--primary-dark);">Updated Resume / CV</strong><span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">രണ്ട് കോപ്പികൾ (2 Copies)</span></div></div>
+            <div class="checklist-item"><i class="fas fa-camera check-circle" style="background: var(--accent-cyan);"></i><div><strong style="display:block; font-size: 1.1rem; font-weight:800; color:var(--primary-dark);">Passport Size Photos</strong><span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">രണ്ട് എണ്ണം (2 Nos)</span></div></div>
+            <div class="checklist-item"><i class="fas fa-graduation-cap check-circle" style="background: var(--accent-yellow); color: var(--primary-dark);"></i><div><strong style="display:block; font-size: 1.1rem; font-weight:800; color:var(--primary-dark);">Educational Certificates</strong><span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">ഒറിജിനലും പകർപ്പുകളും (Originals & Copies)</span></div></div>
+            <div class="checklist-item"><i class="fas fa-id-card check-circle" style="background: var(--accent-red);"></i><div><strong style="display:block; font-size: 1.1rem; font-weight:800; color:var(--primary-dark);">Identity Proof</strong><span style="font-size:0.95rem; color:var(--text-light); font-weight: 600;">Aadhar Card / Voter ID / Driving License</span></div></div>
         </div>
     </section>
 
     <section class="section reveal" id="vacancies">
-        <div class="section-header"><h2>Current Openings</h2><button class="admin-access-btn" onclick="showAdminLogin()">Admin Login</button><p>Explore opportunities matching your profile</p></div>
+        <div class="section-header"><h2>Current Openings</h2><p>Explore opportunities matching your profile</p></div>
         
         <div class="search-container reveal">
             <i class="fas fa-search"></i>
@@ -868,6 +739,7 @@
         </div>
 
         <div id="adminSection">
+            <!-- Job Posters Tool -->
             <div class="admin-upload-tool reveal">
                 <div class="admin-tool-header">
                     <div class="admin-header-title">
@@ -904,70 +776,102 @@
                     </div>
                 </form>
             </div>
-        </div>
-
-        <!-- Sleek Horizontal Slider -->
-        <div class="job-slider-wrapper reveal">
-            <button class="job-slider-btn job-slider-prev disabled" id="jobSlidePrev"><i class="fas fa-chevron-left"></i></button>
-            <div class="job-slider-container">
-                <div id="jobGrid">
-                    <!-- Job cards dynamically synced from Database -->
-                    <div class="hiring-card" data-job-id="sample-1">
-                        <div class="admin-card-controls">
-                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                        </div>
-                        <div class="hiring-img-box"><img src="image_cf4f7d.jpg" alt="Service Advisor Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=WE+ARE+HIRING\nService+Team'"></div>
-                        <div class="hiring-content">
-                            <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
-                            <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
-                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
-                            <div class="job-tags">Degree / Diploma • Freshers / Experienced</div>
-                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr; gap: 12px;">
-                                <button onclick="openApplyModal('SERVICE', 'Service Advisor & Technician', 'sample-1')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
-                                <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="hiring-card" data-job-id="sample-2">
-                        <div class="admin-card-controls">
-                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                        </div>
-                        <div class="hiring-img-box"><img src="poster2.jpg" alt="Sales Executive Hiring" onerror="this.src='https://placehold.co/800x1200/FFD100/000?text=WE+ARE+HIRING\nSales'"></div>
-                        <div class="hiring-content">
-                            <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
-                            <h3 class="job-title">SALES EXECUTIVE</h3>
-                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
-                            <div class="job-tags">Experienced Sales • Immediate Hiring</div>
-                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr; gap: 12px;">
-                                <button onclick="openApplyModal('SALES', 'Sales Executive', 'sample-2')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
-                                <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="hiring-card" data-job-id="sample-3">
-                        <div class="admin-card-controls">
-                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                        </div>
-                        <div class="hiring-img-box"><img src="poster3.jpg" alt="Trainee Hiring" onerror="this.src='https://placehold.co/800x1200/23C4F8/000?text=WE+ARE+HIRING\nTrainees'"></div>
-                        <div class="hiring-content">
-                            <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
-                            <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
-                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
-                            <div class="job-tags">Spare & Office • Freshers / Experienced</div>
-                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr; gap: 12px;">
-                                <button onclick="openApplyModal('SPARE', 'Spare Assistant & Trainees', 'sample-3')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
-                                <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
-                            </div>
+            
+            <!-- Categorized Roles Tool -->
+            <div class="admin-upload-tool reveal" style="margin-top: 40px; border-color: var(--accent-yellow);">
+                <div class="admin-tool-header">
+                    <div class="admin-header-title">
+                        <i class="fas fa-list-alt" style="color: var(--accent-yellow); background: rgba(255, 209, 0, 0.1);"></i>
+                        <div>
+                            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-dark);" id="roleFormTitle">Manage Categorized Roles</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 4px; font-weight: 500;" id="roleFormSubtitle">Add or edit text-based roles in the categories section below.</p>
                         </div>
                     </div>
                 </div>
+                
+                <form id="dynamicRoleForm">
+                    <div class="admin-form-grid">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="roleCategory" class="form-control" required>
+                                <option value="sales">Sales Roles</option>
+                                <option value="service">Service Roles</option>
+                                <option value="spare">Spare & Office</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>Role Title</label><input type="text" id="roleTitleInput" class="form-control" placeholder="e.g. Sales Executive" required></div>
+                        <div class="form-group"><label>Subtitle / Badge Text</label><input type="text" id="roleSubtitleInput" class="form-control" placeholder="e.g. Freshers & Experienced" required></div>
+                        <div class="form-group">
+                            <label>Subtitle Style</label>
+                            <select id="roleBadgeStyle" class="form-control">
+                                <option value="fresher-badge">Yellow Highlight (Badge)</option>
+                                <option value="normal-text">Normal Grey Text</option>
+                            </select>
+                        </div>
+                        <div class="form-btn-group">
+                            <button type="button" id="cancelRoleEditBtn" class="btn-cancel-edit"><i class="fas fa-times"></i> Cancel Edit</button>
+                            <button type="submit" id="roleSubmitBtn" class="btn-generate" style="background: var(--accent-yellow); color: var(--text-dark);"><i class="fas fa-plus-circle"></i> Add Role</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <button class="job-slider-btn job-slider-next" id="jobSlideNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="venue-grid" id="jobGrid">
+            <!-- Job cards dynamically synced from Database -->
+            <div class="hiring-card" data-job-id="sample-1">
+                <div class="admin-card-controls">
+                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                </div>
+                <div class="hiring-img-box"><img src="image_cf4f7d.jpg" alt="Service Advisor Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=WE+ARE+HIRING\nService+Team'"></div>
+                <div class="hiring-content">
+                    <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
+                    <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
+                    <div class="job-tags">DIPLOMA / BTECH / ITI</div>
+                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                        <button onclick="openApplyModal('SERVICE', 'SERVICE ADVISOR & TECHNICIAN')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hiring-card" data-job-id="sample-2">
+                <div class="admin-card-controls">
+                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                </div>
+                <div class="hiring-img-box"><img src="poster2.jpg" alt="Sales Executive Hiring" onerror="this.src='https://placehold.co/800x1200/FFD100/000?text=WE+ARE+HIRING\nSales'"></div>
+                <div class="hiring-content">
+                    <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
+                    <h3 class="job-title">SALES EXECUTIVE</h3>
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
+                    <div class="job-tags">SERVICE_ADVISOR SALES_EXECUTIVE</div>
+                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                        <button onclick="openApplyModal('SALES', 'SALES EXECUTIVE')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hiring-card" data-job-id="sample-3">
+                <div class="admin-card-controls">
+                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
+                </div>
+                <div class="hiring-img-box"><img src="poster3.jpg" alt="Trainee Hiring" onerror="this.src='https://placehold.co/800x1200/23C4F8/000?text=WE+ARE+HIRING\nTrainees'"></div>
+                <div class="hiring-content">
+                    <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
+                    <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
+                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
+                    <div class="job-tags">SPARE_EXECUTIVE TRAINEES</div>
+                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                        <button onclick="openApplyModal('SPARE', 'SPARE ASSISTANT & TRAINEES')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
+                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div id="noJobsFound" style="display:none; text-align:center; padding: 50px; color: var(--text-light); background: white; border-radius: 30px; margin-top: 30px; box-shadow: var(--shadow-sm);">
@@ -988,21 +892,23 @@
         <div class="roles-grid">
             <div class="role-group" data-category="sales">
                 <h4><i class="fas fa-shopping-cart"></i> Sales Roles</h4>
-                <div class="role-item"><span class="role-title">Sales Executive / RM</span><span class="fresher-badge">Freshers & Experienced</span></div>
-                <div class="role-item"><span class="role-title">Team Leaders</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">Automotive Experienced preferred</p></div>
-                <div class="role-actions"><button onclick="openApplyModal('SALES', 'Sales Roles')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button></div>
+                <div class="role-items-container">
+                    <!-- Populated dynamically by JS -->
+                </div>
             </div>
+            
             <div class="role-group" data-category="service">
                 <h4><i class="fas fa-tools"></i> Service Roles</h4>
-                <div class="role-item"><span class="role-title">Service Advisors / Techs</span><span class="fresher-badge">Freshers & Experienced</span></div>
-                <div class="role-item"><span class="role-title">Expert Technicians</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">ITI / Diploma holders</p></div>
-                <div class="role-actions"><button onclick="openApplyModal('SERVICE', 'Service Roles')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button></div>
+                <div class="role-items-container">
+                    <!-- Populated dynamically by JS -->
+                </div>
             </div>
+            
             <div class="role-group" data-category="spare">
                 <h4><i class="fas fa-headset"></i> Spare & Office</h4>
-                <div class="role-item"><span class="role-title">Spare Executive / Trainees</span><span class="fresher-badge">Freshers & Experienced</span></div>
-                <div class="role-item"><span class="role-title">Accounts Executive</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">B.Com / M.Com (Tally Knowledge)</p></div>
-                <div class="role-actions"><button onclick="openApplyModal('SPARE', 'Spare & Office Roles')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button></div>
+                <div class="role-items-container">
+                    <!-- Populated dynamically by JS -->
+                </div>
             </div>
         </div>
     </section>
@@ -1174,37 +1080,6 @@
         </div>
     </div>
 
-    <!-- Application Status Check Modal -->
-    <div class="cand-modal" id="statusModal">
-        <div class="cand-modal-box" style="max-width: 500px;">
-            <button class="cand-modal-close" onclick="closeStatusModal()"><i class="fas fa-times"></i></button>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <div style="width:60px; height:60px; background: rgba(35, 196, 248, 0.15); color: var(--accent-cyan); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:1.8rem; margin-bottom:12px;">
-                    <i class="fas fa-search"></i>
-                </div>
-                <h3 style="color: var(--primary-dark); font-size: 1.6rem; font-weight: 800;">Check Application Status</h3>
-                <p style="color: var(--text-light); font-size: 0.95rem;">Enter your registered 10-digit mobile number.</p>
-            </div>
-
-            <form id="statusSearchForm">
-                <div style="margin-bottom: 15px;">
-                    <label class="cand-label">Mobile Number</label>
-                    <input type="tel" id="statusPhoneInput" class="cand-input" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
-                </div>
-                <button type="submit" id="statusSearchBtn" class="cand-submit-btn" style="background: var(--accent-cyan); color: #000;">
-                    <i class="fas fa-search"></i> Search Status
-                </button>
-            </form>
-
-            <div id="statusResultBox" class="status-result-card">
-                <h4 id="statusCandName" style="color: var(--primary-dark); font-size: 1.2rem; font-weight: 800;">Candidate Name</h4>
-                <p id="statusJobTitle" style="color: var(--text-light); font-size: 0.95rem; margin: 4px 0;">Applied Position</p>
-                <div id="statusBadgeEl" class="status-badge">Application Received</div>
-                <div id="statusDetailsEl" style="margin-top: 12px; font-size: 0.9rem; color: var(--text-dark);"></div>
-            </div>
-        </div>
-    </div>
-
     <div class="admin-modal" id="adminModal">
         <div class="admin-login-box">
             <span class="admin-close-btn" id="closeAdminBtn"><i class="fas fa-times"></i></span>
@@ -1227,89 +1102,6 @@
             setTimeout(() => { toast.classList.remove('show'); }, 3500);
         }
 
-        /* --- HORIZONTAL JOB SLIDER LOGIC --- */
-        let currentJobSlide = 0;
-
-        function updateJobSlider() {
-            const track = document.getElementById('jobGrid');
-            if (!track) return;
-            
-            const cards = Array.from(track.querySelectorAll('.hiring-card'));
-            const visibleCards = cards.filter(card => card.style.display !== 'none');
-            const totalVisible = visibleCards.length;
-            
-            let cardsPerView = 3;
-            if (window.innerWidth <= 768) cardsPerView = 1;
-            else if (window.innerWidth <= 1024) cardsPerView = 2;
-            else if (window.innerWidth <= 1200) cardsPerView = 3;
-            
-            const maxSlide = Math.max(0, totalVisible - cardsPerView);
-            
-            if (currentJobSlide > maxSlide) currentJobSlide = maxSlide;
-            if (currentJobSlide < 0) currentJobSlide = 0;
-            
-            if (totalVisible > 0) {
-                // Gap is 30px
-                const cardWidth = visibleCards[0].offsetWidth;
-                const offset = currentJobSlide * (cardWidth + 30);
-                track.style.transform = `translateX(-${offset}px)`;
-            }
-            
-            const prevBtn = document.getElementById('jobSlidePrev');
-            const nextBtn = document.getElementById('jobSlideNext');
-            
-            if (prevBtn) {
-                if (currentJobSlide === 0) prevBtn.classList.add('disabled');
-                else prevBtn.classList.remove('disabled');
-            }
-            
-            if (nextBtn) {
-                if (currentJobSlide >= maxSlide || totalVisible === 0) nextBtn.classList.add('disabled');
-                else nextBtn.classList.remove('disabled');
-            }
-        }
-
-        document.getElementById('jobSlideNext')?.addEventListener('click', () => {
-            currentJobSlide++;
-            updateJobSlider();
-        });
-        
-        document.getElementById('jobSlidePrev')?.addEventListener('click', () => {
-            currentJobSlide--;
-            updateJobSlider();
-        });
-
-        /* Swipe Gesture Support for Mobile Slider */
-        let touchStartX = 0;
-        let touchEndX = 0;
-        const jobGridTrack = document.getElementById('jobGrid');
-        
-        if(jobGridTrack) {
-            jobGridTrack.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, {passive: true});
-
-            jobGridTrack.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchStartX - touchEndX > 50) {
-                    // Swipe Left (Next)
-                    const nextBtn = document.getElementById('jobSlideNext');
-                    if(nextBtn && !nextBtn.classList.contains('disabled')) {
-                        currentJobSlide++;
-                        updateJobSlider();
-                    }
-                } else if (touchEndX - touchStartX > 50) {
-                    // Swipe Right (Prev)
-                    const prevBtn = document.getElementById('jobSlidePrev');
-                    if(prevBtn && !prevBtn.classList.contains('disabled')) {
-                        currentJobSlide--;
-                        updateJobSlider();
-                    }
-                }
-            }, {passive: true});
-        }
-
-        /* --- DYNAMIC DATABASE JOB SYNC --- */
         async function loadPublishedJobsFromDatabase() {
             try {
                 if (!window.RecruitmentAPI) return;
@@ -1319,7 +1111,6 @@
                     if (grid) {
                         grid.innerHTML = apiJobs.map(j => {
                             const imgSrc = j.imageUrl || 'https://placehold.co/800x1200/0B41CD/FFF?text=' + encodeURIComponent(j.title);
-                            const safeTags = (j.tags && j.tags.trim()) ? j.tags : [j.qualification, j.experience].filter(Boolean).join(' • ');
                             return `
                             <div class="hiring-card" data-job-id="${j.id}">
                                 <div class="admin-card-controls">
@@ -1331,68 +1122,20 @@
                                     <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${j.createdDate}</span></div>
                                     <h3 class="job-title">${j.title}</h3>
                                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
-                                    <div class="job-tags">${safeTags}</div>
+                                    <div class="job-tags">${j.tags || (j.qualification + ' • ' + j.experience)}</div>
                                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
-                                        <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
+                                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                                     </div>
                                 </div>
                             </div>
                         `}).join('');
 
                         attachLightboxListeners();
-                        currentJobSlide = 0;
-                        updateJobSlider();
                     }
                 }
             } catch (e) {
                 console.log("Database job sync error:", e);
-            }
-        }
-
-        /* ============================================================
-           GOOGLE SHEETS INTEGRATION CONFIG
-           1. Open your Google Sheet
-           2. Click Extensions > Apps Script
-           3. Paste the Apps Script code from the HR team
-           4. Deploy as Web App (Anyone can access)
-           5. Copy the Web App URL and paste it below
-        ============================================================ */
-        const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyTcucveAFnd_TyrOhjC0l9Neew7sbySjhMZ0hWG2xbAaujhyGxYPueVT7F1PK-m44O/exec';
-
-        async function sendToGoogleSheets(candidateData) {
-            if (!GOOGLE_SHEETS_WEBHOOK_URL || GOOGLE_SHEETS_WEBHOOK_URL.includes('YOUR_GOOGLE')) {
-                console.warn('Google Sheets URL not configured yet. Skipping Sheets sync.');
-                return { skipped: true };
-            }
-            try {
-                const payload = {
-                    timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                    name: candidateData.name || '',
-                    phone: candidateData.phone || '',
-                    email: candidateData.email || '',
-                    dob: candidateData.dob || '',
-                    gender: candidateData.gender || '',
-                    qualification: candidateData.qualification || '',
-                    experience: candidateData.experience || '0',
-                    department: candidateData.department || '',
-                    company: candidateData.company || '',
-                    jobTitle: candidateData.jobTitle || '',
-                    source: 'Website - Sarathy Careers',
-                    status: 'PENDING'
-                };
-                // Use no-cors for cross-origin Apps Script requests
-                await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                console.log('✅ Application synced to Google Sheets.');
-                return { success: true };
-            } catch (err) {
-                console.warn('Google Sheets sync failed (non-critical):', err.message);
-                return { error: err.message };
             }
         }
 
@@ -1416,18 +1159,9 @@
         
         window.addEventListener('load', () => { 
             setTimeout(hidePreloader, 2500); 
-            updateJobSlider();
             loadPublishedJobsFromDatabase();
         });
         setTimeout(hidePreloader, 6000);
-
-        window.addEventListener('resize', () => {
-            clearTimeout(window.sliderResizeTimer);
-            window.sliderResizeTimer = setTimeout(() => {
-                currentJobSlide = 0; // reset on resize to prevent bad offsets
-                updateJobSlider();
-            }, 200);
-        });
 
         function reveal() {
             document.querySelectorAll(".reveal").forEach(r => {
@@ -1465,20 +1199,7 @@
             });
             
             const noJobsEl = document.getElementById('noJobsFound');
-            const jobGrid = document.getElementById('jobGrid');
-            if (visibleCount === 0) {
-                noJobsEl.style.display = 'block';
-                jobGrid.style.display = 'none';
-                document.getElementById('jobSlidePrev').style.display = 'none';
-                document.getElementById('jobSlideNext').style.display = 'none';
-            } else {
-                noJobsEl.style.display = 'none';
-                jobGrid.style.display = 'flex';
-                document.getElementById('jobSlidePrev').style.display = 'flex';
-                document.getElementById('jobSlideNext').style.display = 'flex';
-                currentJobSlide = 0;
-                updateJobSlider();
-            }
+            noJobsEl.style.display = visibleCount === 0 ? 'block' : 'none';
         });
 
         const gridFilterBtns = document.querySelectorAll('.job-filter-btn');
@@ -1503,41 +1224,13 @@
                     }
                 });
                 
-                const noJobsEl = document.getElementById('noJobsFound');
-                const jobGrid = document.getElementById('jobGrid');
-                if (visibleCount === 0) {
-                    noJobsEl.style.display = 'block';
-                    jobGrid.style.display = 'none';
-                    document.getElementById('jobSlidePrev').style.display = 'none';
-                    document.getElementById('jobSlideNext').style.display = 'none';
-                } else {
-                    noJobsEl.style.display = 'none';
-                    jobGrid.style.display = 'flex';
-                    document.getElementById('jobSlidePrev').style.display = 'flex';
-                    document.getElementById('jobSlideNext').style.display = 'flex';
-                    currentJobSlide = 0;
-                    updateJobSlider();
-                }
+                document.getElementById('noJobsFound').style.display = visibleCount === 0 ? 'block' : 'none';
             });
         });
 
-        const fomoNames = [
-            "Rahul", "Vishnu", "Arun", "Gokul", "Nikhil", "Suresh", "Akhil", "Deepak",
-            "Santhosh", "Manu", "Rajesh", "Anoop", "Jithin", "Sarath", "Vipin", "Abhinav",
-            "Harish", "Naveen", "Prasanth", "Sreejith", "Arjun", "Karthik", "Mahesh",
-            "Nithin", "Pradeep", "Renjith", "Sajith", "Unni", "Ajay", "Biju", "Chacko",
-            "Dileep", "Fahadh", "Girish", "Amal", "Vimal", "Sreerag", "Sooraj", "Anand",
-            "Aravind", "Aneesh", "Sujith", "Midhun", "Rijo", "Saju", "Shibu", "Mathew",
-            "Thomas", "Varghese", "Kurian", "Riyas", "Niyas", "Firoz", "Asif", "Roshan",
-            "Sijo", "Lijo", "Jijo", "Binu", "Abin", "Albin", "Sudheesh", "Ratheesh",
-            "Syam", "Santhosh", "Hari", "Govind", "Manoj", "Prasad", "Ajeesh", "Bineesh",
-            // Kept a few female names just for a slight mix
-            "Anjali", "Aswathy", "Kavya", "Sneha", "Priya"
-        ];
-        
+        const fomoNames = ["Rahul", "Anjali", "Kiran", "Sneha", "Vishnu", "Priya", "Arun", "Gokul", "Aswathy"];
         const fomoRoles = ["Sales Executive", "Service Advisor", "Spare Assistant", "Technician", "Customer Care"];
         const fomoLocations = ["Kollam", "Trivandrum", "Attingal", "Punalur", "Chengannur", "Kottarakkara"];
-        
         const fomoPopup = document.getElementById('fomoPopup');
         const fomoText = document.getElementById('fomoText');
         
@@ -1722,6 +1415,7 @@
             document.body.classList.remove('admin-mode');
             adminSection.style.display = 'none';
             cancelEditMode();
+            cancelRoleEditMode();
             showToast("Exited Admin Mode", "#64748b", "fa-sign-out-alt");
         });
 
@@ -1733,7 +1427,6 @@
             fileNameDisplay.textContent = this.files.length > 0 ? this.files[0].name : (currentEditCard ? "Keep existing image..." : "Select an image file...");
         });
 
-        /* --- SUBMIT JOB POSTER TO DATABASE --- */
         jobForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1747,7 +1440,6 @@
                 const dept = document.getElementById('jobDept').value;
                 const loc = document.getElementById('jobLoc').value;
                 const tags = document.getElementById('jobTags').value;
-                const imageFile = fileInput.files.length > 0 ? fileInput.files[0] : null;
 
                 let existingImageUrl = '';
                 let jobId = null;
@@ -1757,6 +1449,17 @@
                     if (imgEl) existingImageUrl = imgEl.src;
                 }
 
+                let base64Image = existingImageUrl;
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    base64Image = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    });
+                }
+
                 const jobPayload = {
                     id: jobId,
                     title: title,
@@ -1764,8 +1467,7 @@
                     department: dept,
                     location: loc,
                     tags: tags,
-                    imageFile: imageFile,
-                    imageUrl: existingImageUrl
+                    imageUrl: base64Image
                 };
 
                 if (window.RecruitmentAPI) {
@@ -1818,8 +1520,6 @@
                         card.remove();
                         showToast("Job Poster Deleted from Database", "var(--accent-red)", "fa-trash");
                         if (currentEditCard === card) cancelEditMode(); 
-                        currentJobSlide = 0;
-                        updateJobSlider();
                     }, 300);
                 } catch(e) {
                     showToast("Error deleting job poster", "var(--accent-red)", "fa-exclamation-triangle");
@@ -1831,15 +1531,126 @@
             currentEditCard = null;
             jobForm.reset();
             fileNameDisplay.textContent = "Select an image file...";
-            document.getElementById('formTitle').textContent = "Add New Job Poster";
-            document.getElementById('formSubtitle').textContent = "Upload an image and save to live database for all visitors.";
+            document.getElementById('formTitle').textContent = "Manage Job Posters";
+            document.getElementById('formSubtitle').textContent = "Add a new job card or edit an existing one (Saved to Live Database).";
             document.getElementById('formSubmitBtn').innerHTML = `<i class="fas fa-plus-circle"></i> Add Job Card`;
             document.getElementById('cancelEditBtn').style.display = "none";
         }
         document.getElementById('cancelEditBtn').addEventListener('click', cancelEditMode);
 
-    
-        /* --- CANDIDATE APPLICATION & STATUS MODAL HANDLERS --- */
+        /* --- CATEGORIZED ROLES PERSISTENCE (LOCAL STORAGE) --- */
+        let categorizedRoles = JSON.parse(localStorage.getItem('sarathy_roles')) || [
+            { id: 'r1', category: 'sales', title: 'Sales Executive / RM', subtitle: 'Freshers & Experienced', style: 'fresher-badge' },
+            { id: 'r2', category: 'sales', title: 'Team Leaders', subtitle: 'Automotive Experienced preferred', style: 'normal-text' },
+            { id: 'r3', category: 'service', title: 'Service Advisors / Techs', subtitle: 'Freshers & Experienced', style: 'fresher-badge' },
+            { id: 'r4', category: 'service', title: 'Expert Technicians', subtitle: 'ITI / Diploma holders', style: 'normal-text' },
+            { id: 'r5', category: 'spare', title: 'Spare Executive / Trainees', subtitle: 'Freshers & Experienced', style: 'fresher-badge' },
+            { id: 'r6', category: 'spare', title: 'Accounts Executive', subtitle: 'B.Com / M.Com (Tally Knowledge)', style: 'normal-text' }
+        ];
+
+        function saveRoles() {
+            localStorage.setItem('sarathy_roles', JSON.stringify(categorizedRoles));
+            renderRoles();
+        }
+
+        function renderRoles() {
+            document.querySelectorAll('.role-items-container').forEach(c => c.innerHTML = '');
+            categorizedRoles.forEach(role => {
+                const container = document.querySelector(`.role-group[data-category="${role.category}"] .role-items-container`);
+                if (!container) return;
+
+                let subtitleHtml = role.style === 'fresher-badge' ? 
+                    `<span class="fresher-badge">${role.subtitle}</span>` : 
+                    `<p class="role-subtitle-text">${role.subtitle}</p>`;
+                
+                let deptMap = { 'sales': 'SALES', 'service': 'SERVICE', 'spare': 'SPARE' };
+                const dept = deptMap[role.category] || 'SALES';
+
+                const div = document.createElement('div');
+                div.className = 'role-item';
+                div.dataset.roleId = role.id;
+                div.innerHTML = `
+                    <div class="admin-role-controls">
+                        <button class="admin-role-btn btn-edit-card" title="Edit Role" onclick="initiateRoleEdit('${role.id}')"><i class="fas fa-edit"></i></button>
+                        <button class="admin-role-btn btn-del-card" title="Delete Role" onclick="deleteRole('${role.id}')"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="role-info">
+                        <span class="role-title">${role.title}</span>
+                        ${subtitleHtml}
+                    </div>
+                    <button class="btn-apply-small" onclick="openApplyModal('${dept}', '${role.title}')">
+                        <i class="fas fa-paper-plane"></i> Apply
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        let currentEditRoleId = null;
+
+        window.initiateRoleEdit = function(id) {
+            currentEditRoleId = id;
+            const role = categorizedRoles.find(r => r.id === id);
+            if(!role) return;
+
+            document.getElementById('roleCategory').value = role.category;
+            document.getElementById('roleTitleInput').value = role.title;
+            document.getElementById('roleSubtitleInput').value = role.subtitle;
+            document.getElementById('roleBadgeStyle').value = role.style;
+
+            document.getElementById('roleFormTitle').textContent = "Edit Categorized Role";
+            document.getElementById('roleSubmitBtn').innerHTML = `<i class="fas fa-save"></i> Update Role`;
+            document.getElementById('cancelRoleEditBtn').style.display = "inline-flex";
+            
+            document.getElementById('dynamicRoleForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        window.deleteRole = function(id) {
+            if (confirm("Are you sure you want to delete this specific role?")) {
+                categorizedRoles = categorizedRoles.filter(r => r.id !== id);
+                saveRoles();
+                showToast("Role Successfully Deleted", "var(--accent-red)", "fa-trash");
+                if(currentEditRoleId === id) cancelRoleEditMode();
+            }
+        }
+
+        function cancelRoleEditMode() {
+            currentEditRoleId = null;
+            document.getElementById('dynamicRoleForm').reset();
+            document.getElementById('roleFormTitle').textContent = "Manage Categorized Roles";
+            document.getElementById('roleSubmitBtn').innerHTML = `<i class="fas fa-plus-circle"></i> Add Role`;
+            document.getElementById('cancelRoleEditBtn').style.display = "none";
+        }
+        document.getElementById('cancelRoleEditBtn').addEventListener('click', cancelRoleEditMode);
+
+        document.getElementById('dynamicRoleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const category = document.getElementById('roleCategory').value;
+            const title = document.getElementById('roleTitleInput').value;
+            const subtitle = document.getElementById('roleSubtitleInput').value;
+            const style = document.getElementById('roleBadgeStyle').value;
+            
+            if (currentEditRoleId) {
+                const roleIndex = categorizedRoles.findIndex(r => r.id === currentEditRoleId);
+                if(roleIndex > -1) {
+                    categorizedRoles[roleIndex] = { id: currentEditRoleId, category, title, subtitle, style };
+                }
+                showToast("Categorized Role Updated!", "var(--success)", "fa-check");
+            } else {
+                const newId = 'role_' + Date.now();
+                categorizedRoles.push({ id: newId, category, title, subtitle, style });
+                showToast("New Role Added!", "var(--success)", "fa-plus");
+            }
+            saveRoles();
+            cancelRoleEditMode();
+        });
+
+        // Add renderRoles to DOMContentLoaded
+        window.addEventListener('DOMContentLoaded', () => {
+            renderRoles();
+            attachLightboxListeners();
+        });
+
         window.openApplyModal = function(dept = 'SALES', jobTitle = 'General Application', jobId = '') {
             const modal = document.getElementById('applyModal');
             if (!modal) return;
@@ -1868,24 +1679,6 @@
             }
         };
 
-        window.openStatusModal = function() {
-            const modal = document.getElementById('statusModal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                document.getElementById('statusResultBox').style.display = 'none';
-            }
-        };
-
-        window.closeStatusModal = function() {
-            const modal = document.getElementById('statusModal');
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        };
-
-        // Handle Candidate Application Form Submission
         document.getElementById('candidateApplyForm')?.addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('candSubmitBtn');
@@ -1902,7 +1695,6 @@
                 const exp = document.getElementById('candExperience').value;
                 const dept = document.getElementById('candDept').value;
                 const company = document.getElementById('candCompany').value;
-                const jobTitle = document.getElementById('applyModalTitle')?.textContent?.replace('Apply for ', '') || dept;
                 const resumeFileInput = document.getElementById('candResumeFile');
 
                 const candidateData = {
@@ -1915,19 +1707,13 @@
                     experience: exp,
                     department: dept,
                     company: company,
-                    jobTitle: jobTitle,
                     resumeFile: resumeFileInput.files.length > 0 ? resumeFileInput.files[0] : null
                 };
 
                 if (window.RecruitmentAPI) {
-                    // 1. Save to Firebase HR Database
                     const res = await window.RecruitmentAPI.applyForJob(candidateData);
-
-                    // 2. Sync to Google Sheets (runs in background, non-blocking)
-                    sendToGoogleSheets(candidateData).catch(() => {});
-
                     showToast("Application Submitted Successfully!", "var(--success)", "fa-check-circle");
-                    alert("Thank you " + name + "!\n\nYour application has been submitted to Sarathy Group HR.\nReference ID: " + res.candidateId + "\n\nWe will contact you soon!");
+                    alert("Thank you! Your application has been submitted to Sarathy Group HR.\n\nReference ID: " + res.candidateId);
                     closeApplyModal();
                     document.getElementById('candidateApplyForm').reset();
                 } else {
@@ -1939,45 +1725,6 @@
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> Submit Application`;
-            }
-        });
-
-        // Handle Status Search Form Submission
-        document.getElementById('statusSearchForm')?.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const searchBtn = document.getElementById('statusSearchBtn');
-            const resultBox = document.getElementById('statusResultBox');
-            searchBtn.disabled = true;
-            searchBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Searching...`;
-
-            try {
-                const phone = document.getElementById('statusPhoneInput').value;
-                if (window.RecruitmentAPI) {
-                    const statusList = await window.RecruitmentAPI.getApplicationStatus(phone);
-                    resultBox.style.display = 'block';
-                    if (statusList && statusList.length > 0) {
-                        const latest = statusList[statusList.length - 1];
-                        document.getElementById('statusCandName').textContent = latest.name;
-                        document.getElementById('statusJobTitle').textContent = `Applied Position: ${latest.appliedJobTitle} (${latest.company})`;
-                        document.getElementById('statusBadgeEl').textContent = latest.statusDisplay;
-                        
-                        let details = `<strong>Applied Date:</strong> ${latest.createdDate || 'Recently'}`;
-                        if (latest.interviewDate) {
-                            details += `<br><strong style="color:var(--primary);">Interview Date:</strong> ${latest.interviewDate}`;
-                        }
-                        document.getElementById('statusDetailsEl').innerHTML = details;
-                    } else {
-                        document.getElementById('statusCandName').textContent = "No Record Found";
-                        document.getElementById('statusJobTitle').textContent = "No applications found for this mobile number.";
-                        document.getElementById('statusBadgeEl').textContent = "Not Found";
-                        document.getElementById('statusDetailsEl').innerHTML = "Please verify your mobile number or click Apply Now to submit your application.";
-                    }
-                }
-            } catch (err) {
-                console.error("Status search error:", err);
-            } finally {
-                searchBtn.disabled = false;
-                searchBtn.innerHTML = `<i class="fas fa-search"></i> Search Status`;
             }
         });
 
