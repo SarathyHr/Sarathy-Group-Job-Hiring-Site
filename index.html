@@ -250,10 +250,12 @@
         .banner-dot.active { background: var(--accent-yellow); transform: scale(1.4); box-shadow: 0 0 10px rgba(255, 209, 0, 0.8); }
 
         .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; position: relative; }
-        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header { text-align: center; margin-bottom: 60px; position: relative; }
         .section-header h2 { font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 800; color: var(--primary); margin-bottom: 20px; position: relative; display: inline-block; letter-spacing: -1px;}
         .section-header h2::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 6px; background: var(--accent-yellow); border-radius: 3px; }
         .section-header p { color: var(--text-light); font-size: 1.15rem; max-width: 600px; margin: 25px auto 0; font-weight: 500;}
+        .section-header .admin-access-btn { position: absolute; top: 0; right: 0; background: rgba(255,255,255,0.95); color: var(--primary); border: 1px solid rgba(11,65,205,0.12); border-radius: 999px; padding: 10px 18px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: var(--transition); box-shadow: var(--shadow-sm); }
+        .section-header .admin-access-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); }
 
         /* Video Section */
         .video-container { max-width: 900px; margin: 0 auto; position: relative; }
@@ -711,7 +713,7 @@
     </section>
 
     <section class="section reveal" id="vacancies">
-        <div class="section-header"><h2>Current Openings</h2><p>Explore opportunities matching your profile</p></div>
+        <div class="section-header"><h2>Current Openings</h2><button class="admin-access-btn" onclick="showAdminLogin()">Admin Login</button><p>Explore opportunities matching your profile</p></div>
         
         <div class="search-container reveal">
             <i class="fas fa-search"></i>
@@ -777,13 +779,14 @@ Service+Team'"></div>
                     <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
                     <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
-                    <div class="job-tags">DIPLOMA / BTECH / ITI</div>
-                    <div class="hiring-actions">
+                    <div class="job-tags">Degree / Diploma • Freshers / Experienced</div>
+                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <button onclick="openApplyModal('SERVICE', 'Service Advisor & Technician', 'sample-1')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
                         <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                     </div>
                 </div>
             </div>
-
+            
             <div class="hiring-card" data-job-id="sample-2">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
@@ -795,8 +798,9 @@ Sales'"></div>
                     <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
                     <h3 class="job-title">SALES EXECUTIVE</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
-                    <div class="job-tags">SERVICE_ADVISOR SALES_EXECUTIVE</div>
-                    <div class="hiring-actions">
+                    <div class="job-tags">Experienced Sales • Immediate Hiring</div>
+                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <button onclick="openApplyModal('SALES', 'Sales Executive', 'sample-2')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
                         <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                     </div>
                 </div>
@@ -813,8 +817,9 @@ Trainees'"></div>
                     <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
                     <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
-                    <div class="job-tags">SPARE_EXECUTIVE TRAINEES</div>
-                    <div class="hiring-actions">
+                    <div class="job-tags">Spare & Office • Freshers / Experienced</div>
+                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <button onclick="openApplyModal('SPARE', 'Spare Assistant & Trainees', 'sample-3')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
                         <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                     </div>
                 </div>
@@ -1088,6 +1093,7 @@ Trainees'"></div>
                     if (grid) {
                         grid.innerHTML = apiJobs.map(j => {
                             const imgSrc = j.imageUrl || 'https://placehold.co/800x1200/0B41CD/FFF?text=' + encodeURIComponent(j.title);
+                            const safeTags = (j.tags && j.tags.trim()) ? j.tags : [j.qualification, j.experience].filter(Boolean).join(' • ');
                             return `
                             <div class="hiring-card" data-job-id="${j.id}">
                                 <div class="admin-card-controls">
@@ -1099,7 +1105,7 @@ Trainees'"></div>
                                     <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${j.createdDate}</span></div>
                                     <h3 class="job-title">${j.title}</h3>
                                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
-                                    <div class="job-tags">${j.tags || (j.qualification + ' • ' + j.experience)}</div>
+                                    <div class="job-tags">${safeTags}</div>
                                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
                                         <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
                                         <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
