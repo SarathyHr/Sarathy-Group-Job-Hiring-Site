@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -316,8 +315,12 @@
         .job-tags { font-size: 0.8rem; color: var(--accent-red); font-weight: 800; margin-bottom: 25px; display: inline-block; padding: 4px 0; border-bottom: 2px dashed rgba(255, 87, 87, 0.3); }
         .hiring-actions { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: auto; }
         .btn-card { padding: 14px; border-radius: 50px; text-align: center; font-weight: 700; text-decoration: none; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer;}
+        .btn-card-primary { background: var(--primary); color: var(--white); width: 100%; box-shadow: 0 14px 30px rgba(11, 65, 205, 0.18); }
+        .btn-card-primary:hover { background: var(--primary-light); transform: translateY(-3px); box-shadow: 0 18px 35px rgba(11, 65, 205, 0.24); }
         .btn-card-secondary { background: var(--bg-light); color: var(--primary); border: 2px solid transparent; width: 100%; }
         .btn-card-secondary:hover { background: white; border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(11, 65, 205, 0.1); }
+
+        .role-actions { margin-top: 28px; display: grid; gap: 15px; }
 
         .admin-card-controls { position: absolute; top: 15px; right: 15px; display: none; gap: 10px; z-index: 10; }
         .admin-mode .admin-card-controls { display: flex; }
@@ -838,16 +841,19 @@ Trainees'"></div>
                 <h4><i class="fas fa-shopping-cart"></i> Sales Roles</h4>
                 <div class="role-item"><span class="role-title">Sales Executive / RM</span><span class="fresher-badge">Freshers & Experienced</span></div>
                 <div class="role-item"><span class="role-title">Team Leaders</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">Automotive Experienced preferred</p></div>
+                <div class="role-actions"><button onclick="openApplyModal('SALES', 'Sales Roles')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button></div>
             </div>
             <div class="role-group" data-category="service">
                 <h4><i class="fas fa-tools"></i> Service Roles</h4>
                 <div class="role-item"><span class="role-title">Service Advisors / Techs</span><span class="fresher-badge">Freshers & Experienced</span></div>
                 <div class="role-item"><span class="role-title">Expert Technicians</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">ITI / Diploma holders</p></div>
+                <div class="role-actions"><button onclick="openApplyModal('SERVICE', 'Service Roles')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button></div>
             </div>
             <div class="role-group" data-category="spare">
                 <h4><i class="fas fa-headset"></i> Spare & Office</h4>
                 <div class="role-item"><span class="role-title">Spare Executive / Trainees</span><span class="fresher-badge">Freshers & Experienced</span></div>
                 <div class="role-item"><span class="role-title">Accounts Executive</span><p style="font-size: 0.9rem; color: var(--text-light); margin-top:5px; font-weight: 600;">B.Com / M.Com (Tally Knowledge)</p></div>
+                <div class="role-actions"><button onclick="openApplyModal('SPARE', 'Spare & Office Roles')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button></div>
             </div>
         </div>
     </section>
@@ -1095,7 +1101,7 @@ Trainees'"></div>
                                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
                                     <div class="job-tags">${j.tags || (j.qualification + ' • ' + j.experience)}</div>
                                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply Now</button>
+                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary"><i class="fas fa-paper-plane"></i> Apply Now</button>
                                         <a href="https://share.google/kGTsewVFO2WBsMc2K" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                                     </div>
                                 </div>
