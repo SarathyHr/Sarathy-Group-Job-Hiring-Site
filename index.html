@@ -295,23 +295,39 @@
 
         .venue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
         .hiring-card { background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(0,0,0,0.03); }
+        .hiring-card.closed-job { opacity: 0.85; filter: grayscale(20%); border-color: #cbd5e1; }
         .hiring-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
         
-        .hiring-img-box { width: 100%; height: 320px; overflow: hidden; background: var(--bg-light); cursor: pointer; }
+        .hiring-img-box { width: 100%; height: 320px; overflow: hidden; background: var(--bg-light); cursor: pointer; position: relative;}
         .hiring-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-        .hiring-card:hover .hiring-img-box img { transform: scale(1.08); }
+        .hiring-card:not(.closed-job):hover .hiring-img-box img { transform: scale(1.08); }
         
+        .closed-overlay { position: absolute; top: 20px; left: -30px; background: var(--accent-red); color: white; font-weight: 800; padding: 5px 40px; transform: rotate(-45deg); z-index: 5; box-shadow: 0 4px 10px rgba(0,0,0,0.2); letter-spacing: 2px;}
+
         .hiring-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
         .hiring-meta-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .company-badge { background: rgba(11, 65, 205, 0.1); color: var(--primary); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; }
         .post-date { font-size: 0.85rem; color: var(--text-light); font-weight: 700; }
         .job-title { font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 18px; line-height: 1.3; }
-        .hiring-meta-mid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .hiring-meta-mid span { font-size: 0.95rem; color: var(--text-light); display: flex; align-items: center; gap: 12px; font-weight: 600;}
-        .hiring-meta-mid i { color: var(--accent-cyan); width: 20px; text-align: center; font-size: 1.1rem;}
-        .job-tags { font-size: 0.8rem; color: var(--accent-red); font-weight: 800; margin-bottom: 25px; display: inline-block; padding: 4px 0; border-bottom: 2px dashed rgba(255, 87, 87, 0.3); }
+        .hiring-meta-mid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+        .hiring-meta-mid span { font-size: 0.95rem; color: var(--text-light); display: flex; align-items: flex-start; gap: 12px; font-weight: 600;}
+        .hiring-meta-mid i { color: var(--accent-cyan); width: 20px; text-align: center; font-size: 1.1rem; margin-top: 3px;}
+        
+        /* THIS IS THE EXACT UI REPLICATION FROM THE IMAGE for Qualification and Experience */
+        .job-tags { 
+            font-size: 0.85rem; 
+            color: var(--accent-red); 
+            font-weight: 800; 
+            margin-bottom: 25px; 
+            display: inline-block; 
+            padding: 6px 0; 
+            border-bottom: 2px dashed rgba(255, 87, 87, 0.3);
+            letter-spacing: 0.3px;
+        }
+        
         .hiring-actions { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: auto; }
         .btn-card { padding: 14px; border-radius: 50px; text-align: center; font-weight: 700; text-decoration: none; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer;}
+        .btn-card:disabled { opacity: 0.5; cursor: not-allowed; }
         .btn-card-secondary { background: var(--bg-light); color: var(--primary); border: 2px solid transparent; width: 100%; }
         .btn-card-secondary:hover { background: white; border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(11, 65, 205, 0.1); }
 
@@ -323,26 +339,32 @@
         .admin-card-btn:hover { transform: scale(1.15); }
 
         #adminSection { display: none; margin-bottom: 60px; }
-        .admin-upload-tool { background: white; border-radius: 30px; padding: 40px; box-shadow: var(--shadow-lg); border: 3px solid var(--accent-cyan); position: relative; }
+        .admin-upload-tool { background: white; border-radius: 30px; padding: 40px; box-shadow: var(--shadow-lg); border: 3px solid var(--accent-cyan); position: relative; overflow: hidden;}
         .admin-tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 20px;}
         .admin-header-title { display: flex; align-items: center; gap: 18px; }
         .admin-header-title i { font-size: 2.2rem; color: var(--primary); background: rgba(11, 65, 205, 0.1); padding: 15px; border-radius: 20px; }
         .admin-actions-bar { display: flex; gap: 12px; }
+        
+        .admin-section-label { grid-column: 1 / -1; font-size: 1.2rem; font-weight: 800; color: var(--primary); border-bottom: 2px solid var(--bg-light); padding-bottom: 8px; margin-top: 10px;}
+        
         .btn-admin-action { padding: 12px 24px; border-radius: 50px; font-weight: 700; cursor: pointer; border: none; display: flex; align-items: center; gap: 10px; transition: var(--transition); font-size: 1rem; }
         .btn-save-jobs { background: var(--success); color: white; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
         .btn-save-jobs:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,211,102,0.4); }
         .btn-exit-admin { background: #64748b; color: white; }
         .btn-exit-admin:hover { background: #475569; transform: translateY(-3px); }
-        .admin-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .admin-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;}
         .form-group { display: flex; flex-direction: column; gap: 10px; }
+        .form-group.full-width { grid-column: 1 / -1; }
         .form-group label { font-size: 0.95rem; font-weight: 800; color: var(--primary-dark); }
-        .form-control { padding: 16px 20px; border: 2px solid #e2e8f0; border-radius: 16px; font-size: 1rem; transition: all 0.3s; background: var(--bg-light); font-family: inherit;}
+        .form-control { padding: 16px 20px; border: 2px solid #e2e8f0; border-radius: 16px; font-size: 1rem; transition: all 0.3s; background: var(--bg-light); font-family: inherit; width: 100%;}
         .form-control:focus { outline: none; border-color: var(--accent-cyan); background: white; box-shadow: 0 0 0 4px rgba(35, 196, 248, 0.15); }
+        
         .file-upload-wrapper { position: relative; width: 100%; height: 56px; }
         .file-upload-wrapper input[type="file"] { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
         .btn-upload-file { width: 100%; height: 100%; background: rgba(11, 65, 205, 0.05); border: 2px dashed var(--primary); color: var(--primary); border-radius: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px; transition: all 0.3s; pointer-events: none; font-size: 1rem;}
         .file-upload-wrapper:hover .btn-upload-file { background: rgba(11, 65, 205, 0.1); border-style: solid; }
-        .form-btn-group { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; }
+        
+        .form-btn-group { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 15px; margin-top: 25px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 25px;}
         .btn-generate { background: var(--primary); color: white; border: none; padding: 16px 35px; border-radius: 50px; font-weight: 800; font-size: 1.05rem; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 25px rgba(11, 65, 205, 0.3);}
         .btn-generate:hover { background: var(--primary-light); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(11, 65, 205, 0.4);}
         .btn-cancel-edit { background: #f1f5f9; color: #475569; border: 2px solid #cbd5e1; padding: 16px 30px; border-radius: 50px; font-weight: 800; font-size: 1.05rem; cursor: pointer; transition: var(--transition); display: none; align-items: center; gap: 10px;}
@@ -739,14 +761,14 @@
         </div>
 
         <div id="adminSection">
-            <!-- Job Posters Tool -->
+            <!-- Job Posters Tool V2.0 -->
             <div class="admin-upload-tool reveal">
                 <div class="admin-tool-header">
                     <div class="admin-header-title">
                         <i class="fas fa-cogs"></i>
                         <div>
-                            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-dark);" id="formTitle">Manage Job Posters</h3>
-                            <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 4px; font-weight: 500;" id="formSubtitle">Add a new job card or edit an existing one (Saved to Live Database).</p>
+                            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-dark);" id="formTitle">Manage Job Posters v2.0</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-light); margin-top: 4px; font-weight: 500;" id="formSubtitle">Advanced editor: Explicit fields for Qualification & Experience to match custom styling.</p>
                         </div>
                     </div>
                     <div class="admin-actions-bar">
@@ -756,18 +778,37 @@
                 
                 <form id="dynamicJobForm">
                     <div class="admin-form-grid">
-                        <div class="form-group">
-                            <label>Poster Image</label>
+                        
+                        <div class="admin-section-label"><i class="fas fa-info-circle"></i> Basic Details</div>
+                        
+                        <div class="form-group"><label>Company / Branch / Dealership</label><input type="text" id="jobCompany" class="form-control" placeholder="e.g. MARUTI SUZUKI ARENA" required></div>
+                        <div class="form-group"><label>Job Title</label><input type="text" id="jobTitle" class="form-control" placeholder="e.g. SALES EXECUTIVE" required></div>
+                        <div class="form-group"><label>Department</label><input type="text" id="jobDept" class="form-control" placeholder="e.g. SALES & SERVICE" required></div>
+                        <div class="form-group"><label>Location List (Comma separated)</label><input type="text" id="jobLoc" class="form-control" placeholder="e.g. CHENGANNUR, KOLLAM, KUNDARA" required></div>
+                        
+                        <div class="admin-section-label"><i class="fas fa-graduation-cap"></i> Candidate Requirements</div>
+                        
+                        <div class="form-group"><label>Required Qualification(s)</label><input type="text" id="jobQual" class="form-control" placeholder="e.g. Degree / Diploma" required></div>
+                        <div class="form-group"><label>Experience Level</label><input type="text" id="jobExp" class="form-control" placeholder="e.g. Freshers / Experienced" required></div>
+                        
+                        <div class="admin-section-label"><i class="fas fa-image"></i> Poster & Advanced Settings</div>
+                        
+                        <div class="form-group full-width">
+                            <label>Poster Image (Optional)</label>
                             <div class="file-upload-wrapper">
                                 <button type="button" class="btn-upload-file"><i class="fas fa-cloud-upload-alt"></i> <span id="fileName">Select an image file...</span></button>
                                 <input type="file" id="jobImage" accept="image/*">
                             </div>
                         </div>
-                        <div class="form-group"><label>Company / Branch</label><input type="text" id="jobCompany" class="form-control" placeholder="e.g. SARATHY ELECTRIC BIKES" required></div>
-                        <div class="form-group"><label>Job Title</label><input type="text" id="jobTitle" class="form-control" placeholder="e.g. SALES EXECUTIVE" required></div>
-                        <div class="form-group"><label>Department</label><input type="text" id="jobDept" class="form-control" placeholder="e.g. SALES & SERVICE" required></div>
-                        <div class="form-group"><label>Location</label><input type="text" id="jobLoc" class="form-control" placeholder="e.g. CHENGANNUR" required></div>
-                        <div class="form-group"><label>Keywords / Tags</label><input type="text" id="jobTags" class="form-control" placeholder="e.g. SERVICE_ADVISOR SALES" required></div>
+                        
+                        <div class="form-group"><label>Google Maps Location Link</label><input type="url" id="jobMap" class="form-control" placeholder="e.g. https://share.google/5hroGRiugavuW76tC"></div>
+                        <div class="form-group">
+                            <label>Job Posting Status</label>
+                            <select id="jobStatus" class="form-control">
+                                <option value="ACTIVE">Active (Accepting Applications)</option>
+                                <option value="CLOSED">Closed (Show as Closed Overlay)</option>
+                            </select>
+                        </div>
                         
                         <div class="form-btn-group">
                             <button type="button" id="cancelEditBtn" class="btn-cancel-edit"><i class="fas fa-times"></i> Cancel Edit</button>
@@ -808,7 +849,7 @@
                                 <option value="normal-text">Normal Grey Text</option>
                             </select>
                         </div>
-                        <div class="form-btn-group">
+                        <div class="form-btn-group" style="grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; border:none; padding:0;">
                             <button type="button" id="cancelRoleEditBtn" class="btn-cancel-edit"><i class="fas fa-times"></i> Cancel Edit</button>
                             <button type="submit" id="roleSubmitBtn" class="btn-generate" style="background: var(--accent-yellow); color: var(--text-dark);"><i class="fas fa-plus-circle"></i> Add Role</button>
                         </div>
@@ -818,8 +859,8 @@
         </div>
 
         <div class="venue-grid" id="jobGrid">
-            <!-- Job cards dynamically synced from Database -->
-            <div class="hiring-card" data-job-id="sample-1">
+            <!-- Job cards dynamically synced from Database, pre-rendered with Version 2.0 structure -->
+            <div class="hiring-card" data-job-id="sample-1" data-status="ACTIVE">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
                     <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
@@ -829,7 +870,10 @@
                     <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
                     <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
-                    <div class="job-tags">DIPLOMA / BTECH / ITI</div>
+                    
+                    <!-- NEW EXPLICIT QUALIFICATION UI -->
+                    <div class="job-tags"><span class="qual-text">Diploma / BTech</span> &bull; <span class="exp-text">Freshers / Experienced</span></div>
+                    
                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
                         <button onclick="openApplyModal('SERVICE', 'SERVICE ADVISOR & TECHNICIAN')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
                         <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
@@ -837,7 +881,7 @@
                 </div>
             </div>
 
-            <div class="hiring-card" data-job-id="sample-2">
+            <div class="hiring-card" data-job-id="sample-2" data-status="ACTIVE">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
                     <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
@@ -847,7 +891,10 @@
                     <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
                     <h3 class="job-title">SALES EXECUTIVE</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
-                    <div class="job-tags">SERVICE_ADVISOR SALES_EXECUTIVE</div>
+                    
+                    <!-- EXACT MATCH TO THE USER'S ATTACHED IMAGE HIGHLIGHT -->
+                    <div class="job-tags"><span class="qual-text">Degree / Diploma</span> &bull; <span class="exp-text">Freshers / Experienced</span></div>
+                    
                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
                         <button onclick="openApplyModal('SALES', 'SALES EXECUTIVE')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
                         <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
@@ -855,19 +902,24 @@
                 </div>
             </div>
             
-            <div class="hiring-card" data-job-id="sample-3">
+            <div class="hiring-card closed-job" data-job-id="sample-3" data-status="CLOSED">
                 <div class="admin-card-controls">
                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
                     <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
                 </div>
-                <div class="hiring-img-box"><img src="poster3.jpg" alt="Trainee Hiring" onerror="this.src='https://placehold.co/800x1200/23C4F8/000?text=WE+ARE+HIRING\nTrainees'"></div>
+                <div class="hiring-img-box">
+                    <div class="closed-overlay">CLOSED</div>
+                    <img src="poster3.jpg" alt="Trainee Hiring" onerror="this.src='https://placehold.co/800x1200/23C4F8/000?text=WE+ARE+HIRING\nTrainees'">
+                </div>
                 <div class="hiring-content">
                     <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
                     <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
-                    <div class="job-tags">SPARE_EXECUTIVE TRAINEES</div>
+                    
+                    <div class="job-tags"><span class="qual-text">ITI / HSE</span> &bull; <span class="exp-text">Freshers Only</span></div>
+                    
                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                        <button onclick="openApplyModal('SPARE', 'SPARE ASSISTANT & TRAINEES')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
+                        <button onclick="openApplyModal('SPARE', 'SPARE ASSISTANT & TRAINEES')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" disabled><i class="fas fa-ban"></i> Closed</button>
                         <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                     </div>
                 </div>
@@ -892,23 +944,15 @@
         <div class="roles-grid">
             <div class="role-group" data-category="sales">
                 <h4><i class="fas fa-shopping-cart"></i> Sales Roles</h4>
-                <div class="role-items-container">
-                    <!-- Populated dynamically by JS -->
-                </div>
+                <div class="role-items-container"></div>
             </div>
-            
             <div class="role-group" data-category="service">
                 <h4><i class="fas fa-tools"></i> Service Roles</h4>
-                <div class="role-items-container">
-                    <!-- Populated dynamically by JS -->
-                </div>
+                <div class="role-items-container"></div>
             </div>
-            
             <div class="role-group" data-category="spare">
                 <h4><i class="fas fa-headset"></i> Spare & Office</h4>
-                <div class="role-items-container">
-                    <!-- Populated dynamically by JS -->
-                </div>
+                <div class="role-items-container"></div>
             </div>
         </div>
     </section>
@@ -983,7 +1027,6 @@
         <img class="modal-content" id="modalImg" src="">
     </div>
 
-    
     <!-- Candidate Application Modal -->
     <div class="cand-modal" id="applyModal">
         <div class="cand-modal-box">
@@ -1111,21 +1154,43 @@
                     if (grid) {
                         grid.innerHTML = apiJobs.map(j => {
                             const imgSrc = j.imageUrl || 'https://placehold.co/800x1200/0B41CD/FFF?text=' + encodeURIComponent(j.title);
+                            
+                            // Parse specific fields or fallback to parsing the generic 'tags' string
+                            let qual = j.qualification || "Degree / Diploma";
+                            let exp = j.experience || "Freshers / Experienced";
+                            if (!j.qualification && j.tags && j.tags.includes('•')) {
+                                qual = j.tags.split('•')[0].trim();
+                                exp = j.tags.split('•')[1].trim();
+                            } else if (j.tags && !j.qualification) {
+                                qual = j.tags; 
+                            }
+                            
+                            const mapUrl = j.mapLink || "https://share.google/5hroGRiugavuW76tC";
+                            const isClosed = j.status === 'CLOSED';
+                            
                             return `
-                            <div class="hiring-card" data-job-id="${j.id}">
+                            <div class="hiring-card ${isClosed ? 'closed-job' : ''}" data-job-id="${j.id}" data-status="${j.status || 'ACTIVE'}">
                                 <div class="admin-card-controls">
                                     <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
                                     <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
                                 </div>
-                                <div class="hiring-img-box"><img src="${imgSrc}" alt="${j.title} Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=${encodeURIComponent(j.title)}'"></div>
+                                <div class="hiring-img-box">
+                                    ${isClosed ? '<div class="closed-overlay">CLOSED</div>' : ''}
+                                    <img src="${imgSrc}" alt="${j.title} Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=${encodeURIComponent(j.title)}'">
+                                </div>
                                 <div class="hiring-content">
                                     <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${j.createdDate}</span></div>
                                     <h3 class="job-title">${j.title}</h3>
                                     <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
-                                    <div class="job-tags">${j.tags || (j.qualification + ' • ' + j.experience)}</div>
+                                    
+                                    <!-- UPDATED: Specific styling mapping exactly to the reference image -->
+                                    <div class="job-tags"><span class="qual-text">${qual}</span> &bull; <span class="exp-text">${exp}</span></div>
+                                    
                                     <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
-                                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" ${isClosed ? 'disabled' : ''}>
+                                            ${isClosed ? '<i class="fas fa-ban"></i> Closed' : '<i class="fas fa-paper-plane"></i> Apply'}
+                                        </button>
+                                        <a href="${mapUrl}" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
                                     </div>
                                 </div>
                             </div>
@@ -1435,11 +1500,19 @@
             formSubmitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Saving to Database...`;
 
             try {
+                // Parse Explicit specific inputs (v2.0)
                 const company = document.getElementById('jobCompany').value;
                 const title = document.getElementById('jobTitle').value;
                 const dept = document.getElementById('jobDept').value;
                 const loc = document.getElementById('jobLoc').value;
-                const tags = document.getElementById('jobTags').value;
+                
+                const qual = document.getElementById('jobQual').value;
+                const exp = document.getElementById('jobExp').value;
+                const mapLink = document.getElementById('jobMap').value;
+                const status = document.getElementById('jobStatus').value;
+                
+                // Fallback tag string for legacy support
+                const tagsStr = `${qual} • ${exp}`; 
 
                 let existingImageUrl = '';
                 let jobId = null;
@@ -1466,7 +1539,11 @@
                     company: company,
                     department: dept,
                     location: loc,
-                    tags: tags,
+                    tags: tagsStr, // Provided as fallback
+                    qualification: qual,  // Explicit specific payload
+                    experience: exp,      // Explicit specific payload
+                    mapLink: mapLink,     // Explicit specific payload
+                    status: status,       // Active/Closed toggle
                     imageUrl: base64Image
                 };
 
@@ -1487,6 +1564,7 @@
             }
         });
 
+        // Setup Edit form mapping - Advanced specific mapping to components
         window.initiateEdit = function(btnElement) {
             currentEditCard = btnElement.closest('.hiring-card');
             
@@ -1495,10 +1573,22 @@
             const metaSpans = currentEditCard.querySelectorAll('.hiring-meta-mid span');
             document.getElementById('jobDept').value = metaSpans[0].textContent.trim();
             document.getElementById('jobLoc').value = metaSpans[1].textContent.trim();
-            document.getElementById('jobTags').value = currentEditCard.querySelector('.job-tags').textContent.trim();
+            
+            // Map the specific new elements explicitly
+            const qualNode = currentEditCard.querySelector('.qual-text');
+            const expNode = currentEditCard.querySelector('.exp-text');
+            document.getElementById('jobQual').value = qualNode ? qualNode.textContent.trim() : 'Degree / Diploma';
+            document.getElementById('jobExp').value = expNode ? expNode.textContent.trim() : 'Freshers / Experienced';
+            
+            // Extract attributes logic 
+            const locationAnchor = currentEditCard.querySelector('a.btn-card-secondary');
+            document.getElementById('jobMap').value = locationAnchor ? locationAnchor.href : 'https://share.google/5hroGRiugavuW76tC';
+            
+            const cardStatus = currentEditCard.dataset.status === 'CLOSED' ? 'CLOSED' : 'ACTIVE';
+            document.getElementById('jobStatus').value = cardStatus;
             
             fileNameDisplay.textContent = "Keep existing image...";
-            document.getElementById('formTitle').textContent = "Edit Job Poster";
+            document.getElementById('formTitle').textContent = "Edit Job Poster v2.0";
             document.getElementById('formSubtitle').textContent = "Update details below and save to live database.";
             document.getElementById('formSubmitBtn').innerHTML = `<i class="fas fa-save"></i> Update Job Card`;
             document.getElementById('cancelEditBtn').style.display = "inline-flex";
@@ -1511,14 +1601,14 @@
             const jobId = card.dataset.jobId;
             if (confirm("Are you sure you want to delete this job poster from live database?")) {
                 try {
-                    if (window.RecruitmentAPI && jobId) {
+                    if (window.RecruitmentAPI && jobId && !jobId.includes("sample")) {
                         await window.RecruitmentAPI.deleteJob(jobId);
                     }
                     card.style.opacity = '0';
                     card.style.transform = 'scale(0.8)';
                     setTimeout(() => {
                         card.remove();
-                        showToast("Job Poster Deleted from Database", "var(--accent-red)", "fa-trash");
+                        showToast("Job Poster Deleted", "var(--accent-red)", "fa-trash");
                         if (currentEditCard === card) cancelEditMode(); 
                     }, 300);
                 } catch(e) {
@@ -1531,8 +1621,8 @@
             currentEditCard = null;
             jobForm.reset();
             fileNameDisplay.textContent = "Select an image file...";
-            document.getElementById('formTitle').textContent = "Manage Job Posters";
-            document.getElementById('formSubtitle').textContent = "Add a new job card or edit an existing one (Saved to Live Database).";
+            document.getElementById('formTitle').textContent = "Manage Job Posters v2.0";
+            document.getElementById('formSubtitle').textContent = "Advanced editor: Explicit fields for Qualification & Experience to match custom styling.";
             document.getElementById('formSubmitBtn').innerHTML = `<i class="fas fa-plus-circle"></i> Add Job Card`;
             document.getElementById('cancelEditBtn').style.display = "none";
         }
@@ -1645,7 +1735,6 @@
             cancelRoleEditMode();
         });
 
-        // Add renderRoles to DOMContentLoaded
         window.addEventListener('DOMContentLoaded', () => {
             renderRoles();
             attachLightboxListeners();
