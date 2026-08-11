@@ -294,9 +294,27 @@
         .card-item p { font-size: 1rem; color: var(--text-light); line-height: 1.5;}
 
         .venue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
-        .hiring-card { background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; position: relative; border: 1px solid rgba(0,0,0,0.03); }
-        .hiring-card.closed-job { opacity: 0.85; filter: grayscale(20%); border-color: #cbd5e1; }
-        .hiring-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        
+        .hiring-card { border-radius: 30px; display: flex; flex-direction: column; position: relative; perspective: 1500px; background: transparent; }
+        .hiring-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; display: flex; flex-direction: column; }
+        .hiring-card-inner.flipped { transform: rotateY(180deg); }
+        
+        .hiring-card-front, .hiring-card-back { width: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 30px; background: white; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: box-shadow 0.4s ease; }
+        .hiring-card-front { position: relative; overflow: hidden; height: 100%; }
+        .hiring-card-back { position: absolute; top: 0; left: 0; right: 0; bottom: 0; transform: rotateY(180deg); padding: 30px; overflow-y: auto; }
+        
+        /* Interactive 3D Hover */
+        .hiring-card:hover .hiring-card-inner:not(.flipped) { transform: translateY(-10px); }
+        .hiring-card:hover .hiring-card-inner.flipped { transform: translateY(-10px) rotateY(180deg); }
+        .hiring-card:hover .hiring-card-front, .hiring-card:hover .hiring-card-back { box-shadow: var(--shadow-lg); }
+        
+        .hiring-card.closed-job .hiring-card-front, .hiring-card.closed-job .hiring-card-back { opacity: 0.85; filter: grayscale(20%); border-color: #cbd5e1; }
+        
+        .flip-hint { text-align: center; color: var(--accent-cyan); font-size: 0.85rem; font-weight: 800; padding: 12px 0; border-top: 1px dashed rgba(0,0,0,0.08); margin-top: auto; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
+        .hiring-card-inner:hover .flip-hint { color: var(--primary); }
+        
+        .back-close-btn { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-light); z-index: 10; border: none; font-size: 1.1rem; transition: var(--transition); cursor: pointer;}
+        .back-close-btn:hover { background: var(--accent-red); color: white; transform: rotate(90deg); }
         
         .hiring-img-box { width: 100%; height: 320px; overflow: hidden; background: var(--bg-light); cursor: pointer; position: relative;}
         .hiring-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -788,8 +806,7 @@
                         
                         <div class="admin-section-label"><i class="fas fa-graduation-cap"></i> Candidate Requirements</div>
                         
-                        <div class="form-group"><label>Required Qualification(s)</label><input type="text" id="jobQual" class="form-control" placeholder="e.g. Degree / Diploma" required></div>
-                        <div class="form-group"><label>Experience Level</label><input type="text" id="jobExp" class="form-control" placeholder="e.g. Freshers / Experienced" required></div>
+                        <div class="form-group full-width"><label>Qualification & Experience (Red text on card)</label><input type="text" id="jobTags" class="form-control" placeholder="e.g. Degree / Diploma • Freshers or just Degree" required></div>
                         
                         <div class="admin-section-label"><i class="fas fa-image"></i> Poster & Advanced Settings</div>
                         
@@ -859,68 +876,166 @@
         </div>
 
         <div class="venue-grid" id="jobGrid">
-            <!-- Job cards dynamically synced from Database, pre-rendered with Version 2.0 structure -->
             <div class="hiring-card" data-job-id="sample-1" data-status="ACTIVE">
-                <div class="admin-card-controls">
-                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                </div>
-                <div class="hiring-img-box"><img src="image_cf4f7d.jpg" alt="Service Advisor Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=WE+ARE+HIRING\nService+Team'"></div>
-                <div class="hiring-content">
-                    <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
-                    <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
-                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
+                <div class="hiring-card-inner" onclick="this.classList.toggle('flipped')">
                     
-                    <!-- NEW EXPLICIT QUALIFICATION UI -->
-                    <div class="job-tags"><span class="qual-text">Diploma / BTech</span> &bull; <span class="exp-text">Freshers / Experienced</span></div>
+                    <!-- FRONT SIDE -->
+                    <div class="hiring-card-front">
+                        <div class="admin-card-controls">
+                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="event.stopPropagation(); initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="event.stopPropagation(); deleteCard(this)"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="hiring-img-box"><img src="image_cf4f7d.jpg" alt="Service Advisor Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=WE+ARE+HIRING\nService+Team'"></div>
+                        <div class="hiring-content">
+                            <div class="hiring-meta-top"><span class="company-badge">MARUTI SUZUKI ARENA</span><span class="post-date">25-07-2026</span></div>
+                            <h3 class="job-title">SERVICE ADVISOR & TECHNICIAN</h3>
+                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SERVICE</span><span><i class="fas fa-location-dot"></i> ANCHAL, PUNALUR</span></div>
+                            
+                            <!-- EXACT QUALIFICATION UI -->
+                            <div class="job-tags">Diploma / BTech &bull; Freshers / Experienced</div>
+                            
+                            <div class="flip-hint"><i class="fas fa-sync-alt"></i> Click for full details</div>
+                            
+                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                                <button onclick="event.stopPropagation(); openApplyModal('SERVICE', 'SERVICE ADVISOR & TECHNICIAN')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
+                                <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" onclick="event.stopPropagation()"><i class="fas fa-map-marker-alt"></i> Location</a>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                        <button onclick="openApplyModal('SERVICE', 'SERVICE ADVISOR & TECHNICIAN')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    <!-- BACK SIDE (DETAILED VIEW) -->
+                    <div class="hiring-card-back">
+                        <button class="back-close-btn" onclick="event.stopPropagation(); this.closest('.hiring-card-inner').classList.remove('flipped')" title="Close"><i class="fas fa-times"></i></button>
+                        <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 15px;">
+                            <span style="font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 5px;">MARUTI SUZUKI ARENA</span>
+                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.3;">SERVICE ADVISOR & TECHNICIAN</h3>
+                            
+                            <div style="background: var(--bg-light); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+                                <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
+                                    <i class="fas fa-graduation-cap" style="color: var(--accent-cyan); font-size: 1.3rem; margin-top: 2px;"></i>
+                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Candidate Requirements</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">Diploma / BTech &bull; Freshers / Experienced</span></div>
+                                </div>
+                                <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                    <i class="fas fa-map-marker-alt" style="color: var(--accent-red); font-size: 1.3rem; margin-top: 2px;"></i>
+                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Job Locations</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">ANCHAL, PUNALUR</span></div>
+                                </div>
+                            </div>
+                            
+                            <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; font-weight: 500;">
+                                Join our dynamic team at Sarathy Group! We offer extensive training, attractive incentive structures, and an excellent environment for rapid career growth.
+                            </p>
+                        </div>
+                        
+                        <button onclick="event.stopPropagation(); openApplyModal('SERVICE', 'SERVICE ADVISOR & TECHNICIAN')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; width: 100%; border-radius: 50px; font-size: 1.1rem; padding: 15px;">
+                            <i class="fas fa-paper-plane"></i> Apply Online Now
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="hiring-card" data-job-id="sample-2" data-status="ACTIVE">
-                <div class="admin-card-controls">
-                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                </div>
-                <div class="hiring-img-box"><img src="poster2.jpg" alt="Sales Executive Hiring" onerror="this.src='https://placehold.co/800x1200/FFD100/000?text=WE+ARE+HIRING\nSales'"></div>
-                <div class="hiring-content">
-                    <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
-                    <h3 class="job-title">SALES EXECUTIVE</h3>
-                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
+                <div class="hiring-card-inner" onclick="this.classList.toggle('flipped')">
+                    <div class="hiring-card-front">
+                        <div class="admin-card-controls">
+                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="event.stopPropagation(); initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="event.stopPropagation(); deleteCard(this)"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="hiring-img-box"><img src="poster2.jpg" alt="Sales Executive Hiring" onerror="this.src='https://placehold.co/800x1200/FFD100/000?text=WE+ARE+HIRING\nSales'"></div>
+                        <div class="hiring-content">
+                            <div class="hiring-meta-top"><span class="company-badge">SARATHY ELECTRIC BIKES</span><span class="post-date">01-07-2026</span></div>
+                            <h3 class="job-title">SALES EXECUTIVE</h3>
+                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SALES & SERVICE</span><span><i class="fas fa-location-dot"></i> CHENGANNUR</span></div>
+                            
+                            <div class="job-tags">Degree / Diploma &bull; Freshers / Experienced</div>
+                            <div class="flip-hint"><i class="fas fa-sync-alt"></i> Click for full details</div>
+                            
+                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                                <button onclick="event.stopPropagation(); openApplyModal('SALES', 'SALES EXECUTIVE')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
+                                <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" onclick="event.stopPropagation()"><i class="fas fa-map-marker-alt"></i> Location</a>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <!-- EXACT MATCH TO THE USER'S ATTACHED IMAGE HIGHLIGHT -->
-                    <div class="job-tags"><span class="qual-text">Degree / Diploma</span> &bull; <span class="exp-text">Freshers / Experienced</span></div>
-                    
-                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                        <button onclick="openApplyModal('SALES', 'SALES EXECUTIVE')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;"><i class="fas fa-paper-plane"></i> Apply</button>
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    <div class="hiring-card-back">
+                        <button class="back-close-btn" onclick="event.stopPropagation(); this.closest('.hiring-card-inner').classList.remove('flipped')" title="Close"><i class="fas fa-times"></i></button>
+                        <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 15px;">
+                            <span style="font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 5px;">SARATHY ELECTRIC BIKES</span>
+                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.3;">SALES EXECUTIVE</h3>
+                            
+                            <div style="background: var(--bg-light); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+                                <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
+                                    <i class="fas fa-graduation-cap" style="color: var(--accent-cyan); font-size: 1.3rem; margin-top: 2px;"></i>
+                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Candidate Requirements</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">Degree / Diploma &bull; Freshers / Experienced</span></div>
+                                </div>
+                                <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                    <i class="fas fa-map-marker-alt" style="color: var(--accent-red); font-size: 1.3rem; margin-top: 2px;"></i>
+                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Job Locations</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">CHENGANNUR</span></div>
+                                </div>
+                            </div>
+                            
+                            <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; font-weight: 500;">
+                                Become a part of the future of mobility! We are seeking motivated individuals to drive sales for our new EV lineup. High incentives guaranteed for achievers.
+                            </p>
+                        </div>
+                        
+                        <button onclick="event.stopPropagation(); openApplyModal('SALES', 'SALES EXECUTIVE')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; width: 100%; border-radius: 50px; font-size: 1.1rem; padding: 15px;">
+                            <i class="fas fa-paper-plane"></i> Apply Online Now
+                        </button>
                     </div>
                 </div>
             </div>
             
             <div class="hiring-card closed-job" data-job-id="sample-3" data-status="CLOSED">
-                <div class="admin-card-controls">
-                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                </div>
-                <div class="hiring-img-box">
-                    <div class="closed-overlay">CLOSED</div>
-                    <img src="poster3.jpg" alt="Trainee Hiring" onerror="this.src='https://placehold.co/800x1200/23C4F8/000?text=WE+ARE+HIRING\nTrainees'">
-                </div>
-                <div class="hiring-content">
-                    <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
-                    <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
-                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
+                <div class="hiring-card-inner" onclick="this.classList.toggle('flipped')">
+                    <div class="hiring-card-front">
+                        <div class="admin-card-controls">
+                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="event.stopPropagation(); initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="event.stopPropagation(); deleteCard(this)"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="hiring-img-box">
+                            <div class="closed-overlay">CLOSED</div>
+                            <img src="poster3.jpg" alt="Trainee Hiring" onerror="this.src='https://placehold.co/800x1200/23C4F8/000?text=WE+ARE+HIRING\nTrainees'">
+                        </div>
+                        <div class="hiring-content">
+                            <div class="hiring-meta-top"><span class="company-badge">SARATHY GROUP</span><span class="post-date">05-07-2026</span></div>
+                            <h3 class="job-title">SPARE ASSISTANT & TRAINEES</h3>
+                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> SPARES</span><span><i class="fas fa-location-dot"></i> TRIVANDRUM</span></div>
+                            
+                            <div class="job-tags">ITI / HSE &bull; Freshers Only</div>
+                            <div class="flip-hint"><i class="fas fa-sync-alt"></i> Click for full details</div>
+                            
+                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                                <button onclick="event.stopPropagation()" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" disabled><i class="fas fa-ban"></i> Closed</button>
+                                <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary" onclick="event.stopPropagation()"><i class="fas fa-map-marker-alt"></i> Location</a>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="job-tags"><span class="qual-text">ITI / HSE</span> &bull; <span class="exp-text">Freshers Only</span></div>
-                    
-                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                        <button onclick="openApplyModal('SPARE', 'SPARE ASSISTANT & TRAINEES')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" disabled><i class="fas fa-ban"></i> Closed</button>
-                        <a href="https://share.google/5hroGRiugavuW76tC" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                    <div class="hiring-card-back">
+                        <button class="back-close-btn" onclick="event.stopPropagation(); this.closest('.hiring-card-inner').classList.remove('flipped')" title="Close"><i class="fas fa-times"></i></button>
+                        <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 15px;">
+                            <span style="font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 5px;">SARATHY GROUP</span>
+                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.3;">SPARE ASSISTANT & TRAINEES</h3>
+                            
+                            <div style="background: var(--bg-light); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+                                <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
+                                    <i class="fas fa-graduation-cap" style="color: var(--accent-cyan); font-size: 1.3rem; margin-top: 2px;"></i>
+                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Candidate Requirements</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">ITI / HSE &bull; Freshers Only</span></div>
+                                </div>
+                                <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                    <i class="fas fa-map-marker-alt" style="color: var(--accent-red); font-size: 1.3rem; margin-top: 2px;"></i>
+                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Job Locations</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">TRIVANDRUM</span></div>
+                                </div>
+                            </div>
+                            
+                            <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; font-weight: 500;">
+                                We are currently not accepting applications for this role as the required positions have been filled. Please check out our other open roles.
+                            </p>
+                        </div>
+                        
+                        <button onclick="event.stopPropagation()" class="btn-card btn-card-primary" style="background: #94a3b8; color: white; width: 100%; border-radius: 50px; font-size: 1.1rem; padding: 15px; cursor: not-allowed;" disabled>
+                            <i class="fas fa-ban"></i> Position Closed
+                        </button>
                     </div>
                 </div>
             </div>
@@ -960,7 +1075,7 @@
     <section class="section reveal">
         <div class="section-header"><h2>Our Walk-In Hubs</h2><p>Locate the primary interview centers near you</p></div>
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126135.24434233767!2d76.54516757657904!3d8.893202956799011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fc58c70817c7%3A0x6b4beeaeb5b23d94!2sKollam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://maps.google.com/maps?q=Kollam,+Kerala&hl=en&z=10&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
 
@@ -1155,14 +1270,9 @@
                         grid.innerHTML = apiJobs.map(j => {
                             const imgSrc = j.imageUrl || 'https://placehold.co/800x1200/0B41CD/FFF?text=' + encodeURIComponent(j.title);
                             
-                            // Parse specific fields or fallback to parsing the generic 'tags' string
-                            let qual = j.qualification || "Degree / Diploma";
-                            let exp = j.experience || "Freshers / Experienced";
-                            if (!j.qualification && j.tags && j.tags.includes('•')) {
-                                qual = j.tags.split('•')[0].trim();
-                                exp = j.tags.split('•')[1].trim();
-                            } else if (j.tags && !j.qualification) {
-                                qual = j.tags; 
+                            let tagsText = j.tags || j.qualification || "Degree / Diploma • Freshers / Experienced";
+                            if(j.qualification && j.experience) {
+                                tagsText = j.qualification + " • " + j.experience;
                             }
                             
                             const mapUrl = j.mapLink || "https://share.google/5hroGRiugavuW76tC";
@@ -1170,28 +1280,63 @@
                             
                             return `
                             <div class="hiring-card ${isClosed ? 'closed-job' : ''}" data-job-id="${j.id}" data-status="${j.status || 'ACTIVE'}">
-                                <div class="admin-card-controls">
-                                    <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                                    <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="deleteCard(this)"><i class="fas fa-trash"></i></button>
-                                </div>
-                                <div class="hiring-img-box">
-                                    ${isClosed ? '<div class="closed-overlay">CLOSED</div>' : ''}
-                                    <img src="${imgSrc}" alt="${j.title} Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=${encodeURIComponent(j.title)}'">
-                                </div>
-                                <div class="hiring-content">
-                                    <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${j.createdDate}</span></div>
-                                    <h3 class="job-title">${j.title}</h3>
-                                    <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
+                                <div class="hiring-card-inner" onclick="this.classList.toggle('flipped')">
                                     
-                                    <!-- UPDATED: Specific styling mapping exactly to the reference image -->
-                                    <div class="job-tags"><span class="qual-text">${qual}</span> &bull; <span class="exp-text">${exp}</span></div>
-                                    
-                                    <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                                        <button onclick="openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" ${isClosed ? 'disabled' : ''}>
-                                            ${isClosed ? '<i class="fas fa-ban"></i> Closed' : '<i class="fas fa-paper-plane"></i> Apply'}
-                                        </button>
-                                        <a href="${mapUrl}" target="_blank" class="btn-card btn-card-secondary"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                    <!-- FRONT -->
+                                    <div class="hiring-card-front">
+                                        <div class="admin-card-controls">
+                                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="event.stopPropagation(); initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="event.stopPropagation(); deleteCard(this)"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                        <div class="hiring-img-box">
+                                            ${isClosed ? '<div class="closed-overlay">CLOSED</div>' : ''}
+                                            <img src="${imgSrc}" alt="${j.title} Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=${encodeURIComponent(j.title)}'">
+                                        </div>
+                                        <div class="hiring-content">
+                                            <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${j.createdDate}</span></div>
+                                            <h3 class="job-title">${j.title}</h3>
+                                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
+                                            
+                                            <div class="job-tags">${tagsText}</div>
+                                            <div class="flip-hint"><i class="fas fa-sync-alt"></i> Click for full details</div>
+                                            
+                                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                                                <button onclick="event.stopPropagation(); openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" ${isClosed ? 'disabled' : ''}>
+                                                    ${isClosed ? '<i class="fas fa-ban"></i> Closed' : '<i class="fas fa-paper-plane"></i> Apply'}
+                                                </button>
+                                                <a href="${mapUrl}" target="_blank" class="btn-card btn-card-secondary" onclick="event.stopPropagation()"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                            </div>
+                                        </div>
                                     </div>
+                                    
+                                    <!-- BACK -->
+                                    <div class="hiring-card-back">
+                                        <button class="back-close-btn" onclick="event.stopPropagation(); this.closest('.hiring-card-inner').classList.remove('flipped')" title="Close"><i class="fas fa-times"></i></button>
+                                        <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 15px;">
+                                            <span style="font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 5px;">${j.company}</span>
+                                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.3;">${j.title}</h3>
+                                            
+                                            <div style="background: var(--bg-light); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+                                                <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
+                                                    <i class="fas fa-graduation-cap" style="color: var(--accent-cyan); font-size: 1.3rem; margin-top: 2px;"></i>
+                                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Candidate Requirements</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">${tagsText}</span></div>
+                                                </div>
+                                                <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                                    <i class="fas fa-map-marker-alt" style="color: var(--accent-red); font-size: 1.3rem; margin-top: 2px;"></i>
+                                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Job Locations</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">${j.location}</span></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; font-weight: 500;">
+                                                Join our dynamic team at Sarathy Group! We offer extensive training, attractive incentive structures, and an excellent environment for rapid career growth.
+                                            </p>
+                                        </div>
+                                        
+                                        <button onclick="event.stopPropagation(); openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; width: 100%; border-radius: 50px; font-size: 1.1rem; padding: 15px;" ${isClosed ? 'disabled' : ''}>
+                                            ${isClosed ? '<i class="fas fa-ban"></i> Position Closed' : '<i class="fas fa-paper-plane"></i> Apply Online Now'}
+                                        </button>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         `}).join('');
@@ -1406,10 +1551,16 @@
         const modalImg = document.getElementById("modalImg");
         function attachLightboxListeners() {
             document.querySelectorAll('.hiring-img-box img').forEach(img => {
-                img.removeEventListener('click', openModal); img.addEventListener('click', openModal);
+                img.removeEventListener('click', openModal); 
+                img.addEventListener('click', openModal);
             });
         }
-        function openModal(e) { modal.classList.add('active'); modalImg.src = e.target.src; document.body.style.overflow = 'hidden'; }
+        function openModal(e) { 
+            if(e) e.stopPropagation(); 
+            modal.classList.add('active'); 
+            modalImg.src = e.target.src; 
+            document.body.style.overflow = 'hidden'; 
+        }
         function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; setTimeout(() => { modalImg.src = ''; }, 300); }
         document.getElementById("modalClose").addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
@@ -1506,14 +1657,10 @@
                 const dept = document.getElementById('jobDept').value;
                 const loc = document.getElementById('jobLoc').value;
                 
-                const qual = document.getElementById('jobQual').value;
-                const exp = document.getElementById('jobExp').value;
+                const tags = document.getElementById('jobTags').value;
                 const mapLink = document.getElementById('jobMap').value;
                 const status = document.getElementById('jobStatus').value;
                 
-                // Fallback tag string for legacy support
-                const tagsStr = `${qual} • ${exp}`; 
-
                 let existingImageUrl = '';
                 let jobId = null;
                 if (currentEditCard) {
@@ -1539,9 +1686,7 @@
                     company: company,
                     department: dept,
                     location: loc,
-                    tags: tagsStr, // Provided as fallback
-                    qualification: qual,  // Explicit specific payload
-                    experience: exp,      // Explicit specific payload
+                    tags: tags,           // Single manually controllable tags string
                     mapLink: mapLink,     // Explicit specific payload
                     status: status,       // Active/Closed toggle
                     imageUrl: base64Image
@@ -1574,11 +1719,8 @@
             document.getElementById('jobDept').value = metaSpans[0].textContent.trim();
             document.getElementById('jobLoc').value = metaSpans[1].textContent.trim();
             
-            // Map the specific new elements explicitly
-            const qualNode = currentEditCard.querySelector('.qual-text');
-            const expNode = currentEditCard.querySelector('.exp-text');
-            document.getElementById('jobQual').value = qualNode ? qualNode.textContent.trim() : 'Degree / Diploma';
-            document.getElementById('jobExp').value = expNode ? expNode.textContent.trim() : 'Freshers / Experienced';
+            const tagsNode = currentEditCard.querySelector('.job-tags');
+            document.getElementById('jobTags').value = tagsNode ? tagsNode.textContent.trim() : 'Degree / Diploma • Freshers';
             
             // Extract attributes logic 
             const locationAnchor = currentEditCard.querySelector('a.btn-card-secondary');
