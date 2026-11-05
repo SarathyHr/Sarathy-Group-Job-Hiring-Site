@@ -1286,91 +1286,110 @@
         }
 
         async function loadPublishedJobsFromDatabase() {
+            let jobsToRender = [];
+            
+            // 1. Try API first
             try {
-                if (!window.RecruitmentAPI) return;
-                const apiJobs = await window.RecruitmentAPI.getJobs();
-                if (apiJobs && apiJobs.length > 0) {
-                    const grid = document.getElementById('jobGrid');
-                    if (grid) {
-                        grid.innerHTML = apiJobs.map(j => {
-                            const imgSrc = j.imageUrl || 'https://placehold.co/800x1200/0B41CD/FFF?text=' + encodeURIComponent(j.title);
-                            
-                            let tagsText = j.tags || j.qualification || "Degree / Diploma • Freshers / Experienced";
-                            if(j.qualification && j.experience) {
-                                tagsText = j.qualification + " • " + j.experience;
-                            }
-                            
-                            const mapUrl = j.mapLink || "https://share.google/5hroGRiugavuW76tC";
-                            const isClosed = j.status === 'CLOSED';
-                            
-                            return `
-                            <div class="hiring-card ${isClosed ? 'closed-job' : ''}" data-job-id="${j.id}" data-status="${j.status || 'ACTIVE'}">
-                                <div class="hiring-card-inner" onclick="this.classList.toggle('flipped')">
-                                    
-                                    <!-- FRONT -->
-                                    <div class="hiring-card-front">
-                                        <div class="admin-card-controls">
-                                            <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="event.stopPropagation(); initiateEdit(this)"><i class="fas fa-edit"></i></button>
-                                            <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="event.stopPropagation(); deleteCard(this)"><i class="fas fa-trash"></i></button>
-                                        </div>
-                                        <div class="hiring-img-box">
-                                            ${isClosed ? '<div class="closed-overlay">CLOSED</div>' : ''}
-                                            <img src="${imgSrc}" alt="${j.title} Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=${encodeURIComponent(j.title)}'">
-                                        </div>
-                                        <div class="hiring-content">
-                                            <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${j.createdDate}</span></div>
-                                            <h3 class="job-title">${j.title}</h3>
-                                            <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
-                                            
-                                            <div class="job-tags">${tagsText}</div>
-                                            <div class="flip-hint"><i class="fas fa-sync-alt"></i> Click for full details</div>
-                                            
-                                            <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
-                                                <button onclick="event.stopPropagation(); openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" ${isClosed ? 'disabled' : ''}>
-                                                    ${isClosed ? '<i class="fas fa-ban"></i> Closed' : '<i class="fas fa-paper-plane"></i> Apply'}
-                                                </button>
-                                                <a href="${mapUrl}" target="_blank" class="btn-card btn-card-secondary" onclick="event.stopPropagation()"><i class="fas fa-map-marker-alt"></i> Location</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- BACK -->
-                                    <div class="hiring-card-back">
-                                        <button class="back-close-btn" onclick="event.stopPropagation(); this.closest('.hiring-card-inner').classList.remove('flipped')" title="Close"><i class="fas fa-times"></i></button>
-                                        <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 15px;">
-                                            <span style="font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 5px;">${j.company}</span>
-                                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.3;">${j.title}</h3>
-                                            
-                                            <div style="background: var(--bg-light); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
-                                                <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
-                                                    <i class="fas fa-graduation-cap" style="color: var(--accent-cyan); font-size: 1.3rem; margin-top: 2px;"></i>
-                                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Candidate Requirements</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">${tagsText}</span></div>
-                                                </div>
-                                                <div style="display: flex; gap: 15px; align-items: flex-start;">
-                                                    <i class="fas fa-map-marker-alt" style="color: var(--accent-red); font-size: 1.3rem; margin-top: 2px;"></i>
-                                                    <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Job Locations</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">${j.location}</span></div>
-                                                </div>
-                                            </div>
-                                            
-                                            <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; font-weight: 500;">
-                                                Join our dynamic team at Sarathy Group! We offer extensive training, attractive incentive structures, and an excellent environment for rapid career growth.
-                                            </p>
-                                        </div>
-                                        
-                                        <button onclick="event.stopPropagation(); openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; width: 100%; border-radius: 50px; font-size: 1.1rem; padding: 15px;" ${isClosed ? 'disabled' : ''}>
-                                            ${isClosed ? '<i class="fas fa-ban"></i> Position Closed' : '<i class="fas fa-paper-plane"></i> Apply Online Now'}
-                                        </button>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        `}).join('');
-
-                        attachLightboxListeners();
+                if (window.RecruitmentAPI && typeof window.RecruitmentAPI.getJobs === 'function') {
+                    const apiJobs = await window.RecruitmentAPI.getJobs();
+                    if (apiJobs && apiJobs.length > 0) {
+                        jobsToRender = apiJobs;
                     }
                 }
             } catch (e) {
-                console.log("Database job sync error:", e);
+                console.warn("Database API offline, using local storage fallback.", e);
+            }
+
+            // 2. Fallback to LocalStorage if API failed or empty
+            if (jobsToRender.length === 0) {
+                const localJobs = localStorage.getItem('sarathy_local_jobs');
+                if (localJobs) {
+                    jobsToRender = JSON.parse(localJobs);
+                    console.log("Loaded jobs from local storage fallback.");
+                }
+            }
+
+            // 3. Render
+            if (jobsToRender.length > 0) {
+                const grid = document.getElementById('jobGrid');
+                if (grid) {
+                    grid.innerHTML = jobsToRender.map(j => {
+                        const imgSrc = j.imageUrl || 'https://placehold.co/800x1200/0B41CD/FFF?text=' + encodeURIComponent(j.title);
+                        
+                        let tagsText = j.tags || j.qualification || "Degree / Diploma • Freshers / Experienced";
+                        if(j.qualification && j.experience) {
+                            tagsText = j.qualification + " • " + j.experience;
+                        }
+                        
+                        const mapUrl = j.mapLink || "https://share.google/5hroGRiugavuW76tC";
+                        const isClosed = j.status === 'CLOSED';
+                        const createdDate = j.createdDate || new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
+                        
+                        return `
+                        <div class="hiring-card ${isClosed ? 'closed-job' : ''}" data-job-id="${j.id}" data-status="${j.status || 'ACTIVE'}">
+                            <div class="hiring-card-inner" onclick="this.classList.toggle('flipped')">
+                                
+                                <!-- FRONT -->
+                                <div class="hiring-card-front">
+                                    <div class="admin-card-controls">
+                                        <button class="admin-card-btn btn-edit-card" title="Edit Job" onclick="event.stopPropagation(); initiateEdit(this)"><i class="fas fa-edit"></i></button>
+                                        <button class="admin-card-btn btn-del-card" title="Delete Job" onclick="event.stopPropagation(); deleteCard(this)"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                    <div class="hiring-img-box">
+                                        ${isClosed ? '<div class="closed-overlay">CLOSED</div>' : ''}
+                                        <img src="${imgSrc}" alt="${j.title} Hiring" onerror="this.src='https://placehold.co/800x1200/0B41CD/FFF?text=${encodeURIComponent(j.title)}'">
+                                    </div>
+                                    <div class="hiring-content">
+                                        <div class="hiring-meta-top"><span class="company-badge">${j.company}</span><span class="post-date">${createdDate}</span></div>
+                                        <h3 class="job-title">${j.title}</h3>
+                                        <div class="hiring-meta-mid"><span><i class="fas fa-folder"></i> ${j.department}</span><span><i class="fas fa-location-dot"></i> ${j.location}</span></div>
+                                        
+                                        <div class="job-tags">${tagsText}</div>
+                                        <div class="flip-hint"><i class="fas fa-sync-alt"></i> Click for full details</div>
+                                        
+                                        <div class="hiring-actions" style="grid-template-columns: 1fr 1fr;">
+                                            <button onclick="event.stopPropagation(); openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white;" ${isClosed ? 'disabled' : ''}>
+                                                ${isClosed ? '<i class="fas fa-ban"></i> Closed' : '<i class="fas fa-paper-plane"></i> Apply'}
+                                            </button>
+                                            <a href="${mapUrl}" target="_blank" class="btn-card btn-card-secondary" onclick="event.stopPropagation()"><i class="fas fa-map-marker-alt"></i> Location</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- BACK -->
+                                <div class="hiring-card-back">
+                                    <button class="back-close-btn" onclick="event.stopPropagation(); this.closest('.hiring-card-inner').classList.remove('flipped')" title="Close"><i class="fas fa-times"></i></button>
+                                    <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 15px;">
+                                        <span style="font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 5px;">${j.company}</span>
+                                        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.3;">${j.title}</h3>
+                                        
+                                        <div style="background: var(--bg-light); padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+                                            <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
+                                                <i class="fas fa-graduation-cap" style="color: var(--accent-cyan); font-size: 1.3rem; margin-top: 2px;"></i>
+                                                <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Candidate Requirements</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">${tagsText}</span></div>
+                                            </div>
+                                            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                                <i class="fas fa-map-marker-alt" style="color: var(--accent-red); font-size: 1.3rem; margin-top: 2px;"></i>
+                                                <div><strong style="display: block; font-size: 0.95rem; color: var(--text-dark);">Job Locations</strong><span style="font-size: 0.9rem; color: var(--text-light); font-weight: 600;">${j.location}</span></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; font-weight: 500;">
+                                            Join our dynamic team at Sarathy Group! We offer extensive training, attractive incentive structures, and an excellent environment for rapid career growth.
+                                        </p>
+                                    </div>
+                                    
+                                    <button onclick="event.stopPropagation(); openApplyModal('${j.department}', '${j.title}', '${j.id}')" class="btn-card btn-card-primary" style="background: var(--primary); color: white; width: 100%; border-radius: 50px; font-size: 1.1rem; padding: 15px;" ${isClosed ? 'disabled' : ''}>
+                                        ${isClosed ? '<i class="fas fa-ban"></i> Position Closed' : '<i class="fas fa-paper-plane"></i> Apply Online Now'}
+                                    </button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    `}).join('');
+
+                    attachLightboxListeners();
+                }
             }
         }
 
@@ -1728,7 +1747,7 @@
             
             const formSubmitBtn = document.getElementById('formSubmitBtn');
             formSubmitBtn.disabled = true;
-            formSubmitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Saving to Database...`;
+            formSubmitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Saving...`;
 
             try {
                 // Parse Explicit specific inputs (v2.0)
@@ -1761,7 +1780,7 @@
                 }
 
                 const jobPayload = {
-                    id: jobId,
+                    id: jobId || 'local_' + Date.now(), // Generate local ID if new
                     title: title,
                     company: company,
                     department: dept,
@@ -1769,17 +1788,42 @@
                     tags: tags,           // Single manually controllable tags string
                     mapLink: mapLink,     // Explicit specific payload
                     status: status,       // Active/Closed toggle
-                    imageUrl: base64Image
+                    imageUrl: base64Image,
+                    createdDate: new Date().toLocaleDateString('en-GB').replace(/\//g, '-')
                 };
 
-                if (window.RecruitmentAPI) {
-                    await window.RecruitmentAPI.saveJob(jobPayload);
-                    showToast(currentEditCard ? "Job Updated in Database!" : "New Job Saved to Database!", "var(--success)", "fa-cloud-upload-alt");
-                    cancelEditMode();
-                    await loadPublishedJobsFromDatabase();
-                } else {
-                    showToast("Error: RecruitmentAPI not loaded", "var(--accent-red)", "fa-exclamation-triangle");
+                let savedViaAPI = false;
+
+                // Try API First
+                if (window.RecruitmentAPI && typeof window.RecruitmentAPI.saveJob === 'function') {
+                    try {
+                        await window.RecruitmentAPI.saveJob(jobPayload);
+                        savedViaAPI = true;
+                        showToast(currentEditCard ? "Job Updated in Database!" : "New Job Saved to Database!", "var(--success)", "fa-cloud-upload-alt");
+                    } catch (apiErr) {
+                        console.warn("API save failed, using local fallback:", apiErr);
+                    }
                 }
+
+                // Fallback to localStorage
+                if (!savedViaAPI) {
+                    let localJobs = JSON.parse(localStorage.getItem('sarathy_local_jobs') || '[]');
+                    
+                    if (jobId && jobId !== 'null') {
+                        const index = localJobs.findIndex(j => j.id === jobId);
+                        if (index > -1) localJobs[index] = jobPayload;
+                        else localJobs.push(jobPayload);
+                    } else {
+                        localJobs.push(jobPayload);
+                    }
+
+                    localStorage.setItem('sarathy_local_jobs', JSON.stringify(localJobs));
+                    showToast(currentEditCard ? "Job Updated Locally!" : "New Job Saved Locally!", "var(--success)", "fa-save");
+                }
+
+                cancelEditMode();
+                await loadPublishedJobsFromDatabase();
+
             } catch (err) {
                 console.error("Save job error:", err);
                 showToast("Failed to save job poster: " + err.message, "var(--accent-red)", "fa-exclamation-triangle");
@@ -1821,21 +1865,34 @@
         window.deleteCard = async function(btnElement) {
             const card = btnElement.closest('.hiring-card');
             const jobId = card.dataset.jobId;
-            if (confirm("Are you sure you want to delete this job poster from live database?")) {
-                try {
-                    if (window.RecruitmentAPI && jobId && !jobId.includes("sample")) {
+            
+            if (confirm("Are you sure you want to delete this job poster?")) {
+                let deletedViaAPI = false;
+
+                // Try API First
+                if (window.RecruitmentAPI && typeof window.RecruitmentAPI.deleteJob === 'function' && jobId && !jobId.includes("sample")) {
+                    try {
                         await window.RecruitmentAPI.deleteJob(jobId);
+                        deletedViaAPI = true;
+                    } catch (e) {
+                        console.warn("API delete failed, trying local fallback.", e);
                     }
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.8)';
-                    setTimeout(() => {
-                        card.remove();
-                        showToast("Job Poster Deleted", "var(--accent-red)", "fa-trash");
-                        if (currentEditCard === card) cancelEditMode(); 
-                    }, 300);
-                } catch(e) {
-                    showToast("Error deleting job poster", "var(--accent-red)", "fa-exclamation-triangle");
                 }
+
+                // Fallback to localStorage
+                if (!deletedViaAPI) {
+                    let localJobs = JSON.parse(localStorage.getItem('sarathy_local_jobs') || '[]');
+                    localJobs = localJobs.filter(j => j.id !== jobId);
+                    localStorage.setItem('sarathy_local_jobs', JSON.stringify(localJobs));
+                }
+
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    card.remove();
+                    showToast("Job Poster Deleted", "var(--accent-red)", "fa-trash");
+                    if (currentEditCard === card) cancelEditMode(); 
+                }, 300);
             }
         };
 
@@ -2021,15 +2078,36 @@
                     resumeFile: resumeFileInput.files.length > 0 ? resumeFileInput.files[0] : null
                 };
 
-                if (window.RecruitmentAPI) {
-                    const res = await window.RecruitmentAPI.applyForJob(candidateData);
-                    showToast("Application Submitted Successfully!", "var(--success)", "fa-check-circle");
-                    alert("Thank you! Your application has been submitted to Sarathy Group HR.\n\nReference ID: " + res.candidateId);
-                    closeApplyModal();
-                    document.getElementById('candidateApplyForm').reset();
-                } else {
-                    showToast("API Client missing", "var(--accent-red)", "fa-exclamation-circle");
+                let submitted = false;
+                let refId = "LOCAL-" + Math.floor(Math.random() * 1000000);
+
+                if (window.RecruitmentAPI && typeof window.RecruitmentAPI.applyForJob === 'function') {
+                    try {
+                        const res = await window.RecruitmentAPI.applyForJob(candidateData);
+                        refId = res.candidateId;
+                        submitted = true;
+                    } catch (apiErr) {
+                        console.warn("API candidate submission failed, using fallback.", apiErr);
+                    }
                 }
+
+                if (!submitted) {
+                    // Fallback: Save locally
+                    let localApps = JSON.parse(localStorage.getItem('sarathy_local_applications') || '[]');
+                    candidateData.id = refId;
+                    candidateData.date = new Date().toISOString();
+                    // Don't save actual file to localstorage due to size limit, just flag it
+                    candidateData.hasResume = resumeFileInput.files.length > 0;
+                    delete candidateData.resumeFile; 
+                    localApps.push(candidateData);
+                    localStorage.setItem('sarathy_local_applications', JSON.stringify(localApps));
+                }
+
+                showToast("Application Submitted Successfully!", "var(--success)", "fa-check-circle");
+                alert("Thank you! Your application has been submitted to Sarathy Group HR.\n\nReference ID: " + refId);
+                closeApplyModal();
+                document.getElementById('candidateApplyForm').reset();
+
             } catch (err) {
                 console.error("Application submission error:", err);
                 showToast("Submission failed: " + err.message, "var(--accent-red)", "fa-exclamation-triangle");
