@@ -361,7 +361,7 @@
         .admin-tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 20px;}
         .admin-header-title { display: flex; align-items: center; gap: 18px; }
         .admin-header-title i { font-size: 2.2rem; color: var(--primary); background: rgba(11, 65, 205, 0.1); padding: 15px; border-radius: 20px; }
-        .admin-actions-bar { display: flex; gap: 12px; }
+        .admin-actions-bar { display: flex; gap: 12px; flex-wrap: wrap; }
         
         .admin-section-label { grid-column: 1 / -1; font-size: 1.2rem; font-weight: 800; color: var(--primary); border-bottom: 2px solid var(--bg-light); padding-bottom: 8px; margin-top: 10px;}
         
@@ -370,6 +370,11 @@
         .btn-save-jobs:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,211,102,0.4); }
         .btn-exit-admin { background: #64748b; color: white; }
         .btn-exit-admin:hover { background: #475569; transform: translateY(-3px); }
+
+        /* NEW: Reset Password button */
+        .btn-reset-pass { background: var(--accent-yellow); color: var(--primary-dark); box-shadow: 0 4px 15px rgba(255, 209, 0, 0.35); }
+        .btn-reset-pass:hover { background: #eabf00; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 209, 0, 0.45); }
+
         .admin-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;}
         .form-group { display: flex; flex-direction: column; gap: 10px; }
         .form-group.full-width { grid-column: 1 / -1; }
@@ -790,6 +795,7 @@
                         </div>
                     </div>
                     <div class="admin-actions-bar">
+                        <button class="btn-admin-action btn-reset-pass" id="resetPasswordBtn"><i class="fas fa-key"></i> Reset Password</button>
                         <button class="btn-admin-action btn-exit-admin" id="exitAdminBtn"><i class="fas fa-sign-out-alt"></i> Exit Admin</button>
                     </div>
                 </div>
@@ -1250,6 +1256,25 @@
         </div>
     </div>
 
+    <!-- Reset Admin Password Modal -->
+    <div class="admin-modal" id="resetPassModal">
+        <div class="admin-login-box">
+            <span class="admin-close-btn" id="closeResetPassBtn"><i class="fas fa-times"></i></span>
+            <i class="fas fa-key" style="font-size: 3.5rem; color: var(--accent-yellow); margin-bottom: 20px;"></i>
+            <h3 style="color: var(--primary-dark); margin-bottom: 8px; font-size: 1.6rem; font-weight: 800;">Reset Admin Passcode</h3>
+            <p style="color: var(--text-light); font-size: 1rem; margin-bottom: 25px; font-weight: 500;">Enter your current passcode and set a new one.</p>
+
+            <input type="password" id="currentPasscode" class="admin-input" placeholder="Current Passcode">
+            <input type="password" id="newPasscode" class="admin-input" placeholder="New Passcode (min 4 characters)">
+            <input type="password" id="confirmPasscode" class="admin-input" placeholder="Confirm New Passcode">
+
+            <button id="saveNewPassBtn" class="btn-primary" style="width: 100%; justify-content: center; font-size: 1.1rem;">
+                <i class="fas fa-save" style="margin-right: 8px;"></i> Update Passcode
+            </button>
+            <p class="admin-error" id="resetPassErrorMsg"></p>
+        </div>
+    </div>
+
     <script>
         function showToast(message, color = "var(--success)", icon = "fa-check") {
             const toast = document.getElementById('toastMessage');
@@ -1576,6 +1601,12 @@
         const adminSection = document.getElementById('adminSection');
         let currentEditCard = null;
 
+        /* --- ADMIN PASSCODE STORAGE --- */
+        const ADMIN_PASS_KEY = 'sarathy_admin_passcode';
+        function getAdminPasscode() {
+            return localStorage.getItem(ADMIN_PASS_KEY) || 'admin'; // default is still "admin"
+        }
+
         let pressTimer;
         const secretAdminTrigger = document.getElementById('secretAdminTrigger');
 
@@ -1604,7 +1635,7 @@
         document.getElementById('closeAdminBtn').addEventListener('click', () => adminModal.classList.remove('active'));
 
         document.getElementById('adminSubmitBtn').addEventListener('click', () => {
-            if (adminPasscode.value === "admin") {
+            if (adminPasscode.value === getAdminPasscode()) {
                 adminModal.classList.remove('active');
                 document.body.classList.add('admin-mode');
                 adminSection.style.display = 'block'; 
@@ -1625,6 +1656,55 @@
         
         adminPasscode.addEventListener('keypress', (e) => { 
             if (e.key === 'Enter') document.getElementById('adminSubmitBtn').click(); 
+        });
+
+        /* --- RESET ADMIN PASSWORD --- */
+        const resetPassModal = document.getElementById('resetPassModal');
+        const resetPassErrorMsg = document.getElementById('resetPassErrorMsg');
+
+        function showResetError(msg) {
+            resetPassErrorMsg.textContent = msg;
+            resetPassErrorMsg.style.display = 'block';
+        }
+
+        function closeResetPassModal() {
+            resetPassModal.classList.remove('active');
+            document.getElementById('currentPasscode').value = '';
+            document.getElementById('newPasscode').value = '';
+            document.getElementById('confirmPasscode').value = '';
+            resetPassErrorMsg.style.display = 'none';
+        }
+
+        document.getElementById('resetPasswordBtn').addEventListener('click', () => {
+            closeResetPassModal();
+            resetPassModal.classList.add('active');
+            setTimeout(() => document.getElementById('currentPasscode').focus(), 100);
+        });
+
+        document.getElementById('closeResetPassBtn').addEventListener('click', closeResetPassModal);
+        resetPassModal.addEventListener('click', (e) => { if (e.target === resetPassModal) closeResetPassModal(); });
+
+        document.getElementById('saveNewPassBtn').addEventListener('click', () => {
+            const current = document.getElementById('currentPasscode').value;
+            const newPass = document.getElementById('newPasscode').value;
+            const confirmPass = document.getElementById('confirmPasscode').value;
+
+            resetPassErrorMsg.style.display = 'none';
+
+            if (current !== getAdminPasscode()) return showResetError('Current passcode is incorrect!');
+            if (newPass.length < 4) return showResetError('New passcode must be at least 4 characters.');
+            if (newPass !== confirmPass) return showResetError('New passcodes do not match!');
+
+            localStorage.setItem(ADMIN_PASS_KEY, newPass);
+            closeResetPassModal();
+            showToast("Admin Passcode Updated Successfully!", "var(--success)", "fa-key");
+        });
+
+        // Allow Enter key to submit
+        ['currentPasscode', 'newPasscode', 'confirmPasscode'].forEach(id => {
+            document.getElementById(id).addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') document.getElementById('saveNewPassBtn').click();
+            });
         });
 
         document.getElementById('exitAdminBtn').addEventListener('click', () => {
